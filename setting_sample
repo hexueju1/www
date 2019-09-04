@@ -1,0 +1,22 @@
+{
+  // 不需要分号
+  "prettier.semi": false,
+  // 保存时格式化
+  "editor.formatOnSave": true,
+  // prettier 设置强制单引号
+  "prettier.singleQuote": true,
+  // 括号内侧两边是否留空格
+  "prettier.bracketSpacing": true,
+  "prettier.tabWidth": 2,
+  // 逗号结尾
+  "prettier.trailingComma": "all",
+  // 箭头函数是否总有括号
+  "prettier.arrowParens": "always",
+  "prettier.disableLanguages": ["markdown"],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+}

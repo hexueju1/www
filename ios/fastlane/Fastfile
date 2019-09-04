@@ -1,0 +1,43 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "package ios for fir"
+  lane :fir do
+    # 运行 pod install 
+    # cocoapods 
+    increment_build_number
+    # add actions here: https://docs.fastlane.tools/actions
+      # 构建和打包ipa
+      # 又名build_app
+    gym(
+        clean: true,
+        output_directory: './firim',
+        scheme: 'oneday',
+        # export_method: "app-store"
+        export_method: "ad-hoc"
+    )
+
+    # upload to Testflight
+    # pilot(skip_waiting_for_build_processing: true)
+
+    # firim 是一个插件，执行 fastlane add_plugin firim 即可把插件装好
+    # fastlane add_plugin pgyer  蒲公英
+    # 上传ipa到fir.im服务器，在fir.im获取firim_api_token
+    firim(firim_api_token: "651e2d6ca20bf4313463edb8f3b6743f")
+  end
+end

@@ -1,0 +1,23 @@
+{
+    "code": 1,
+    "msg": "",
+    "time": "1564648198",
+    "data": {
+        "total": 1,
+        "rows": [
+            {
+                "id": 77299,
+                "admin_id": 2,
+                "user_id": 65538,
+                "title": "借款申请通知",
+                "description": "",
+                "content": "编号为20190730222216974063的借款申请提交成功, 请等待后台审核！",
+                "createtime": "2019-07-30 22:22:16",
+                "updatetime": 1564496536,
+                "status": "normal",
+                "status_text": "正常"
+            }
+        ],
+        "page": 1
+    }
+}

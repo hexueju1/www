@@ -1,0 +1,49 @@
+{
+    "name": "shandai",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node node_modules/react-native/local-cli/cli.js start",
+        "test": "jest",
+        "fix": "python3 tools/fix_module.py",
+        "preinstall": "echo preinstall",
+        "android": "react-native run-android",
+        "ios": "react-native run-ios",
+        "log": "react-native log-android"
+    },
+    "dependencies": {
+        "@react-native-community/async-storage": "^1.4.0",
+        "@react-native-community/cameraroll": "^1.0.5",
+        "@react-native-community/netinfo": "^4.1.3",
+        "@yyyyu/react-native-geetest-sensebot": "^2.0.0",
+        "native-base": "2.12.0",
+        "react": "16.6.3",
+        "react-native": "^0.59.8",
+        "react-native-device-info": "^2.1.0",
+        "react-native-fs": "https://github.com/playscforever/react-native-fs",
+        "react-native-gesture-handler": "https://github.com/playscforever/react-native-gesture-handler",
+        "react-native-i18n": "https://github.com/playscforever/react-native-i18n",
+        "react-native-looped-carousel": "^0.1.13",
+        "react-native-modal": "^11.0.1",
+        "react-native-modal-dropdown": "^0.6.2",
+        "react-native-qrcode-svg": "^5.1.2",
+        "react-native-root-toast": "^3.0.2",
+        "react-native-splash-screen": "^3.2.0",
+        "react-native-svg": "^9.4.0",
+        "react-native-swiper": "^1.5.14",
+        "react-native-tab-navigator": "^0.3.4",
+        "react-native-textinput-effects": "^0.5.1",
+        "react-native-update": "5.x",
+        "react-native-view-shot": "https://github.com/playscforever/react-native-view-shot",
+        "react-native-webview": "^6.1.0",
+        "react-navigation": "^3.0.9",
+        "reconnecting-websocket": "^4.1.10",
+        "victory-native": "^32.0.2"
+    },
+    "jest": {
+        "preset": "react-native"
+    },
+    "devDependencies": {
+        "flow-bin": "^0.89.0"
+    }
+}

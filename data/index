@@ -1,0 +1,24 @@
+{
+    "code": 1,
+    "msg": "",
+    "time": "1564648114",
+    "data": {
+        "banner": [
+            {
+                "advimage": "https:\/\/thinko.cc\/uploads\/20190402\/hRQGE0orau8Mv19H9d68827faa656588e1e401e5d904e0d1.png",
+                "url": "..\/imnote\/imnote",
+                "type": 2
+            }
+        ],
+        "recommend": [
+            {
+                "title": "信用花",
+                "subtitle": "信用花",
+                "desc": "最高可借10000",
+                "url": "http:\/\/thinko.cc\/reg\/?A184273C-sxzEVvAh56"
+            }
+        ],
+        "unread_message": 2,
+        "max_money": "10,000"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "code": 1,
+    "msg": "登录成功",
+    "time": "1564646287",
+    "data": {
+        "userinfo": {
+            "id": 65538,
+            "username": "18963985141",
+            "nickname": "18963985141",
+            "mobile": "18963985141",
+            "avatar": "\/assets\/img\/avatar.png",
+            "gender": 1,
+            "score": 0,
+            "realname": "严张锦",
+            "address": "湖北省荆州市荆州区东堤街190号",
+            "id_number": "421003199110081593",
+            "face_validate": "1",
+            "mobile_validate": "1",
+            "card_number": "6214851211358317",
+            "channel": "",
+            "borrow_limit": "1600.00",
+            "token": "90cc08b4-b7e5-435e-b607-d2494e9bbc2d",
+            "user_id": 65538,
+            "createtime": 1564646287,
+            "expiretime": 1564657087,
+            "expires_in": 10800
+        }
+    }
+}

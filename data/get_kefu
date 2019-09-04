@@ -1,0 +1,18 @@
+{
+	"code": 1,
+	"msg": "",
+	"time": "1564132911",
+	"data": {
+		"kefu": {
+			"qrcode": "https:\/\/thinko.cc",
+			"tel": "17607952123",
+			"weixin": ""
+		},
+		"app": {
+			"name": "闪贷",
+			"nameen": "",
+			"logo": "https:\/\/thinko.cc\/uploads\/20190307\/YVrPFikdm4pzj72y95dfd897317ee7a0ef4985b23ebaa2fa.png",
+			"description": ""
+		}
+	}
+}

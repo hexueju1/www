@@ -1,0 +1,36 @@
+{
+    "code": 1,
+    "msg": "",
+    "time": "1564647921",
+    "data": {
+        "detail": {
+            "ordersn": "20190730222216974063",
+            "goods_name": "闪贷",
+            "apply_borrow": "2,586.00",
+            "borrow_money": "0.00",
+            "purposelist": null,
+            "days": 5,
+            "overdue": 0,
+            "renewal": 0,
+            "rate": 0.008,
+            "overdue_rate": 0.1,
+            "vetting_fee": "385.00",
+            "service_fee": 0,
+            "overdue_fee": 0,
+            "interest_fee": 0,
+            "paid_money": "-985.00",
+            "payable_money": 0,
+            "reimbursement": 0,
+            "createtime": "2019-07-30 22:22:15",
+            "checktime": "2019-08-01 09:21:03",
+            "borrowtime": 0,
+            "expirationtime": 0,
+            "payofftime": 0,
+            "status": 2,
+            "show_renewal_oneday": 0,
+            "show_renewal_onephase": "1",
+            "show_full_payment": "1",
+            "tel": "17607952123"
+        }
+    }
+}
