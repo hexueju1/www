@@ -5,14 +5,15 @@ const { width, height } = Dimensions.get('window')
 // 用于存放整个项目的全部颜色,建议下载对应插件实时查看颜色
 export const color = {
   // 透明
+  text_0f: '#0F0F0F',
   transparent: 'rgba(0, 0, 0, 0)',
   white: '#fff',
-  primary_bg: 'rgb(53, 59, 65)',
+  primary_bg: '#E7912D',
   transparent_primary_bg: 'rgba(53, 59, 65, 0.5)',
   transparent_primary_bg_dark: 'rgba(53, 59, 65, 0.9)',
   divide_bg: '#EFEFEF',
   divide_line: '#e8e8e8',
-  primary_text: 'rgba(0, 0, 0, 0.85)',
+  primary_text: '#E7912D',
   black: '#000',
   hint: '#93989d',
   white_gray: '#F0F0F0',
@@ -57,9 +58,9 @@ export const layout = {}
 export const style = {
   // 默认导航样式
   defaultNavigation: {
-    headerTitleStyle: { color: color.primary_text, flex: 1, textAlign: 'center', alignSelf: 'center' },
-    headerStyle: { backgroundColor: color.white },
-    headerTintColor: color.primary_text,
+    headerTitleStyle: { color: color.text_0f, flex: 1, textAlign: 'center', alignSelf: 'center' },
+    headerStyle: { backgroundColor: color.primary_text },
+    headerTintColor: color.text_0f,
     headerBackTitle: null,
     // headerTitleContainerStyle: {
     //   left: TITLE_OFFSET,

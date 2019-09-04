@@ -42,7 +42,6 @@ export default class RepaymentScreen extends BaseScreen {
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <MyStatusBar style={{ backgroundColor: color.white }} />
         <Tabs>
           <Tab heading="借款记录">
             <BorrowTab type={1} />

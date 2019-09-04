@@ -9,11 +9,12 @@ import { View, Image, SafeAreaView, StyleSheet, StatusBar } from 'react-native'
 import { color, size, layout, style } from '../../common/MyStyle'
 import { isDebug, LOG } from '../../utils/MyDebugUtils'
 import LocalConfigManager from '../../common/LocalConfigManager'
+import MyStatusBar from '../../components/MyStatusBar'
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  }
+  static navigationOptions = () => ({
+    title: '借款',
+  })
 
   // props是在父组件中指定，而且一经指定，在被指定的组件的生命周期中则不再改变。
   constructor(props) {
@@ -24,7 +25,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <StatusBar backgroundColor="transparent" barStyle="dark-content" translucent={true} />
+        <StatusBar backgroundColor={color.primary_bg} barStyle="dark-content" translucent={false} />
       </SafeAreaView>
     )
   }

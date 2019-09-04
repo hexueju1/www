@@ -1,19 +1,16 @@
-# shandai-app
-
-shandai-app
+# jubaopen
 
 # 接口文档
 
-http://www.thinko.cc/api.html
+waiting
 
 # 线上产品（uniapp）
 
-H5版本 :   https://thinko.cc/sd/?A123456  
-安卓版本:   http://thinko.cc/download?Ashandai  
-苹果版本:   https://fir.im/ishandai
+waiting
 
 # 一些约定&规范（重要）
 
+* 不要考虑状态栏，标题栏等通用组件。
 * 提交之前先格式化
 * 提交之前必须先pull，如有冲突先暂存代码再pull，然后恢复暂存解决冲突，然后再提交。
 * MyHttpUtils中的showLoadingEndpoint数组存放需要loading的请求
@@ -29,7 +26,7 @@ H5版本 :   https://thinko.cc/sd/?A123456
 # 目录结构
 
 /src目录存放RN相关代码
-  common 不同页面之间通用的一些方法和逻辑（如：登录信息，币对配置等）
+  common 不同页面之间通用的一些方法和逻辑（如：登录信息）
     MyStyle.js 存放通用的颜色，尺寸等信息，所有可能多个地方用到的都在这里定义。
     LoginManager.js 管理用户状态相关信息(LoginManager.isLogin()判断是否登录)
   utils 项目无关的通用方法
@@ -52,7 +49,7 @@ H5版本 :   https://thinko.cc/sd/?A123456
 * style默认为白色，可不传
 * 具体参考RepaymentScreen
 
-# 国际化
+# 国际化(暂不考虑)
 
 <!-- 基本使用：
 import { I18n } from '../common/LanguageManager'
