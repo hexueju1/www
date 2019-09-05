@@ -6,38 +6,34 @@ import android.os.StrictMode;
 
 import androidx.multidex.MultiDex;
 
-import com.facebook.react.ReactApplication;
-import com.reactnativecommunity.netinfo.NetInfoPackage;
-
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-
-import com.thinktank.shan2dai.Download.DownloadPackage;
-import com.rnfs.RNFSPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
-import com.thinktank.shan2dai.Share.SharePackage;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.mob.MobSDK;
-import com.reactnativecommunity.cameraroll.CameraRollPackage;
-
-import fr.greweb.reactnativeviewshot.RNViewShotPackage;
-
-import com.horcrux.svg.SvgPackage;
-import com.rnlib.geetestsensebot.RNLGeetestSensebotPackage;
-import com.reactnativecommunity.webview.RNCWebViewPackage;
+import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.thinktank.shan2dai.NativeUI.BulbSample.BulbPackage;
-import com.thinktank.shan2dai.NativeUI.MyNativeWebView.MyNativeWebViewPackage;
+import com.horcrux.svg.SvgPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.mob.MobSDK;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.reactnativecommunity.cameraroll.CameraRollPackage;
+import com.reactnativecommunity.netinfo.NetInfoPackage;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
+import com.rnfs.RNFSPackage;
+import com.rnlib.geetestsensebot.RNLGeetestSensebotPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.thinktank.shan2dai.Download.DownloadPackage;
+import com.thinktank.shan2dai.NativeUI.BulbSample.BulbPackage;
+import com.thinktank.shan2dai.Share.SharePackage;
+
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
 
 import cn.reactnative.modules.update.UpdateContext;
 import cn.reactnative.modules.update.UpdatePackage;
+import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -57,7 +53,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-            new NetInfoPackage(),
+                    new NetInfoPackage(),
                     new SplashScreenReactPackage(),
                     new RNFSPackage(),
                     new RNI18nPackage(),
@@ -71,7 +67,6 @@ public class MainApplication extends Application implements ReactApplication {
                     new UpdatePackage(),
                     new RNGestureHandlerPackage(),
                     new BulbPackage(),
-                    new MyNativeWebViewPackage(),
                     new SharePackage(),
                     new DownloadPackage()
             );
