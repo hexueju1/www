@@ -1,4 +1,4 @@
-import { Dimensions, Platform } from 'react-native'
+import { Dimensions, StatusBar } from 'react-native'
 import { Header } from 'react-navigation'
 const { width, height } = Dimensions.get('window')
 
@@ -38,6 +38,8 @@ export const size = {
   screen_height: height,
   // 导航高度
   navigation_height: Header.HEIGHT,
+  // 状态栏高度
+  statusbar_height: StatusBar.currentHeight,
   font: 12,
   font_14: 14,
   font_small: 12,

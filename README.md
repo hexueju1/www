@@ -21,7 +21,7 @@ waiting
 * 事件的发送和监听使用DeviceEventEmitter，事件名需要在Constants里面定义,一定要在componentWillUnmount里面remove掉监听的事件。
 * http请求对应的url放在Constants.js的endpoint里面，根目录data下按照名称存放api返回数据方便查看
 * 定时器必须在unmount的时候清理掉（clearTimeout/clearInterval）
-
+* 屏幕适配使用import { px } from '../../utils/Device'，   设计稿长度为N，使用的时候就用px(N),  字体使用sp(N) 具体参考HomeScreen（首页）
 
 # 目录结构
 
