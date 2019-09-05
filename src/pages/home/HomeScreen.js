@@ -27,6 +27,7 @@ export default class HomeScreen extends React.Component {
     super(props)
     this.state = {
       maxCanBorrow: '20,000.00',
+      location: '苏州',
     }
   }
 

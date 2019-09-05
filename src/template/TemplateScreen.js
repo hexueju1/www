@@ -34,6 +34,8 @@ import MyStoreManager from '../common/MyStoreManager'
 import LoginManager from '../common/LoginManager'
 import { event, localStore, endpoint } from '../common/Constants'
 import DismissKeyboardHOC from '../components/DismissKeyboardHOC'
+import { px, sp } from '../../utils/Device'
+
 export default class TemplateScreen extends BaseScreen {
   static navigationOptions = {
     title: 'Template',

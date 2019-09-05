@@ -45,7 +45,7 @@ const HomeStack = createStackNavigator(
 HomeStack.navigationOptions = () => ({
   // 隐藏
   // tabBarVisible: false,
-  tabBarLabel: '借款',
+  tabBarLabel: '首页',
   tabBarIcon: ({ tintColor, focused }) => {
     return (
       <Image
@@ -72,7 +72,7 @@ const RepaymentStack = createStackNavigator(
 RepaymentStack.navigationOptions = () => ({
   // 隐藏
   // tabBarVisible: false,
-  tabBarLabel: '还款',
+  tabBarLabel: '借款',
   tabBarIcon: ({ tintColor, focused }) => {
     return (
       <Image
@@ -94,7 +94,7 @@ const MeStack = createStackNavigator(
     defaultNavigationOptions: style.defaultNavigation,
     headerLayoutPreset: 'center',
     navigationOptions: () => ({
-      tabBarLabel: '我的',
+      tabBarLabel: '个人',
       cardStyle: { backgroundColor: color.change },
       tabBarIcon: ({ tintColor, focused }) => {
         return (
