@@ -12,6 +12,7 @@ import LocalConfigManager from '../../common/LocalConfigManager'
 import MyStatusBar from '../../components/MyStatusBar'
 import { px, sp } from '../../utils/Device'
 import { Container, Header, Content, Button } from 'native-base'
+import { blue, black } from 'ansi-colors'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -49,9 +50,12 @@ export default class HomeScreen extends React.Component {
             justifyContent: 'space-between',
           }}
         >
-          <Image style={{ width: px(28), height: px(28) }} source={require('../../images/img/positive.png')} />
-          <View>
-            <Image style={{ width: px(28), height: px(28) }} source={require('../../images/img/positive.png')} />
+          <View style={{ flex: 1 }}>
+            <Image style={{ width: px(23), height: px(22) }} source={require('../../images/png/logo.png')} />
+          </View>
+          <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
+            <Image style={{ width: px(18), height: px(18) }} source={require('../../images/png/address_icon.png')} />
+            <Text style={{ fontSize: sp(14), paddingLeft: px(5), color: '#ffffff' }}>{this.state.location}</Text>
           </View>
         </View>
 
@@ -85,9 +89,11 @@ export default class HomeScreen extends React.Component {
                 full
                 style={{
                   position: 'absolute',
-                  backgroundColor: '#E7912D',
+                  backgroundColor: '#F58C00',
                   left: '25%',
-                  width: '50%',
+                  width: px(157),
+                  height: px(35),
+                  borderRadius: px(4),
                   bottom: 0,
                 }}
                 onPress={() => {
@@ -100,9 +106,28 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <Text style={styles.text}>秒出额度</Text>
-          <Image style={{ width: '100%', height: px(59) }} source={require('../../images/home/home_second.png')} />
+          <Image style={{ width: '100%', height: px(61) }} source={require('../../images/home/home_second.png')} />
           <Text style={styles.text}>产品服务</Text>
+          <View style={styles.product_service}>
+            <Image style={styles.product_service_pic} source={require('../../images/png/up_money.png')} />
+            <Image style={styles.product_service_pic} source={require('../../images/png/new_road.png')} />
+            <Image style={styles.product_service_pic} source={require('../../images/png/all.png')} />
+          </View>
           <Text style={styles.text}>更多服务</Text>
+          <View style={styles.more_service}>
+            <View style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}>
+              <Image style={{ width: px(24), height: px(24) }} source={require('../../images/png/borrow_question.png')} />
+              <Text style={styles.more_service_text}>借款问题</Text>
+            </View>
+            <View style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}>
+              <Image style={{ width: px(30), height: px(24) }} source={require('../../images/png/pay_question.png')} />
+              <Text style={styles.more_service_text}>还款问题</Text>
+            </View>
+            <View style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}>
+              <Image style={{ width: px(18), height: px(26) }} source={require('../../images/png/limit.png')} />
+              <Text style={styles.more_service_text}>额度问题</Text>
+            </View>
+          </View>
         </ScrollView>
       </View>
     )
@@ -130,5 +155,32 @@ var styles = StyleSheet.create({
     fontSize: sp(16),
     color: '#111111',
     fontWeight: 'bold',
+  },
+  product_service: {
+    paddingLeft: px(15),
+    paddingRight: px(15),
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  product_service_pic: {
+    width: px(71),
+    height: px(46),
+  },
+  more_service: {
+    width: '100%',
+    height: px(59),
+    backgroundColor: '#F9C691',
+    borderRadius: px(8),
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: px(15),
+  },
+  more_service_text: {
+    color: '#111111',
+    fontSize: px(12),
+    paddingTop: px(5),
+    paddingLeft: px(4),
   },
 })
