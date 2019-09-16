@@ -24,12 +24,13 @@ export function getStatusBarHeight() {
   let currentHeight = 0
   if (Platform.OS === 'android') {
     currentHeight = StatusBar.currentHeight
-  }
-  if (isIphoneX()) {
-    currentHeight = 44
   } else {
-    // TODO change
-    currentHeight = 44
+    if (isIphoneX()) {
+      currentHeight = 44
+    } else {
+      // TODO change
+      currentHeight = 44
+    }
   }
   console.log('currentHeight = ' + currentHeight)
   return currentHeight
