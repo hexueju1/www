@@ -28,8 +28,7 @@ export function getStatusBarHeight() {
     if (isIphoneX()) {
       currentHeight = 44
     } else {
-      // TODO change
-      currentHeight = 44
+      currentHeight = 20
     }
   }
   console.log('currentHeight = ' + currentHeight)
