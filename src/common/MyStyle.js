@@ -1,5 +1,6 @@
 import { Dimensions, StatusBar } from 'react-native'
 import { Header } from 'react-navigation'
+import { getStatusBarHeight } from '../utils/Device'
 const { width, height } = Dimensions.get('window')
 
 // 用于存放整个项目的全部颜色,建议下载对应插件实时查看颜色
@@ -39,7 +40,7 @@ export const size = {
   // 导航高度
   navigation_height: Header.HEIGHT,
   // 状态栏高度
-  statusbar_height: StatusBar.currentHeight,
+  statusbar_height: getStatusBarHeight(),
   font: 12,
   font_14: 14,
   font_small: 12,
