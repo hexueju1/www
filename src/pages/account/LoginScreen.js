@@ -18,6 +18,7 @@ import MyHttpUtils from '../../utils/MyHttpUtils'
 import LoginManager from '../../common/LoginManager'
 import { showToast } from '../../utils/MyToastUtils'
 import MyStoreManager from '../../common/MyStoreManager'
+import { black } from 'ansi-colors'
 export default class LoginScreen extends BaseScreen {
   static navigationOptions = () => ({
     header: null,
@@ -48,10 +49,12 @@ export default class LoginScreen extends BaseScreen {
   render() {
     return (
       <DismissKeyboardView style={styles.main_container}>
-        <ImageBackground style={{ height: 230, justifyContent: 'center', alignItems: 'center' }} source={require('../../images/img/loginbg1.jpg')}>
-          <Text style={styles.text}>闪贷</Text>
-        </ImageBackground>
-        <View style={{ overflow: 'hidden', marginHorizontal: 20, alignItems: 'center' }}>
+        {/* <ImageBackground style={{ height: 230, justifyContent: 'center', alignItems: 'center' }} source={require('../../images/img/loginbg1.jpg')}> */}
+        <View style={{ height: size.login_height, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          <Image style={{ width: size.login_pic_width, height: size.login_pic_height }} source={require('../../images/png/login_pic.png')} />
+          <Text style={styles.text}>登录</Text>
+        </View>
+        <View style={[styles.login]}>
           {/* <Item picker>
             <TextInput
               style={{ flex: 2, height: 50 }}
@@ -62,51 +65,61 @@ export default class LoginScreen extends BaseScreen {
             />
           </Item> */}
 
-          <CountDownInput
-            endpoint={endpoint.sms.send}
-            placeholder={'请输入手机号'}
-            label={'获取验证码'}
-            value={this.state.phone}
-            keyboardType="numeric"
-            httpParams={{
-              event: 'mobilelogin',
-              mobile: this.state.phone,
-            }}
-            onChangeText={(text) => this.setState({ phone: text })}
-            onPress={() => {
-              if (this.state.phone === '') {
-                showToast('Eenter_Phone_Number')
-                return
-              }
+          {/*  */}
+          <ImageBackground source={require('../../images/login_background.png')} style={{ width: 328, height: 49 }}>
+            <CountDownInput
+              endpoint={endpoint.sms.send}
+              placeholder={'请输入正确的手机号'}
+              label={'获取验证码'}
+              style={{ borderRadius: 8 }}
+              value={this.state.phone}
+              keyboardType="numeric"
+              httpParams={{
+                event: 'mobilelogin',
+                mobile: this.state.phone,
+              }}
+              onChangeText={(text) => this.setState({ phone: text })}
+              onPress={() => {
+                if (this.state.phone === '') {
+                  showToast('Eenter_Phone_Number')
+                  return
+                }
+  
+                if (!isPhoneNumber(this.state.phone)) {
+                  showToast('Valid_Phone_Number')
+                  return
+                }
+  
+                return true
+              }}
+            />
+          </ImageBackground>
 
-              if (!isPhoneNumber(this.state.phone)) {
-                showToast('Valid_Phone_Number')
-                return
-              }
-
-              return true
-            }}
-          />
-
-          <Item picker>
+          <ImageBackground source={require('../../images/login_background.png')} style={{ width: 328, height: 49, marginTop: 32 }}>
+            {/* <Item picker> */}
             <TextInput
               style={{ flex: 1, height: 50 }}
-              placeholder={'请输入6位数字验证码'}
+              placeholder={'请输入验证码'}
               value={this.state.phoneCode}
-              secureTextEntry={true}
+              // secureTextEntry={true}
               onChangeText={(text) => this.setState({ phoneCode: text })}
             />
-          </Item>
-
+            {/* </Item> */}
+          </ImageBackground>
           <Button
             full
-            style={{ backgroundColor: color.up, marginTop: 20 }}
+            style={{ backgroundColor: '#ffffff', marginTop: 45 }}
             onPress={() => {
               this.login()
             }}
           >
-            <Label style={{ color: color.white }}>{'登录/注册'}</Label>
+            <ImageBackground style={[styles.login_button]} source={require('../../images/login_button.png')}>
+              <Text style={{ color: color.white,fontSize:25,lineHeight:49,textAlign:'center' }}>{'登录/注册'}</Text>
+            </ImageBackground>
           </Button>
+        </View>
+        <View style={{ marginTop: 50, alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={require('../../images/login_bottom.png')} style={{ width: 145, height: 145 }}></Image>
         </View>
       </DismissKeyboardView>
     )
@@ -124,7 +137,15 @@ var styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    color: 'white',
+    color: '#111111',
     fontSize: size.font_big_title,
+  },
+  login: {
+    overflow: 'hidden',
+    alignItems: 'center',
+  },
+  login_button: {
+    width: 328,
+    height: 49,
   },
 })

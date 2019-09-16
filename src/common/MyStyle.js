@@ -45,9 +45,12 @@ export const size = {
   font_small: 12,
   font_normal: 14,
   font_big: 16,
-  font_big_title: 30,
+  font_big_title: 36,
   button_height: 45,
   border_height: 2,
+  login_height: 184,
+  login_pic_height: 60,
+  login_pic_width: 79,
 }
 
 // layout：用于存放整个项目的公共布局，例如控制布局的flex属性、通用的padding、margin、position定位。

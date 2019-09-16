@@ -77,7 +77,7 @@ class CountDownInput extends Component {
         <TextInput
           placeholder={this.props.placeholder}
           keyboardType="numeric"
-          style={{ flex: 1, height: 50 }}
+          style={{ flex: 1, height: 49 }}
           value={this.props.value}
           onChangeText={(text) => this.props.onChangeText(text)}
         />
