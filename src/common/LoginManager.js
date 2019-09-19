@@ -53,12 +53,6 @@ class LoginManager {
       }
     })
   }
-
-  updateProfile = () => {
-    MyHttpUtils.fetchRequest('post', endpoint.account.profile).then((responseJson) => {
-      this.afterLogin(responseJson, true)
-    })
-  }
 }
 
 export default new LoginManager()

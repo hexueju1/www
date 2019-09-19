@@ -41,7 +41,6 @@ export default class LoginScreen extends BaseScreen {
     }).then((responseJson) => {
       showToast('登录成功')
       LoginManager.afterLogin(responseJson.data.userinfo, true)
-      console.log('loginData', MyStoreManager.getData(localStore.userInfo))
       this.props.navigation.goBack()
     })
   }
@@ -84,12 +83,12 @@ export default class LoginScreen extends BaseScreen {
                   showToast('Eenter_Phone_Number')
                   return
                 }
-  
+
                 if (!isPhoneNumber(this.state.phone)) {
                   showToast('Valid_Phone_Number')
                   return
                 }
-  
+
                 return true
               }}
             />
@@ -114,7 +113,7 @@ export default class LoginScreen extends BaseScreen {
             }}
           >
             <ImageBackground style={[styles.login_button]} source={require('../../images/login_button.png')}>
-              <Text style={{ color: color.white,fontSize:25,lineHeight:49,textAlign:'center' }}>{'登录/注册'}</Text>
+              <Text style={{ color: color.white, fontSize: 25, lineHeight: 49, textAlign: 'center' }}>{'登录/注册'}</Text>
             </ImageBackground>
           </Button>
         </View>

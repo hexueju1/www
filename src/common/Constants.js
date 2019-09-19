@@ -31,5 +31,4 @@ export const endpoint = {
     // ordersn type
     detail: 'borrow/detail',
   },
-  coins: 'coins',
 }

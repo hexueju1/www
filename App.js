@@ -16,6 +16,7 @@ import SettingScreen from './src/pages/SettingScreen'
 import RepaymentScreen from './src/pages/repayment/RepaymentScreen'
 import BorrowDetailScreen from './src/pages/repayment/BorrowDetailScreen'
 import MyMsgScreen from './src/pages/msg/MyMsgScreen'
+import LoginManager from './src/common/LoginManager'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
 
@@ -148,7 +149,8 @@ export default class App extends React.Component {
   componentWillMount() {
     NetworkManager.init()
     BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
-    // 去除一些log
+    LoginManager.checkCookieAndUpdateProfile()
+    // 正式包去除一些log
     if (!isDebug()) {
       UpdateManager.checkUpdate(true)
       global.console = {
