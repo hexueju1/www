@@ -109,9 +109,18 @@ export default class HomeScreen extends React.Component {
           <Image style={{ width: '100%', height: px(61) }} source={require('../../images/home/home_second.png')} />
           <Text style={styles.text}>产品服务</Text>
           <View style={styles.product_service}>
-            <Image style={styles.product_service_pic} source={require('../../images/png/up_money.png')} />
-            <Image style={styles.product_service_pic} source={require('../../images/png/new_road.png')} />
-            <Image style={styles.product_service_pic} source={require('../../images/png/all.png')} />
+            <View>
+              <Image style={styles.product_service_pic} source={require('../../images/png/up_money.png')} />
+              <Text style={{ color: '#0F0F0F', marginTop: 5, textAlign: 'center' }}>提升额度</Text>
+            </View>
+            <View>
+              <Image style={styles.product_service_pic} source={require('../../images/png/new_road.png')} />
+              <Text style={{ color: '#0F0F0F', marginTop: 5, textAlign: 'center' }}>新口子</Text>
+            </View>
+            <View>
+              <Image style={styles.product_service_pic} source={require('../../images/png/all.png')} />
+              <Text style={{ color: '#0F0F0F', marginTop: 5, textAlign: 'center' }}>全部</Text>
+            </View>
           </View>
           <Text style={styles.text}>更多服务</Text>
           <View style={styles.more_service}>
