@@ -61,12 +61,13 @@ export default class HomeScreen extends React.Component {
 
         <ScrollView
           style={{
+            flex: 1,
             position: 'absolute',
             width: '100%',
+            height: '100%',
             paddingHorizontal: px(28),
             marginTop: size.statusbar_height + px(64),
           }}
-          contentContainerStyle={{}}
         >
           {/* 可滚动的申请额度面板 */}
           <View style={{ display: 'flex', alignItems: 'center' }}>
@@ -157,6 +158,7 @@ export default class HomeScreen extends React.Component {
 
 var styles = StyleSheet.create({
   main_container: {
+    flex: 1,
     flexDirection: 'column',
   },
   text: {
