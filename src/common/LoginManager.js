@@ -17,6 +17,11 @@ class LoginManager {
 
   constructor() {
     LOG('LoginManager constructor')
+    let that = this
+    DeviceEventEmitter.addListener(event.needLogout, function(data) {
+      console.log('addListener needLogout')
+      that.logout()
+    })
   }
 
   afterLogin = (responseJson, updateLocal = false) => {
@@ -34,6 +39,7 @@ class LoginManager {
   }
 
   logout = () => {
+    console.log('do logout!')
     this.cleanLoginData()
   }
 

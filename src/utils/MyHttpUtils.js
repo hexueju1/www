@@ -1,4 +1,4 @@
-import { Platform } from 'react-native'
+import { Platform, DeviceEventEmitter } from 'react-native'
 import { showToast, showLoading, hideLoading } from './MyToastUtils'
 import { isDebug } from './MyDebugUtils'
 import MyStoreManager from '../common/MyStoreManager'
@@ -99,9 +99,15 @@ class MyHttpUtils {
           if (response.ok) {
             return response.json()
           } else {
-            showToast(response.status)
             MyHttpUtils.log('request error: ')
             MyHttpUtils.log(response)
+            if (response.status == 401) {
+              showErrorToast('请登录')
+              DeviceEventEmitter.emit(event.needLogout)
+              reject()
+              return
+            }
+            showToast(response.status)
           }
         })
         .then((responseJson) => {

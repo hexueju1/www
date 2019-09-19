@@ -4,6 +4,7 @@
 export const event = {
   // 登录状态发生变化
   loginStatusChange: 'loginStatusChange',
+  needLogout: 'needLogout',
 }
 
 /**
@@ -24,6 +25,7 @@ export const endpoint = {
   user: {
     mobilelogin: 'user/mobilelogin',
     get_msg_list: 'user/get_msg_list',
+    checkAuthentication: 'user/checkAuthentication',
   },
   borrow: {
     // type 还款1 借款0 page
