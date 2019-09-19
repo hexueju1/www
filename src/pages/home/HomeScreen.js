@@ -64,7 +64,7 @@ export default class HomeScreen extends React.Component {
             flex: 1,
             position: 'absolute',
             width: '100%',
-            height: '100%',
+            height: '85%',
             paddingHorizontal: px(28),
             marginTop: size.statusbar_height + px(64),
           }}
