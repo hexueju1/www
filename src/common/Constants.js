@@ -23,6 +23,7 @@ export const endpoint = {
   },
   user: {
     mobilelogin: 'user/mobilelogin',
+    get_msg_list: 'user/get_msg_list',
   },
   borrow: {
     // type 还款1 借款0 page

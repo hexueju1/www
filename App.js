@@ -15,6 +15,7 @@ import NetworkManager from './src/common/NetworkManager'
 import SettingScreen from './src/pages/SettingScreen'
 import RepaymentScreen from './src/pages/repayment/RepaymentScreen'
 import BorrowDetailScreen from './src/pages/repayment/BorrowDetailScreen'
+import MyMsgScreen from './src/pages/msg/MyMsgScreen'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
 
@@ -28,6 +29,7 @@ const commonPages = {
   Login: LoginScreen,
   Sample: SampleScreen,
   Setting: SettingScreen,
+  MyMsg: MyMsgScreen,
 }
 
 // StackNavigator用于实现各个页面之间的跳转

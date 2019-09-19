@@ -49,7 +49,7 @@ class MyHttpUtils {
     let header = {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       platform: Platform.OS,
-      client: '123456',
+      client: '290135',
       token: this.token,
     }
     MyHttpUtils.log('header:' + JSON.stringify(header))

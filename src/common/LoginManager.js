@@ -30,11 +30,7 @@ class LoginManager {
   }
 
   isLogin = () => {
-    MyStoreManager.getData(localStore.userInfo).then((result) =>{
-      this.userInfo = result;
-      LOG(result)
-    })
-    return this.userInfo ? true :false
+    return this.userInfo ? true : false
   }
 
   logout = () => {
