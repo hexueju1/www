@@ -97,8 +97,9 @@ export default class LoginScreen extends BaseScreen {
           <ImageBackground source={require('../../images/login_background.png')} style={{ width: 328, height: 49, marginTop: 32 }}>
             {/* <Item picker> */}
             <TextInput
-              style={{ flex: 1, height: 50 }}
+              style={{ flex: 1, height: 50, paddingLeft: 36 }}
               placeholder={'请输入验证码'}
+              placeholderTextColor={'#fdfdfd'}
               value={this.state.phoneCode}
               // secureTextEntry={true}
               onChangeText={(text) => this.setState({ phoneCode: text })}

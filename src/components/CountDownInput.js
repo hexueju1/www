@@ -76,8 +76,9 @@ class CountDownInput extends Component {
       <Item picker>
         <TextInput
           placeholder={this.props.placeholder}
+          placeholderTextColor={'#fdfdfd'}
           keyboardType="numeric"
-          style={{ flex: 1, height: 49 }}
+          style={{ flex: 1, height: 49, paddingLeft: 36 }}
           value={this.props.value}
           onChangeText={(text) => this.props.onChangeText(text)}
         />
@@ -88,7 +89,10 @@ class CountDownInput extends Component {
             this.clickSendCode()
           }}
         >
-          <Text style={{}}>{this.state.counting ? this.state.seconds + '秒' : this.props.label} </Text>
+          <Text style={{ color: '#fdfdfd', fontSize: 12 }}>
+            <Text style={{ color: '#6DC9F7' }}>|&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+            {this.state.counting ? this.state.seconds + '秒' : this.props.label}{' '}
+          </Text>
         </Button>
       </Item>
     )

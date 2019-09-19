@@ -175,8 +175,8 @@ var styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   product_service_pic: {
-    width: px(71),
-    height: px(46),
+    width: px(65),
+    height: px(46.6),
   },
   more_service: {
     width: '100%',
