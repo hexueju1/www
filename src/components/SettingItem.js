@@ -17,13 +17,11 @@ class SettingItem extends Component {
         <View>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              {this.props.imageUrl ? (
-                <Image style={{ width: 20, height: 20, marginRight: 10 }} source={this.props.imageUrl} />
-              ) : null}
-              <Text style={[this.props.TextStyle, { fontSize: size.font_big }]}>{this.props.text}</Text>
+              {this.props.imageUrl ? <Image style={{ width: 17.9, height: 15.8, marginRight: 10 }} source={this.props.imageUrl} /> : null}
+              <Text style={[this.props.TextStyle, { fontSize: 12 }]}>{this.props.text}</Text>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={[this.props.TextStyle, { fontSize: size.font_big }]}>{this.props.rightText}</Text>
+              <Text style={[this.props.TextStyle, { fontSize: 12 }]}>{this.props.rightText}</Text>
 
               <Image
                 style={{ width: 10, height: 20, margin: 14 }}

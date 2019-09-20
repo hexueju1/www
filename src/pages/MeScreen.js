@@ -5,7 +5,19 @@
  */
 
 import React, { Component } from 'react'
-import { TouchableHighlight, ScrollView, DeviceEventEmitter, SafeAreaView, Image, StyleSheet, Text, View, Alert, ImageBackground } from 'react-native'
+import {
+  TouchableHighlight,
+  ScrollView,
+  DeviceEventEmitter,
+  SafeAreaView,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  ImageBackground,
+  StatusBar,
+} from 'react-native'
 import BaseScreen from '../components/BaseScreen'
 import { color, size, layout, style } from '../common/MyStyle'
 import { event, localStore } from '../common/Constants'
@@ -26,117 +38,130 @@ export default class MeScreen extends BaseScreen {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      maxCanBorrow: '2,000.00',
+      person_money: '请登录个人用户',
+    }
   }
 
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <ImageBackground style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} source={require('../images/img/loginbg2.jpg')}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              if (LoginManager.isLogin()) {
-              } else {
-                this.props.navigation.navigate('Login')
-              }
-              console.log('islogin', LoginManager.isLogin())
+        <ScrollView>
+          {/* transparent保证沉浸式状态栏生效 */}
+          <StatusBar backgroundColor={color.transparent} barStyle="dark-content" translucent={true} />
+          {/* 顶部图标 */}
+          <View
+            style={{
+              padding: 18,
+              marginTop: size.statusbar_height,
+              // position: 'absolute',
+              width: '100%',
             }}
           >
-            {/* <Text style={styles.buttonText}>{LoginManager.isLogin() : '登录/注册'}</Text> */}
-          </TouchableOpacity>
-        </ImageBackground>
-        <ScrollView>
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 20 }}>
-            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-              <SettingItemBigPic
-                imageUrl={require('../images/tabbar/personal.png')}
-                text={'我的借款'}
-                onPress={() => {
-                  if (LoginManager.isLogin()) {
-                  } else {
-                    this.props.navigation.navigate('Login')
-                  }
-                }}
-              />
-            </View>
-
-            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-              <SettingItemBigPic
-                imageUrl={require('../images/tabbar/personal.png')}
-                text={'客服'}
-                onPress={() => {
-                  if (LoginManager.isLogin()) {
-                  } else {
-                    this.props.navigation.navigate('Login')
-                  }
-                }}
-              />
+            <View style={{ flex: 1 }}>
+              <Image style={{ width: 23, height: 22 }} source={require('../images/png/logo.png')} />
             </View>
           </View>
-          <View style={{ height: 20, backgroundColor: color.divide_line }} />
-          <SettingItem
-            imageUrl={require('../images/png/message.png')}
-            text={'我的消息'}
-            onPress={() => {
-              if (LoginManager.isLogin()) {
-                this.props.navigation.navigate('MyMsg')
-              } else {
-                this.props.navigation.navigate('Login')
-              }
-            }}
-          />
-          <SettingItem
-            imageUrl={require('../images/png/coupon.png')}
-            text={'更换银行卡'}
-            onPress={() => {
-              if (LoginManager.isLogin()) {
-              } else {
-                this.props.navigation.navigate('Login')
-              }
-            }}
-          />
-          <SettingItem
-            imageUrl={require('../images/png/compass.png')}
-            text={'借款指南'}
-            onPress={() => {
-              if (LoginManager.isLogin()) {
-              } else {
-                this.props.navigation.navigate('Login')
-              }
-            }}
-          />
-          <SettingItem
-            imageUrl={require('../images/png/about.png')}
-            text={'关于我们'}
-            onPress={() => {
-              if (LoginManager.isLogin()) {
-                this.props.navigation.navigate('Account')
-              } else {
-                this.props.navigation.navigate('Login')
-              }
-            }}
-          />
-
-          {isDebug() ? (
-            <SettingItem
-              text="Sample(Debug)"
-              onPress={() => {
-                this.props.navigation.navigate('Sample')
-              }}
-            />
-          ) : null}
-          {LoginManager.isLogin() ? (
-            <Button
-              full
-              style={{ backgroundColor: color.up, marginTop: 20 }}
-              onPress={() => {
-                showToast('注销登录')
+          {/* 顶部背景 */}
+          <View style={{ display: 'flex', alignItems: 'center' }}>
+            <Image style={{ width: 354, height: 268, position: 'relative', top: -40 }} source={require('../images/png/personal_pic.png')} />
+            <View
+              style={{
+                height: '100%',
+                position: 'absolute',
+                alignItems: 'center',
+                width: '100%',
+                top: '20%',
               }}
             >
-              <Label style={{ color: color.white }}>注销登录</Label>
-            </Button>
-          ) : null}
+              <Text style={{ color: '#0F0F0F', fontSize: 18 }}>{this.state.person_money}</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: 40 }}>¥</Text>
+                <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: 40 }}>{this.state.maxCanBorrow}</Text>
+              </View>
+            </View>
+          </View>
+          {/* 个人界面--列表 */}
+          <View style={[styles.settingitem]}>
+            <SettingItem
+              imageUrl={require('../images/png/my_info.png')}
+              text={'我的消息'}
+              onPress={() => {
+                if (LoginManager.isLogin()) {
+                  this.props.navigation.navigate('MyMsg')
+                } else {
+                  this.props.navigation.navigate('Login')
+                }
+              }}
+            />
+            <SettingItem
+              imageUrl={require('../images/png/need_borrow.png')}
+              text={'我要借钱'}
+              onPress={() => {
+                if (LoginManager.isLogin()) {
+                } else {
+                  this.props.navigation.navigate('Login')
+                }
+              }}
+            />
+            <SettingItem
+              imageUrl={require('../images/png/my_card.png')}
+              text={'卡片管家'}
+              onPress={() => {
+                if (LoginManager.isLogin()) {
+                } else {
+                  this.props.navigation.navigate('Login')
+                }
+              }}
+            />
+            <SettingItem
+              imageUrl={require('../images/png/about_us.png')}
+              text={'关于我们'}
+              onPress={() => {
+                if (LoginManager.isLogin()) {
+                  this.props.navigation.navigate('Account')
+                } else {
+                  this.props.navigation.navigate('Login')
+                }
+              }}
+            />
+
+            {isDebug() ? (
+              <SettingItem
+                text="Sample(Debug)"
+                onPress={() => {
+                  this.props.navigation.navigate('Sample')
+                }}
+              />
+            ) : null}
+            {LoginManager.isLogin() ? (
+              <Button
+                full
+                style={{ backgroundColor: color.up, marginTop: 20 }}
+                onPress={() => {
+                  showToast('注销登录')
+                }}
+              >
+                <Label style={{ color: color.white }}>注销登录</Label>
+              </Button>
+            ) : null}
+          </View>
+          {/* 底部登录按钮 */}
+          <View style={[styles.touchableopacity]}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                if (LoginManager.isLogin()) {
+                } else {
+                  this.props.navigation.navigate('Login')
+                }
+                console.log('islogin', LoginManager.isLogin())
+              }}
+            >
+              <Text style={styles.buttonText}>{LoginManager.isLogin() ? '' : '登录'}</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </SafeAreaView>
     )
@@ -162,19 +187,34 @@ var styles = StyleSheet.create({
   main_container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#E7912D',
   },
   button: {
-    height: 40,
-    width: 100,
-    borderRadius: 20,
+    height: 48,
+    width: 268,
+    borderRadius: 24,
     borderColor: color.white,
     borderWidth: 1,
-    backgroundColor: color.transparent,
+    backgroundColor: '#FDFDFD',
     justifyContent: 'center',
     overflow: 'hidden',
+    position: 'relative',
+    left: '50%',
+    marginLeft: -134,
   },
   buttonText: {
     textAlign: 'center',
-    color: 'white',
+    color: '#E7912D',
+    fontSize: 18,
+  },
+  settingitem: {
+    backgroundColor: '#FDFDFD',
+    marginLeft: 19,
+    marginRight: 19,
+    borderRadius: 8,
+  },
+  touchableopacity: {
+    paddingTop: 19,
+    paddingBottom: 60,
   },
 })
