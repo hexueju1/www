@@ -17,6 +17,10 @@ import RepaymentScreen from './src/pages/repayment/RepaymentScreen'
 import BorrowDetailScreen from './src/pages/repayment/BorrowDetailScreen'
 import MyMsgScreen from './src/pages/msg/MyMsgScreen'
 import PermissionRequestScreen from './src/pages/permission/PermissionRequestScreen'
+import IDCardScreen from './src/pages/idcard/IDCardScreen'
+import BindBankScreen from './src/pages/bank/BindBankScreen'
+import OperatorScreen from './src/pages/operator/OperatorScreen'
+import BorrowConfirmScreen from './src/pages/borrow/BorrowConfirmScreen'
 import LoginManager from './src/common/LoginManager'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
@@ -33,6 +37,10 @@ const commonPages = {
   Setting: SettingScreen,
   MyMsg: MyMsgScreen,
   PermissionRequest: PermissionRequestScreen,
+  BorrowConfirm: BorrowConfirmScreen,
+  IDCard: IDCardScreen,
+  BindBank: BindBankScreen,
+  Operator: OperatorScreen,
 }
 
 // StackNavigator用于实现各个页面之间的跳转
