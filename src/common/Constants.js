@@ -35,6 +35,7 @@ export const endpoint = {
     send: 'sms/send',
   },
   user: {
+    checkApply: 'user/checkApply',
     mobilelogin: 'user/mobilelogin',
     get_msg_list: 'user/get_msg_list',
     checkAuthentication: 'user/checkAuthentication',

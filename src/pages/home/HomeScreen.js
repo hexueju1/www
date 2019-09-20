@@ -15,6 +15,7 @@ import { Container, Header, Content, Button } from 'native-base'
 import { blue, black } from 'ansi-colors'
 import { endpoint } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
+import LoginManager from '../../common/LoginManager'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -31,6 +32,21 @@ export default class HomeScreen extends React.Component {
     this.state = {
       maxCanBorrow: '20,000.00',
       location: '苏州',
+    }
+
+    this.willFocusSubscription = this.props.navigation.addListener('didFocus', (payload) => {
+      console.log('didFocus HomeScreen')
+    })
+  }
+
+  applyNow = () => {
+    if (LoginManager.isLogin()) {
+      MyHttpUtils.fetchRequest('post', endpoint.user.checkApply).then((responseJson) => {
+        // 能运行到这里说明可以borrow
+        this.props.navigation.navigate('PermissionRequest')
+      })
+    } else {
+      this.props.navigation.navigate('Login')
     }
   }
 
@@ -100,7 +116,7 @@ export default class HomeScreen extends React.Component {
                   bottom: 0,
                 }}
                 onPress={() => {
-                  this.props.navigation.navigate('Login')
+                  this.applyNow()
                 }}
               >
                 <Text style={{ color: color.white, fontWeight: 'bold' }}>申请额度</Text>
