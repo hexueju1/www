@@ -187,7 +187,7 @@ var styles = StyleSheet.create({
   main_container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#E7912D',
+    backgroundColor: '#f58c00',
   },
   button: {
     height: 48,
