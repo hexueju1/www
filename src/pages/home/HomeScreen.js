@@ -13,6 +13,8 @@ import MyStatusBar from '../../components/MyStatusBar'
 import { px, sp } from '../../utils/Device'
 import { Container, Header, Content, Button } from 'native-base'
 import { blue, black } from 'ansi-colors'
+import { endpoint } from '../../common/Constants'
+import MyHttpUtils from '../../utils/MyHttpUtils'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -144,6 +146,11 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
+    MyHttpUtils.fetchRequest('post', endpoint.index.index).then((responseJson) => {
+      this.setState({
+        maxCanBorrow: responseJson.data.max_money,
+      })
+    })
     if (isDebug()) {
       setTimeout(() => {
         if (LocalConfigManager.debugScreen) {

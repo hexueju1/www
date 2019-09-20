@@ -18,6 +18,18 @@ export const localStore = {
  * 接口的endpoint
  */
 export const endpoint = {
+  index: {
+    /**
+     * {
+        "banner": [],
+        "recommend": [],
+        "unread_message": 2,
+        "max_money": "10,000"
+    }
+     * 
+     */
+    index: 'index',
+  },
   sms: {
     // 发送登录手机验证码
     send: 'sms/send',
