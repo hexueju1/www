@@ -22,6 +22,7 @@ import OperatorScreen from './src/pages/operator/OperatorScreen'
 import BorrowConfirmScreen from './src/pages/borrow/BorrowConfirmScreen'
 import BorrowHistoryScreen from './src/pages/repayment/BorrowHistoryScreen'
 import LoginManager from './src/common/LoginManager'
+import TabBar from './src/common/TabBar'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
 
@@ -132,6 +133,8 @@ const AppContainer = createAppContainer(
     {
       lazy: false,
       backBehavior: 'none',
+      tabBarComponent: TabBar,
+      initialRouteName: 'MeStack',
       tabBarOptions: {
         activeTintColor: color.up,
         labelStyle: {
