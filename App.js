@@ -14,13 +14,13 @@ import MyWebView from './src/pages/MyWebView'
 import NetworkManager from './src/common/NetworkManager'
 import SettingScreen from './src/pages/SettingScreen'
 import RepaymentScreen from './src/pages/repayment/RepaymentScreen'
-import BorrowDetailScreen from './src/pages/repayment/BorrowDetailScreen'
 import MyMsgScreen from './src/pages/msg/MyMsgScreen'
 import PermissionRequestScreen from './src/pages/permission/PermissionRequestScreen'
 import IDCardScreen from './src/pages/idcard/IDCardScreen'
 import BindBankScreen from './src/pages/bank/BindBankScreen'
 import OperatorScreen from './src/pages/operator/OperatorScreen'
 import BorrowConfirmScreen from './src/pages/borrow/BorrowConfirmScreen'
+import BorrowHistoryScreen from './src/pages/repayment/BorrowHistoryScreen'
 import LoginManager from './src/common/LoginManager'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
@@ -38,6 +38,7 @@ const commonPages = {
   MyMsg: MyMsgScreen,
   PermissionRequest: PermissionRequestScreen,
   BorrowConfirm: BorrowConfirmScreen,
+  BorrowHistory: BorrowHistoryScreen,
   IDCard: IDCardScreen,
   BindBank: BindBankScreen,
   Operator: OperatorScreen,
@@ -73,7 +74,6 @@ HomeStack.navigationOptions = () => ({
 const RepaymentStack = createStackNavigator(
   {
     Repayment: RepaymentScreen,
-    BorrowDetail: BorrowDetailScreen,
     ...commonPages,
   },
   {

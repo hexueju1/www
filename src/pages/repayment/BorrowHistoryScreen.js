@@ -31,6 +31,10 @@ import { size } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { endpoint } from '../../common/Constants'
 export default class BorrowTab extends BaseScreen {
+  static navigationOptions = () => ({
+    title: '借款记录',
+  })
+
   constructor(props) {
     super(props)
     this.state = {
@@ -76,11 +80,11 @@ export default class BorrowTab extends BaseScreen {
   componentDidMount() {
     super.componentDidMount()
     // 借款记录1 申请0
-    // MyHttpUtils.fetchRequest('post', endpoint.borrow.get_list, { page: 1, type: this.props.type }).then((responseJson) => {
-    //   this.setState({
-    //     listData: responseJson.data.rows,
-    //   })
-    // })
+    MyHttpUtils.fetchRequest('post', endpoint.borrow.get_list, { page: 1, type: this.props.type }).then((responseJson) => {
+      this.setState({
+        listData: responseJson.data.rows,
+      })
+    })
   }
 
   componentWillUnmount() {
