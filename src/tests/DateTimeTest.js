@@ -20,3 +20,10 @@ function fun(p1, p2 = false) {
 fun(123)
 
 console.log('?t=' + new Date().getTime())
+
+var date = '2019-9-26'
+var newDate = /\d{4}-\d{1,2}-\d{1,2}/g.exec(date)
+var nextDate = new Date()
+nextDate.setDate(new Date(newDate).getDate() + 1)
+console.log(nextDate)
+console.log(nextDate.getFullYear() + '-' + (nextDate.getMonth() + 1) + '-' + nextDate.getDate())
