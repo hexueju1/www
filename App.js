@@ -23,6 +23,7 @@ import BorrowConfirmScreen from './src/pages/borrow/BorrowConfirmScreen'
 import BorrowHistoryScreen from './src/pages/repayment/BorrowHistoryScreen'
 import LoginManager from './src/common/LoginManager'
 import TabBar from './src/common/TabBar'
+import { px } from './src/utils/Device'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
 
@@ -64,8 +65,8 @@ HomeStack.navigationOptions = () => ({
   tabBarIcon: ({ tintColor, focused }) => {
     return (
       <Image
-        style={{ width: 26, height: 26 }}
-        source={focused ? require('./src/images/tabbar/borrow-select.png') : require('./src/images/tabbar/borrow.png')}
+        style={{ width: px(34), height: px(34) }}
+        source={focused ? require('./src/images/tabbar/home-select.png') : require('./src/images/tabbar/home-unselect.png')}
       />
     )
   },
@@ -90,8 +91,8 @@ RepaymentStack.navigationOptions = () => ({
   tabBarIcon: ({ tintColor, focused }) => {
     return (
       <Image
-        style={{ width: 26, height: 26 }}
-        source={focused ? require('./src/images/tabbar/also-select.png') : require('./src/images/tabbar/also.png')}
+        style={{ width: px(69), height: px(69) }}
+        source={focused ? require('./src/images/tabbar/also-select.png') : require('./src/images/tabbar/also-unselect.png')}
       />
     )
   },
@@ -113,8 +114,8 @@ const MeStack = createStackNavigator(
       tabBarIcon: ({ tintColor, focused }) => {
         return (
           <Image
-            style={{ width: 26, height: 26 }}
-            source={focused ? require('./src/images/tabbar/personal-select.png') : require('./src/images/tabbar/personal.png')}
+            style={{ width: px(20), height: px(20) }}
+            source={focused ? require('./src/images/tabbar/personal-select.png') : require('./src/images/tabbar/personal-unselect.png')}
           />
         )
       },
@@ -134,7 +135,7 @@ const AppContainer = createAppContainer(
       lazy: false,
       backBehavior: 'none',
       tabBarComponent: TabBar,
-      initialRouteName: 'MeStack',
+      // initialRouteName: 'MeStack',
       tabBarOptions: {
         activeTintColor: color.up,
         labelStyle: {

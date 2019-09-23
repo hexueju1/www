@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Dimensions } from 'react-native'
 import posed from 'react-native-pose' // react-native 动画库
+import { color } from './MyStyle'
+import { px } from '../utils/Device'
 
 const Scaler = posed.View({
   // 定义点击缩放
@@ -30,10 +32,15 @@ const TabBar = (props) => {
             }}
             accessibilityLabel={getAccessibilityLabel({ route })}
           >
-            {route.key == 'RepaymentStack' ? ( // 对特殊图标进行特殊处理
-              <Scaler style={Styles.scalerOnline} pose={isRouteActive ? 'active' : 'inactive'}>
+            {route.key == 'HomeStack' ? (
+              <Scaler style={Styles.scalerHome} pose={isRouteActive ? 'active' : 'inactive'}>
                 {renderIcon({ route, focused: isRouteActive, tintColor })}
-                <Text style={Styles.iconText}>{getLabelText({ route })}</Text>
+                {/* <Text style={Styles.iconText}>{getLabelText({ route })}</Text> */}
+              </Scaler>
+            ) : route.key == 'RepaymentStack' ? (
+              <Scaler style={Styles.scalerBig} pose={isRouteActive ? 'active' : 'inactive'}>
+                {renderIcon({ route, focused: isRouteActive, tintColor })}
+                {/* <Text style={Styles.iconText}>{getLabelText({ route })}</Text> */}
               </Scaler>
             ) : (
               // 普通图标普通处理
@@ -70,10 +77,18 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  scalerOnline: {
+  // 首页
+  scalerHome: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+  },
+  // 中间图标，特殊处理
+  scalerBig: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: px(10),
   },
   iconText: {
     fontSize: 12,
