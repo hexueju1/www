@@ -31,12 +31,9 @@ import { px, sp } from '../../utils/Device'
 import { endpoint } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
+import TabHeader from '../../common/TabHeader'
 
 export default class MyMsgScreen extends BaseScreen {
-  static navigationOptions = {
-    title: '我的消息',
-  }
-
   constructor(props) {
     super(props)
     this.state = {
@@ -72,7 +69,7 @@ export default class MyMsgScreen extends BaseScreen {
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <StatusBar backgroundColor={color.primary_bg} barStyle="dark-content" translucent={false} />
+        <TabHeader text="我的消息" />
         <FlatList
           data={this.state.datalist}
           renderItem={this.renderItem}

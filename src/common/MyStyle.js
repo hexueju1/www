@@ -68,6 +68,7 @@ export const style = {
     headerStyle: { backgroundColor: color.primary_text },
     headerTintColor: color.text_0f,
     headerBackTitle: null,
+    header: null,
     // headerTitleContainerStyle: {
     //   left: TITLE_OFFSET,
     //   right: TITLE_OFFSET,
