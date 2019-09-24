@@ -20,7 +20,8 @@ import IDCardScreen from './src/pages/idcard/IDCardScreen'
 import BindBankScreen from './src/pages/bank/BindBankScreen'
 import OperatorScreen from './src/pages/operator/OperatorScreen'
 import BorrowConfirmScreen from './src/pages/borrow/BorrowConfirmScreen'
-import BorrowHistoryScreen from './src/pages/repayment/BorrowHistoryScreen'
+import BorrowDetailScreen from './src/pages/borrow/BorrowDetailScreen'
+import BorrowHistoryScreen from './src/pages/borrow/BorrowHistoryScreen'
 import LoginManager from './src/common/LoginManager'
 import TabBar from './src/common/TabBar'
 import { px } from './src/utils/Device'
@@ -34,6 +35,7 @@ console.log('start app')
  */
 const commonPages = {
   Web: MyWebView,
+  BorrowDetail: BorrowDetailScreen,
   Login: LoginScreen,
   Sample: SampleScreen,
   Setting: SettingScreen,

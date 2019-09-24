@@ -22,10 +22,6 @@ export default class HomeScreen extends React.Component {
     header: null,
   }
 
-  // static navigationOptions = () => ({
-  //   title: '借款',
-  // })
-
   // props是在父组件中指定，而且一经指定，在被指定的组件的生命周期中则不再改变。
   constructor(props) {
     super(props)

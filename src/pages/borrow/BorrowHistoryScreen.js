@@ -30,11 +30,9 @@ import CommonNoData from '../../components/CommonNoData'
 import { size } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { endpoint } from '../../common/Constants'
-export default class BorrowTab extends BaseScreen {
-  static navigationOptions = () => ({
-    title: '借款记录',
-  })
+import TabHeader from '../../common/TabHeader'
 
+export default class BorrowHistoryScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {
@@ -42,21 +40,29 @@ export default class BorrowTab extends BaseScreen {
     }
   }
 
+  /**
+   *  { goods_name: '满天星',
+09-24 20:05:56.627 32168  7307 I ReactNativeJS:           sn: '20190823201023408237',
+09-24 20:05:56.627 32168  7307 I ReactNativeJS:           date: '2019-08-23',
+09-24 20:05:56.627 32168  7307 I ReactNativeJS:           days: 6,
+09-24 20:05:56.627 32168  7307 I ReactNativeJS:           status: '0',
+09-24 20:05:56.627 32168  7307 I ReactNativeJS:           borrow_money: '1,600.00' }
+   */
   renderItem = ({ item }) => {
     return (
       <TouchableWithoutFeedback
         style={{ flexDirection: 'row', justifyContent: 'center' }}
         onPress={() => {
-          console.log('heheda')
-          // TODO 查看NativeBase跳转逻辑
-          // this.props.navigation.navigate('BorrowDetail', { ordersn: item.sn, type: this.props.type })
+          this.props.navigation.navigate('BorrowDetail', { sn: item.sn })
         }}
       >
-        <Card>
-          <CardItem header bordered>
-            <Text>xxxxxxxxx</Text>
-          </CardItem>
-        </Card>
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text>{item.titgoods_namele}</Text>
+          <Text>{item.date}</Text>
+          <Text>{item.days}</Text>
+          <Text>{item.status}</Text>
+          <Text>{item.borrow_money}</Text>
+        </View>
       </TouchableWithoutFeedback>
     )
   }
@@ -64,6 +70,7 @@ export default class BorrowTab extends BaseScreen {
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
+        <TabHeader text="借款记录" />
         <FlatList
           style={{ width: size.screen_width }}
           data={this.state.listData}

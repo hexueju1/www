@@ -1,53 +1,47 @@
 {
-  "semi": false,
-  "editor.formatOnSave": true,
-  "singleQuote": true,
-  "bracketSpacing": true,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "arrowParens": "always",
-  "printWidth": 150,
-  "useTabs": false,
-  "jsxBracketSameLine": false,
-  "proseWrap": "preserve",
-  "overrides": [
-    {
-      "files": [
-        "*.json",
-        ".eslintrc",
-        ".tslintrc",
-        ".prettierrc",
-        ".tern-project"
-      ],
-      "options": {
-        "parser": "json",
-        "tabWidth": 4
-      }
-    },
-    {
-      "files": "*.{css,sass,scss,less}",
-      "options": {
-        "parser": "css",
-        "tabWidth": 4
-      }
-    },
-    {
-      "files": "*.ts",
-      "options": {
-        "parser": "typescript"
-      }
-    },
-    {
-      "files": "*.vue",
-      "options": {
-        "parser": "vue"
-      }
-    },
-    {
-      "files": "*.md",
-      "options": {
-        "parser": "markdown"
-      }
-    }
-  ]
+    "semi": false,
+    "editor.formatOnSave": false,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "printWidth": 150,
+    "useTabs": false,
+    "jsxBracketSameLine": false,
+    "proseWrap": "preserve",
+    "overrides": [
+        {
+            "files": ["*.json", ".eslintrc", ".tslintrc", ".prettierrc", ".tern-project"],
+            "options": {
+                "parser": "json",
+                "tabWidth": 4
+            }
+        },
+        {
+            "files": "*.{css,sass,scss,less}",
+            "options": {
+                "parser": "css",
+                "tabWidth": 4
+            }
+        },
+        {
+            "files": "*.ts",
+            "options": {
+                "parser": "typescript"
+            }
+        },
+        {
+            "files": "*.vue",
+            "options": {
+                "parser": "vue"
+            }
+        },
+        {
+            "files": "*.md",
+            "options": {
+                "parser": "markdown"
+            }
+        }
+    ]
 }
