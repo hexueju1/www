@@ -116,7 +116,7 @@ var styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flexDirection: 'column',
-    backgroundColor: '#F58C00',
+    backgroundColor: color.primary_bg,
   },
   text: {
     // marginVertical: px(14),
@@ -149,7 +149,7 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: '#F58C00',
+    color: color.primary_text,
     fontSize: 18,
   },
   touchableopacity: {
@@ -162,7 +162,7 @@ var styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 38,
-    backgroundColor: '#F58C00',
+    backgroundColor: color.primary_bg,
     color: '#FDFDFD',
   },
 })

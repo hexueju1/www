@@ -202,7 +202,7 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: '#E7912D',
+    color: color.primary_text,
     fontSize: 18,
   },
   settingitem: {
