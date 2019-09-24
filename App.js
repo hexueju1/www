@@ -4,6 +4,7 @@ import HomeScreen from './src/pages/home/HomeScreen'
 import MeScreen from './src/pages/MeScreen'
 import SampleScreen from './src/template/SampleScreen'
 import LoginScreen from './src/pages/account/LoginScreen'
+import AboutScreen from './src/pages/account/AboutScreen'
 import { event } from './src/common/Constants'
 import { YellowBox, Image, BackHandler, ToastAndroid, DeviceEventEmitter } from 'react-native'
 import { color, size, layout, style } from './src/common/MyStyle'
@@ -15,6 +16,7 @@ import NetworkManager from './src/common/NetworkManager'
 import SettingScreen from './src/pages/SettingScreen'
 import BorrowScreen from './src/pages/borrow/BorrowScreen'
 import MyMsgScreen from './src/pages/msg/MyMsgScreen'
+import MsgDetailScreen from './src/pages/msg/MsgDetailScreen'
 import PermissionRequestScreen from './src/pages/permission/PermissionRequestScreen'
 import IDCardScreen from './src/pages/idcard/IDCardScreen'
 import BindBankScreen from './src/pages/bank/BindBankScreen'
@@ -36,6 +38,8 @@ console.log('start app')
 const commonPages = {
   Web: MyWebView,
   BorrowDetail: BorrowDetailScreen,
+  MsgDetail: MsgDetailScreen,
+  About: AboutScreen,
   Login: LoginScreen,
   Sample: SampleScreen,
   Setting: SettingScreen,

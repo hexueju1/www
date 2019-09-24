@@ -55,7 +55,11 @@ export default class MyMsgScreen extends BaseScreen {
             } */
   renderItem = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity
+        onPress={() => {
+          this.props.navigation.navigate('MsgDetail', { messageId: item.id })
+        }}
+      >
         <View style={{ paddingHorizontal: 20 }}>
           <Text>{item.title}</Text>
           <Text>{item.content}</Text>

@@ -38,6 +38,7 @@ export const endpoint = {
     checkApply: 'user/checkApply',
     mobilelogin: 'user/mobilelogin',
     get_msg_list: 'user/get_msg_list',
+    messageDetails: 'user/messageDetails',
     checkAuthentication: 'user/checkAuthentication',
   },
   borrow: {
@@ -45,5 +46,8 @@ export const endpoint = {
     get_list: 'borrow/get_list',
     // ordersn type
     detail: 'borrow/detail',
+  },
+  common: {
+    get_kefu: 'common/get_kefu',
   },
 }
