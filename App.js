@@ -13,7 +13,7 @@ import SplashScreen from 'react-native-splash-screen'
 import MyWebView from './src/pages/MyWebView'
 import NetworkManager from './src/common/NetworkManager'
 import SettingScreen from './src/pages/SettingScreen'
-import RepaymentScreen from './src/pages/repayment/RepaymentScreen'
+import BorrowScreen from './src/pages/borrow/BorrowScreen'
 import MyMsgScreen from './src/pages/msg/MyMsgScreen'
 import PermissionRequestScreen from './src/pages/permission/PermissionRequestScreen'
 import IDCardScreen from './src/pages/idcard/IDCardScreen'
@@ -74,11 +74,11 @@ HomeStack.navigationOptions = ({ navigation }) => ({
 // 还款tab
 const RepaymentStack = createStackNavigator(
   {
-    Repayment: RepaymentScreen,
+    Borrow: BorrowScreen,
     ...commonPages,
   },
   {
-    initialRouteName: 'Repayment',
+    initialRouteName: 'Borrow',
     defaultNavigationOptions: style.defaultNavigation,
     headerLayoutPreset: 'center',
   },

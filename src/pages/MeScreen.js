@@ -135,33 +135,30 @@ export default class MeScreen extends BaseScreen {
                 }}
               />
             ) : null}
-            {LoginManager.isLogin() ? (
-              <Button
-                full
-                style={{ backgroundColor: color.up, marginTop: 20 }}
-                onPress={() => {
-                  showToast('注销登录')
-                }}
-              >
-                <Label style={{ color: color.white }}>注销登录</Label>
-              </Button>
-            ) : null}
           </View>
           {/* 底部登录按钮 */}
-          <View style={[styles.touchableopacity]}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                if (LoginManager.isLogin()) {
-                } else {
-                  this.props.navigation.navigate('Login')
-                }
-                console.log('islogin', LoginManager.isLogin())
-              }}
-            >
-              <Text style={styles.buttonText}>{LoginManager.isLogin() ? '' : '登录'}</Text>
-            </TouchableOpacity>
-          </View>
+          {LoginManager.isLogin() ? (
+            <View style={[styles.touchableopacity]}>
+              <TouchableOpacity style={styles.button} onPress={() => {}}>
+                <Text style={styles.buttonText}>{'注销登录'}</Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View style={[styles.touchableopacity]}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                  if (LoginManager.isLogin()) {
+                  } else {
+                    this.props.navigation.navigate('Login')
+                  }
+                  console.log('islogin', LoginManager.isLogin())
+                }}
+              >
+                <Text style={styles.buttonText}>{'登录'}</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </ScrollView>
       </SafeAreaView>
     )
