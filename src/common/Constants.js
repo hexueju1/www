@@ -40,6 +40,7 @@ export const endpoint = {
     get_msg_list: 'user/get_msg_list',
     messageDetails: 'user/messageDetails',
     checkAuthentication: 'user/checkAuthentication',
+    bankinfo: 'user/bankinfo',
   },
   borrow: {
     // type 还款1 借款0 page

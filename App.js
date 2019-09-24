@@ -20,6 +20,7 @@ import MsgDetailScreen from './src/pages/msg/MsgDetailScreen'
 import PermissionRequestScreen from './src/pages/permission/PermissionRequestScreen'
 import IDCardScreen from './src/pages/idcard/IDCardScreen'
 import BindBankScreen from './src/pages/bank/BindBankScreen'
+import BankInfoScreen from './src/pages/bank/BankInfoScreen'
 import OperatorScreen from './src/pages/operator/OperatorScreen'
 import BorrowConfirmScreen from './src/pages/borrow/BorrowConfirmScreen'
 import BorrowDetailScreen from './src/pages/borrow/BorrowDetailScreen'
@@ -39,6 +40,7 @@ const commonPages = {
   Web: MyWebView,
   BorrowDetail: BorrowDetailScreen,
   MsgDetail: MsgDetailScreen,
+  BankInfo: BankInfoScreen,
   About: AboutScreen,
   Login: LoginScreen,
   Sample: SampleScreen,
