@@ -25,6 +25,7 @@ class LoginManager {
   }
 
   afterLogin = (responseJson, updateLocal = false) => {
+    console.log('afterLogin')
     this.userInfo = responseJson
     MyHttpUtils.token = this.userInfo.token
     DeviceEventEmitter.emit(event.loginStatusChange)
@@ -44,10 +45,10 @@ class LoginManager {
   }
 
   cleanLoginData = () => {
+    console.log('cleanLoginData')
     this.userInfo = undefined
     MyHttpUtils.token = undefined
     DeviceEventEmitter.emit(event.loginStatusChange)
-
     MyStoreManager.delete(localStore.userInfo).then(() => {})
   }
 

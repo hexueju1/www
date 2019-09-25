@@ -39,8 +39,11 @@ export default class MeScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {
-      maxCanBorrow: '2,000.00',
-      person_money: '请登录个人用户',
+      isLogin: false,
+      displayTitle: '请登录个人用户',
+      maxCanBorrow: '***',
+      displayName: '***',
+      loginOrLogout: '登录',
     }
   }
 
@@ -75,7 +78,7 @@ export default class MeScreen extends BaseScreen {
                 top: '20%',
               }}
             >
-              <Text style={{ color: '#0F0F0F', fontSize: 18 }}>{this.state.person_money}</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: 18 }}>{this.state.displayTitle}</Text>
               <View style={{ flexDirection: 'row' }}>
                 <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: 40 }}>¥</Text>
                 <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: 40 }}>{this.state.maxCanBorrow}</Text>
@@ -138,47 +141,53 @@ export default class MeScreen extends BaseScreen {
             ) : null}
           </View>
           {/* 底部登录按钮 */}
-          {LoginManager.isLogin() ? (
-            <View style={[styles.touchableopacity]}>
-              <TouchableOpacity style={styles.button} onPress={() => {}}>
-                <Text style={styles.buttonText}>{'注销登录'}</Text>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <View style={[styles.touchableopacity]}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => {
-                  if (LoginManager.isLogin()) {
-                  } else {
-                    this.props.navigation.navigate('Login')
-                  }
-                  console.log('islogin', LoginManager.isLogin())
-                }}
-              >
-                <Text style={styles.buttonText}>{'登录'}</Text>
-              </TouchableOpacity>
-            </View>
-          )}
+
+          <View style={[styles.touchableopacity]}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                if (LoginManager.isLogin()) {
+                  this.showAlert()
+                } else {
+                  this.props.navigation.navigate('Login')
+                }
+                console.log('islogin', LoginManager.isLogin())
+              }}
+            >
+              <Text style={styles.buttonText}>{this.state.loginOrLogout}</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </SafeAreaView>
     )
   }
 
+  // 退出确认
   showAlert = () => {
     Alert.alert(
       '',
       '确认退出吗',
-      [{ text: 'quxiao', onPress: () => console.log('Cancel Pressed'), style: 'cancel' }, { text: 'sure', onPress: () => LoginManager.logout() }],
+      [{ text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel' }, { text: '确定', onPress: () => LoginManager.logout() }],
       { cancelable: false },
     )
   }
 
   componentDidMount() {
     let that = this
+    this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
+      that.setState({
+        isLogin: LoginManager.isLogin(),
+        displayName: LoginManager.isLogin() ? LoginManager.userInfo.nickname : '***',
+        displayTitle: LoginManager.isLogin() ? '我的额度' : '请登录个人用户',
+        loginOrLogout: LoginManager.isLogin() ? '注销登录' : '登录',
+        maxCanBorrow: LoginManager.isLogin() ? LoginManager.userInfo.borrow_limit : '***',
+      })
+    })
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.listener.remove()
+  }
 }
 
 var styles = StyleSheet.create({
