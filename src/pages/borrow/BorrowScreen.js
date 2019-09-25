@@ -74,7 +74,7 @@ export default class RepaymentScreen extends React.Component {
             <View
               style={styles.clickButton}
               onTouchStart={() => {
-                showToast('全部还款')
+                this.props.navigation.navigate('BorrowHistory')
               }}
             >
               <Text style={{ color: '#FDFDFD', marginRight: 7 }}>全部还款</Text>
