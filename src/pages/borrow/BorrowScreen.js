@@ -15,6 +15,7 @@ import { Container, Header, Content, Button } from 'native-base'
 import { blue, black } from 'ansi-colors'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import TabHeader from '../../common/TabHeader'
+import { showToast } from '../../utils/MyToastUtils'
 /**
  *
  *
@@ -70,7 +71,12 @@ export default class RepaymentScreen extends React.Component {
           {/*图片中数据的布局 */}
           <View style={{ position: 'relative' }}>
             {/* 右上角全部借款按钮 */}
-            <View style={styles.clickButton}>
+            <View
+              style={styles.clickButton}
+              onTouchStart={() => {
+                showToast('全部还款')
+              }}
+            >
               <Text style={{ color: '#FDFDFD', marginRight: 7 }}>全部还款</Text>
               <Image style={{ width: 20, height: 20 }} source={require('../../images/png/small_borrow.png')} />
             </View>
@@ -96,7 +102,12 @@ export default class RepaymentScreen extends React.Component {
 
           {/* 支付按钮 */}
           <View style={[styles.touchableopacity]}>
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                showToast('全部还款')
+              }}
+            >
               <Text style={styles.buttonText}>{'提前还款'}</Text>
             </TouchableOpacity>
           </View>

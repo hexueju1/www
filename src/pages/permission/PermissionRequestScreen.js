@@ -32,12 +32,9 @@ import { endpoint } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
+import TabHeader from '../../common/TabHeader'
 
 export default class MyMsgScreen extends BaseScreen {
-  static navigationOptions = {
-    title: '协议',
-  }
-
   constructor(props) {
     super(props)
     this.state = {}
@@ -67,31 +64,56 @@ export default class MyMsgScreen extends BaseScreen {
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <StatusBar backgroundColor={color.primary_bg} barStyle="dark-content" translucent={false} />
-        <View>
+        <ScrollView>
+          <TabHeader text="借款服务协议" />
+          <View>
+            {/* 借款协议头部 */}
+            <View style={styles.topcontent}>
+              <Image style={{ width: 54, height: 54, marginRight: 11 }} source={require('../../images/png/agreement_pic.png')} />
+              <Text style={{ color: '#111111', fontSize: 12, width: 270 }}>
+                请您仔细阅读下列注意事项，并严格按照说明进行操作，如未按照要求进行操作，将会影响你的借款成功率。
+              </Text>
+            </View>
+
+            {/* 借款协议中部内容 */}
+            <View style={styles.content}>
+              <Text style={{ fontSize: 12, color: '#111111', lineHeight: 20 }}>
+                1.请在接下来的操作中的权限申请全部给予允许，若无法通过，请重试或卸载软件后重新安装。{'\n'}
+                {'\n'}
+                2.我们将会对您的身份信息进行严格验证，请您准备如下材料：{'\n'}
+                {'\n'}
+                <Text style={{ fontSize: 12, color: '#E91818' }}>
+                  （a） 您本人有效的大陆居民身份证证件。{'\n'}
+                  {'\n'}
+                  （b） 您本人储蓄银行卡一张及对应绑定的手机号。{'\n'}
+                  {'\n'}
+                  （c） 能够正常接受收短信的本人身份证办理的手机号。{'\n'}
+                  {'\n'}
+                </Text>
+                3.在申请认证中，会对您的信息进行验证，确保是您本人操作，本人有效身份证，本人有效银行卡，本人身份证注册的手机号。{'\n'}
+                {'\n'}
+              </Text>
+            </View>
+            <Button
+              full
+              style={styles.buttonstyle}
+              onPress={() => {
+                this.agree()
+              }}
+            >
+              <Text style={{ color: color.white }}>同意</Text>
+            </Button>
+          </View>
           <Button
             full
-            style={{
-              borderRadius: px(4),
-            }}
+            style={styles.buttonstyle}
             onPress={() => {
               this.props.navigation.goBack()
             }}
           >
             <Text style={{ color: color.white }}>拒绝</Text>
           </Button>
-          <Button
-            full
-            style={{
-              borderRadius: px(4),
-            }}
-            onPress={() => {
-              this.agree()
-            }}
-          >
-            <Text style={{ color: color.white }}>同意</Text>
-          </Button>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     )
   }
@@ -109,5 +131,30 @@ var styles = StyleSheet.create({
   main_container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#E9ECEF',
+  },
+  topcontent: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 23,
+    paddingBottom: 23,
+  },
+  content: {
+    marginHorizontal: 20,
+    height: 352,
+    backgroundColor: '#FDFDFD',
+    borderRadius: 8,
+    borderTopWidth: 2,
+    borderColor: '#F58C00',
+    padding: 21,
+    marginBottom: 23,
+  },
+  buttonstyle: {
+    width: 130,
+    height: 38,
+    backgroundColor: '#F58C00',
+    borderRadius: 19,
+    marginBottom: 22,
+    alignSelf: 'center',
   },
 })
