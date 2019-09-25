@@ -6,7 +6,7 @@ import { event, localStore, endpoint } from '../common/Constants'
 import { showErrorToast } from '../utils/HttpErrorCodeUtils'
 import LocalConfigManager from '../common/LocalConfigManager'
 
-const BaseUrl = 'https://thinko.cc/api/'
+const BaseUrl = 'https://shandaicn.com/api/'
 const LogStatus = true
 
 /**
