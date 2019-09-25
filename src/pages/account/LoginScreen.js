@@ -27,9 +27,8 @@ export default class LoginScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {
-      phone: '',
-      password: '',
-      phoneCode: '',
+      phone: '18963985141',
+      phoneCode: '123456',
     }
   }
 
@@ -97,7 +96,7 @@ export default class LoginScreen extends BaseScreen {
           <ImageBackground source={require('../../images/login_background.png')} style={{ width: 328, height: 49, marginTop: 32 }}>
             {/* <Item picker> */}
             <TextInput
-              style={{ flex: 1, height: 50, paddingLeft: 36, color:'#ffffff' }}
+              style={{ flex: 1, height: 50, paddingLeft: 36, color: '#ffffff' }}
               placeholder={'请输入验证码'}
               placeholderTextColor={'#fdfdfd'}
               value={this.state.phoneCode}

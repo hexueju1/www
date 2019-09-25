@@ -18,17 +18,17 @@ import {
   ImageBackground,
   StatusBar,
 } from 'react-native'
-import BaseScreen from '../components/BaseScreen'
-import { color, size, layout, style } from '../common/MyStyle'
-import { event, localStore } from '../common/Constants'
-import LoginManager from '../common/LoginManager'
-import { isDebug } from '../utils/MyDebugUtils'
-import SettingItem from '../components/SettingItem'
-import SettingItemBigPic from '../components/SettingItemBigPic'
-import SettingItemTextTopDown from '../components/SettingItemTextTopDown'
+import BaseScreen from '../../components/BaseScreen'
+import { color, size, layout, style } from '../../common/MyStyle'
+import { event, localStore, images } from '../../common/Constants'
+import LoginManager from '../../common/LoginManager'
+import { isDebug } from '../../utils/MyDebugUtils'
+import SettingItem from '../../components/SettingItem'
+import SettingItemBigPic from '../../components/SettingItemBigPic'
+import SettingItemTextTopDown from '../../components/SettingItemTextTopDown'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { showToast } from '../utils/MyToastUtils'
-import MyStoreManager from '../common/MyStoreManager'
+import { showToast } from '../../utils/MyToastUtils'
+import MyStoreManager from '../../common/MyStoreManager'
 import { Label, Button } from 'native-base'
 
 export default class MeScreen extends BaseScreen {
@@ -60,12 +60,12 @@ export default class MeScreen extends BaseScreen {
             }}
           >
             <View style={{ flex: 1 }}>
-              <Image style={{ width: 23, height: 22 }} source={require('../images/png/logo.png')} />
+              <Image style={{ width: 23, height: 22 }} source={images.logo} />
             </View>
           </View>
           {/* 顶部背景 */}
           <View style={{ display: 'flex', alignItems: 'center' }}>
-            <Image style={{ width: 354, height: 268, position: 'relative', top: -40 }} source={require('../images/png/personal_pic.png')} />
+            <Image style={{ width: 354, height: 268, position: 'relative', top: -40 }} source={images.personal_pic} />
             <View
               style={{
                 height: '100%',
@@ -85,7 +85,7 @@ export default class MeScreen extends BaseScreen {
           {/* 个人界面--列表 */}
           <View style={[styles.settingitem]}>
             <SettingItem
-              imageUrl={require('../images/png/my_info.png')}
+              imageUrl={images.my_info}
               text={'我的消息'}
               onPress={() => {
                 if (LoginManager.isLogin()) {
@@ -96,7 +96,7 @@ export default class MeScreen extends BaseScreen {
               }}
             />
             <SettingItem
-              imageUrl={require('../images/png/need_borrow.png')}
+              imageUrl={images.need_borrow}
               text={'我要借钱'}
               onPress={() => {
                 if (LoginManager.isLogin()) {
@@ -106,7 +106,7 @@ export default class MeScreen extends BaseScreen {
               }}
             />
             <SettingItem
-              imageUrl={require('../images/png/my_card.png')}
+              imageUrl={images.my_card}
               text={'卡片管家'}
               onPress={() => {
                 if (LoginManager.isLogin()) {
@@ -117,7 +117,7 @@ export default class MeScreen extends BaseScreen {
               }}
             />
             <SettingItem
-              imageUrl={require('../images/png/about_us.png')}
+              imageUrl={images.about_us}
               text={'关于我们'}
               onPress={() => {
                 if (LoginManager.isLogin()) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation' // Version can be specified in package.json
 import HomeScreen from './src/pages/home/HomeScreen'
-import MeScreen from './src/pages/MeScreen'
+import MeScreen from './src/pages/account/MeScreen'
 import SampleScreen from './src/template/SampleScreen'
 import LoginScreen from './src/pages/account/LoginScreen'
 import AboutScreen from './src/pages/account/AboutScreen'
@@ -13,7 +13,6 @@ import { isDebug } from './src/utils/MyDebugUtils'
 import SplashScreen from 'react-native-splash-screen'
 import MyWebView from './src/pages/MyWebView'
 import NetworkManager from './src/common/NetworkManager'
-import SettingScreen from './src/pages/SettingScreen'
 import BorrowScreen from './src/pages/borrow/BorrowScreen'
 import MyMsgScreen from './src/pages/msg/MyMsgScreen'
 import MsgDetailScreen from './src/pages/msg/MsgDetailScreen'
@@ -44,7 +43,6 @@ const commonPages = {
   About: AboutScreen,
   Login: LoginScreen,
   Sample: SampleScreen,
-  Setting: SettingScreen,
   MyMsg: MyMsgScreen,
   PermissionRequest: PermissionRequestScreen,
   BorrowConfirm: BorrowConfirmScreen,

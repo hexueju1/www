@@ -1,4 +1,17 @@
 /**
+ * 存放所有图片资源
+ */
+export const images = {
+  logo: require('../images/png/logo.png'),
+  homeSelect: require('../images/tabbar/home-select.png'),
+  homeUnSelect: require('../images/tabbar/home-unselect.png'),
+  personal_pic: require('../images/png/personal_pic.png'),
+  my_info: require('../images/png/my_info.png'),
+  need_borrow: require('../images/png/need_borrow.png'),
+  my_card: require('../images/png/my_card.png'),
+  about_us: require('../images/png/about_us.png'),
+}
+/**
  * 定义  DeviceEventEmitter  事件名
  */
 export const event = {
