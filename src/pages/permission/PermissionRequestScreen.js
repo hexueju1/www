@@ -33,6 +33,7 @@ import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
+import PermissionManager from '../../common/PermissionManager'
 
 export default class MyMsgScreen extends BaseScreen {
   constructor(props) {
@@ -40,7 +41,7 @@ export default class MyMsgScreen extends BaseScreen {
     this.state = {}
   }
 
-  agree = () => {
+  toNextStep = () => {
     MyHttpUtils.fetchRequest('post', endpoint.user.checkAuthentication).then((responseJson) => {
       let url = ''
       // 0 需进行人证核验 1 需进行运营商认证 2 无需认证  3 bank
@@ -59,6 +60,21 @@ export default class MyMsgScreen extends BaseScreen {
         showToast('非法状态')
       }
     })
+  }
+
+  agree = () => {
+    // 请求权限并收集数据
+    console.log(Platform.OS)
+    if (Platform.OS == 'android') {
+      console.log('requestPermission start')
+      PermissionManager.requestPermission().then((flag) => {
+        console.log(flag)
+        if (flag) {
+          this.toNextStep()
+        }
+      })
+      console.log('requestPermission end')
+    }
   }
 
   render() {

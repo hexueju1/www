@@ -22,12 +22,14 @@ class PermissionManager {
       // new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
       //
       //返回string类型
-      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE, {
+      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_SMS, {
         //第一次请求拒绝后提示用户你为什么要这个权限
-        title: '请求磁盘空间',
-        message: '该操作需磁盘权限才能进行',
+        title: '申请权限',
+        message: '请在接下来的提示中点击允许，否则将无法进行下一步操作',
+        buttonPositive: '好的',
       })
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('granted success')
         return true
       } else {
         showToast('权限获取失败')
@@ -38,6 +40,11 @@ class PermissionManager {
       return false
     }
   }
+
+  // const userResponse = await PermissionsAndroid.requestMultiple([
+  //   PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+  //   PermissionsAndroid.PERMISSIONS.CALL_PHONE
+  // ]);
 }
 
 export default new PermissionManager()

@@ -128,3 +128,7 @@ metaInfo:
 * 安装fastlane（随便搜个教程即可，不要再次初始化，目前已经有相关配置文件）
 * 安装firim的插件 fastlane add_plugin firim
 * 打包： fastlane fir
+
+# 其他命令
+
+ react-native start --reset-cache
