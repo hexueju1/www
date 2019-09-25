@@ -4395,6 +4395,11 @@ react-native-modal@^11.0.1:
     prop-types "^15.6.2"
     react-native-animatable "^1.3.1"
 
+react-native-permissions@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npm.taobao.org/react-native-permissions/download/react-native-permissions-1.2.1.tgz#cb1f6e53b8992b3912de5a4cfc1553ac2e82d0f6"
+  integrity sha1-yx9uU7iZKzkS3lpM/BVTrC6C0PY=
+
 react-native-pose@^0.9.1:
   version "0.9.1"
   resolved "https://registry.npm.taobao.org/react-native-pose/download/react-native-pose-0.9.1.tgz#dbee4e0970d0a4d55c380e3099a2e91bc8980c81"

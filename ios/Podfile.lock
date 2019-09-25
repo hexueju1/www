@@ -76,6 +76,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - ReactNativePermissions (1.2.1):
+    - React
   - SVProgressHUD (2.2.5)
   - yoga (0.59.8.React)
 
@@ -99,6 +101,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - ReactNativePermissions (from `../node_modules/react-native-permissions`)
   - SVProgressHUD
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -119,6 +122,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
+  ReactNativePermissions:
+    :path: "../node_modules/react-native-permissions"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -132,9 +137,10 @@ SPEC CHECKSUMS:
   MOBFoundation: 246159a97f5e6c8a271b674dd885dc4b0953e45e
   React: 1d605e098d69bdf08960787f3446f0a9dc2e2ccf
   react-native-netinfo: d16e16984e3ff0f164d3747508151a461ced301e
+  ReactNativePermissions: c5be85159a946eed987b35333f848ba17c2ff2af
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: 523f2515cdf2c750119dc24e8cecd09d178f57e3
+PODFILE CHECKSUM: 85aa6bf72effe7c10a0ff83fb48abbc5d2ba7a24
 
 COCOAPODS: 1.5.3

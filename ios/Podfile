@@ -90,6 +90,8 @@ pod 'React', path: rn_path, subspecs: [
 ]
 pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
 
+pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
+
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         if target.name == "React"

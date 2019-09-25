@@ -98,7 +98,9 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>App需要您的地理位置权限</string>
+	<key>NSContactsUsageDescription</key>
+	<string>App需要您的联系人权限</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>App需要您的相册权限用于保存图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
