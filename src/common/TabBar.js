@@ -20,7 +20,7 @@ const TabBar = (props) => {
         const isRouteActive = routeIndex === activeRouteIndex
         const tintColor = isRouteActive ? activeTintColor : inactiveTintColor
         return (
-          <TouchableNativeFeedback
+          <TouchableOpacity
             key={routeIndex}
             style={Styles.tabButton}
             onPress={() => {
@@ -49,7 +49,7 @@ const TabBar = (props) => {
                 <Text style={Styles.iconText}>{getLabelText({ route })}</Text>
               </Scaler>
             )}
-          </TouchableNativeFeedback>
+          </TouchableOpacity>
         )
       })}
     </Scaler>
