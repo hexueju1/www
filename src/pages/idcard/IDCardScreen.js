@@ -64,7 +64,7 @@ export default class IDCardScreen extends BaseScreen {
           full
           style={styles.buttonstyle}
           onPress={() => {
-            this.props.navigation.goBack()
+            this.props.navigation.navigate('PersonalPicture')
           }}
         >
           <Text style={{ color: color.white, fontSize: 16 }}>确定</Text>

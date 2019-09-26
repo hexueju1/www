@@ -27,6 +27,7 @@ import BorrowHistoryScreen from './src/pages/borrow/BorrowHistoryScreen'
 import LoginManager from './src/common/LoginManager'
 import TabBar from './src/common/TabBar'
 import { px } from './src/utils/Device'
+import PersonalPictureScreen from './src/pages/idcard/PersonalPictureScreen'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
 
@@ -50,6 +51,7 @@ const commonPages = {
   IDCard: IDCardScreen,
   BindBank: BindBankScreen,
   Operator: OperatorScreen,
+  PersonalPicture:PersonalPictureScreen
 }
 
 // StackNavigator用于实现各个页面之间的跳转

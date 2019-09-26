@@ -4372,6 +4372,11 @@ react-native-keyboard-aware-scroll-view@0.8.0:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
+react-native-linear-gradient@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.npm.taobao.org/react-native-linear-gradient/download/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
+  integrity sha1-liFcvF7HoBJHogiQiIqnW4NNRKA=
+
 react-native-looped-carousel@^0.1.13:
   version "0.1.13"
   resolved "https://registry.npm.taobao.org/react-native-looped-carousel/download/react-native-looped-carousel-0.1.13.tgz#bc1f94ee818347ecfd573acd9710c84b2f450d1f"
