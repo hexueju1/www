@@ -44,6 +44,7 @@ export default class MeScreen extends BaseScreen {
       maxCanBorrow: '***',
       displayName: '***',
       loginOrLogout: '登录',
+      number: '10',
     }
   }
 
@@ -84,6 +85,11 @@ export default class MeScreen extends BaseScreen {
                 <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: 40 }}>{this.state.maxCanBorrow}</Text>
               </View>
             </View>
+            <Text style={{ fontSize: 18, color: '#E7912D', position: 'absolute', top: 190, left: 94 }}>{this.state.displayName}</Text>
+            <Text style={{ fontSize: 18, color: '#E7912D', position: 'absolute', top: 165, left: 300 }}>
+              {this.state.number}
+              <Text style={{ color: '#FDFDFD', fontSize: 12 }}>笔</Text>
+            </Text>
           </View>
           {/* 个人界面--列表 */}
           <View style={[styles.settingitem]}>
@@ -154,7 +160,7 @@ export default class MeScreen extends BaseScreen {
                 console.log('islogin', LoginManager.isLogin())
               }}
             >
-              <Text style={styles.buttonText}>{this.state.loginOrLogout}</Text>
+              <Text style={styles.buttonText}>{LoginManager.isLogin() ? '注销登录' : '登录'}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
