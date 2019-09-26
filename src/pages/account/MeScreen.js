@@ -50,10 +50,11 @@ export default class MeScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
+        <StatusBar backgroundColor={color.transparent} barStyle="dark-content" translucent={true} />
+
         <ScrollView>
           {/* transparent保证沉浸式状态栏生效 */}
-          <StatusBar backgroundColor={color.transparent} barStyle="dark-content" translucent={true} />
           {/* 顶部图标 */}
           <View
             style={{
@@ -164,7 +165,7 @@ export default class MeScreen extends BaseScreen {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 

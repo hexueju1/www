@@ -68,7 +68,7 @@ export default class MyMsgScreen extends BaseScreen {
     // 请求权限并收集数据
     console.log(Platform.OS)
     // https://github.com/react-native-community/react-native-permissions
-    Permissions.request(['contacts']).then((response) => {
+    Permissions.request('contacts').then((response) => {
       console.log(response)
 
       Contacts.getAll((err, contacts) => {

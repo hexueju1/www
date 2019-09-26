@@ -44,12 +44,6 @@ waiting
 
 /template 存放一些模板文件，开发新的页面直接复制即可
 
-# 状态栏
-
-* 注意沉浸式带来的影响，页面整体会上移，UI可能需要调整
-* 不需要沉浸式的页面需要添加<MyStatusBar style={{ backgroundColor: color.white }} />
-* style默认为白色，可不传
-* 具体参考RepaymentScreen
 
 # 国际化(暂不考虑)
 
