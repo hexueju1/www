@@ -56,6 +56,7 @@ export default class MyMsgScreen extends BaseScreen {
       }
       if (url != '') {
         this.props.navigation.navigate(url)
+        // this.props.navigation.replace(url)
       } else {
         showToast('非法状态')
       }
@@ -66,21 +67,22 @@ export default class MyMsgScreen extends BaseScreen {
     // 请求权限并收集数据
     console.log(Platform.OS)
     // https://github.com/react-native-community/react-native-permissions
-    if (Platform.OS == 'android') {
-      Permissions.request(['readSms']).then((response) => {
-        //response is an object mapping type to permission
-        // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-        console.log(response)
-        Permissions.request(['contacts']).then((response) => {
-          console.log(response)
-        })
-      })
-    } else {
-      // ios有用的只有联系人信息
-      Permissions.request(['contacts']).then((response) => {
-        console.log(response)
-      })
-    }
+    Permissions.request(['contacts']).then((response) => {
+      console.log(response)
+      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+      if (response == 'authorized') {
+        if (Platform.OS == 'android') {
+          Permissions.request(['readSms']).then((response) => {
+            console.log(response)
+            if (response == 'authorized') {
+              this.toNextStep()
+            }
+          })
+        } else {
+          this.toNextStep()
+        }
+      }
+    })
   }
 
   render() {
