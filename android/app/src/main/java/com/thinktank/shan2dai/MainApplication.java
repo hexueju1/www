@@ -26,6 +26,7 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.thinktank.shan2dai.Download.DownloadPackage;
 import com.thinktank.shan2dai.NativeUI.BulbSample.BulbPackage;
 import com.thinktank.shan2dai.Share.SharePackage;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
@@ -56,6 +57,7 @@ public class MainApplication extends Application implements ReactApplication {
                     new MainReactPackage(),
             new LinearGradientPackage(),
                     new NetInfoPackage(),
+                    new ReactNativeContacts(),
                     new SplashScreenReactPackage(),
                     new RNFSPackage(),
                     new RNI18nPackage(),

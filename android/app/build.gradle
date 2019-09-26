@@ -211,6 +211,7 @@ dependencies {
     implementation project(':react-native-fs')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    implementation project(':react-native-contacts')
     implementation project(':react-native-i18n')
     implementation project(':react-native-device-info')
     implementation project(':@react-native-community_cameraroll')

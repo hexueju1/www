@@ -34,6 +34,7 @@ import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
 import Permissions from 'react-native-permissions'
+import Contacts from 'react-native-contacts'
 
 export default class MyMsgScreen extends BaseScreen {
   constructor(props) {
@@ -69,6 +70,14 @@ export default class MyMsgScreen extends BaseScreen {
     // https://github.com/react-native-community/react-native-permissions
     Permissions.request(['contacts']).then((response) => {
       console.log(response)
+
+      Contacts.getAll((err, contacts) => {
+        if (err) {
+          console.log(err)
+        }
+        console.log(contacts)
+        // contacts returned
+      })
       // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
       if (response == 'authorized') {
         if (Platform.OS == 'android') {
