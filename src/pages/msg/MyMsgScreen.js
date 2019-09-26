@@ -57,7 +57,7 @@ export default class MyMsgScreen extends BaseScreen {
     return (
       <TouchableOpacity
         onPress={() => {
-          this.props.navigation.navigate('MsgDetail', { messageId: item.id })
+          this.props.navigation.navigate('MsgDetail', { messageId: item.id, createtime: item.createtime })
         }}
         style={styles.touch}
       >

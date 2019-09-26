@@ -38,22 +38,25 @@ export default class MsgDetailScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.messageId = this.props.navigation.getParam('messageId')
+    this.createtime = this.props.navigation.getParam('createtime')
     this.state = {
       title: '',
       content: '',
-      createtime: '',
     }
   }
 
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <TabHeader text="详情" />
-        <Text>{this.state.status}</Text>
+        <TabHeader text="消息详情" />
+        {/* <Text>{this.state.status}</Text> */}
+        <Text style={styles.time}>{this.createtime.split(' ')[0]}</Text>
         <View style={styles.line}>
-          <Text style={styles.value}>{this.state.title}</Text>
-          <Text style={styles.value}>{this.state.content}</Text>
-          <Text style={styles.value}>{this.state.createtime}</Text>
+          <Image style={{ width: 26, height: 26, marginRight: 8 }} source={require('../../images/png/msglist_logo.png')} />
+          <Text>{this.state.title}</Text>
+        </View>
+        <View style={styles.contenttext}>
+          <Text style={{ fontSize: 12, marginLeft: 41 }}>{this.state.content}</Text>
         </View>
       </SafeAreaView>
     )
@@ -99,10 +102,39 @@ var styles = StyleSheet.create({
   main_container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#E9ECEF',
   },
   line: {
+    marginTop: 7,
+    marginHorizontal: 20,
     paddingHorizontal: 20,
+    width: 338,
+    height: 45,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    backgroundColor: '#FDFDFD',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#F0F0F0',
   },
-  title: {},
-  value: {},
+  time: {
+    width: 119,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#DFDFDF',
+    alignSelf: 'center',
+    textAlign: 'center',
+    marginTop: 11,
+  },
+  contenttext: {
+    width: 338,
+    height: 55,
+    marginHorizontal: 20,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    backgroundColor: '#FDFDFD',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 })
