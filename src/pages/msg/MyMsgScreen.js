@@ -59,12 +59,16 @@ export default class MyMsgScreen extends BaseScreen {
         onPress={() => {
           this.props.navigation.navigate('MsgDetail', { messageId: item.id })
         }}
+        style={styles.touch}
       >
-        <View style={{ paddingHorizontal: 20 }}>
+        <Text style={styles.time}>{item.createtime.split(' ')[0]}</Text>
+        <View style={styles.content}>
+          <Image style={{ width: 26, height: 26, marginRight: 34 }} source={require('../../images/png/msglist_logo.png')} />
           <Text>{item.title}</Text>
-          <Text>{item.content}</Text>
-          <Text>{item.createtime}</Text>
-          <Text>{item.status_text}</Text>
+          <Text style={{ color: '#ABABAB', fontSize: 12, marginLeft: 90 }}>查看详情></Text>
+          {/* <Text>{item.content}</Text> */}
+          {/* <Text>{item.createtime}</Text> */}
+          {/* <Text>{item.status_text}</Text> */}
         </View>
       </TouchableOpacity>
     )
@@ -103,5 +107,28 @@ var styles = StyleSheet.create({
   main_container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#E9ECEF',
+  },
+  touch: {
+    paddingHorizontal: 20,
+    marginTop: 12,
+  },
+  content: {
+    marginTop: 7,
+    paddingHorizontal: 20,
+    width: 338,
+    height: 45,
+    borderRadius: 8,
+    backgroundColor: '#FDFDFD',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  time: {
+    width: 119,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#DFDFDF',
+    alignSelf: 'center',
+    textAlign: 'center',
   },
 })
