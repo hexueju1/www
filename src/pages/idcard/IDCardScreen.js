@@ -28,7 +28,7 @@ import {
 import { Tab, Tabs, Container, Header, Content, Button, Text, Form, Item, Input, Label, Picker, Icon } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
-import { endpoint } from '../../common/Constants'
+import { endpoint, images } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
@@ -57,8 +57,8 @@ export default class IDCardScreen extends BaseScreen {
           <View style={styles.bottomBorder}></View>
           <View style={styles.leftBorder}></View>
           <View style={styles.rightBorder}></View>
-          <Image style={styles.cardSample} source={require('../../images/png/idcard_sample.png')} />
-          <Image style={styles.cameraStyle} source={require('../../images/png/camera.png')} />
+          <Image style={styles.cardSample} source={images.idcard_sample} />
+          <Image style={styles.cameraStyle} source={images.camera} />
         </View>
         <Button
           full

@@ -28,7 +28,7 @@ import {
 import { Tab, Tabs, Container, Header, Content, Button, Text, Form, Item, Input, Label, Picker, Icon } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
-import { endpoint } from '../../common/Constants'
+import { endpoint, images } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
@@ -36,6 +36,7 @@ import TabHeader from '../../common/TabHeader'
 import { StackViewTransitionConfigs } from 'react-navigation'
 import { hidden } from 'ansi-colors'
 import LinearGradient from 'react-native-linear-gradient'
+import Operator from '../../pages/operator/OperatorScreen'
 
 export default class IDCardScreen extends BaseScreen {
   constructor(props) {
@@ -59,13 +60,13 @@ export default class IDCardScreen extends BaseScreen {
           <View style={styles.rightBorder}></View>
           <View style={styles.line}></View>
           <LinearGradient style={styles.linear} colors={['#A6DAF2', '#E9ECEF']}></LinearGradient>
-          <Image style={styles.cameraStyle} source={require('../../images/png/camera.png')} />
+          <Image style={styles.cameraStyle} source={images.camera} />
         </View>
         <Button
           full
           style={styles.buttonstyle}
           onPress={() => {
-            this.props.navigation.navigate('PersonalPicture')
+            this.props.navigation.navigate('Operator')
           }}
         >
           <Text style={{ color: color.white, fontSize: 16 }}>确定</Text>

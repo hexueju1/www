@@ -16,6 +16,7 @@ import { blue, black } from 'ansi-colors'
 import { endpoint } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import LoginManager from '../../common/LoginManager'
+import { event, localStore, images } from '../../common/Constants'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -52,7 +53,7 @@ export default class HomeScreen extends React.Component {
         {/* transparent保证沉浸式状态栏生效 */}
         <StatusBar backgroundColor={color.transparent} barStyle="dark-content" translucent={true} />
         {/* 顶部背景 */}
-        <Image style={{ width: size.screen_width, height: px(180) }} source={require('../../images/home/home_top_bg.png')} />
+        <Image style={{ width: size.screen_width, height: px(180) }} source={images.home_top_bg} />
         {/* 顶部图标和定位 */}
         <View
           style={{
@@ -65,10 +66,10 @@ export default class HomeScreen extends React.Component {
           }}
         >
           <View style={{ flex: 1 }}>
-            <Image style={{ width: px(23), height: px(22) }} source={require('../../images/png/logo.png')} />
+            <Image style={{ width: px(23), height: px(22) }} source={images.logo} />
           </View>
           <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
-            <Image style={{ width: px(18), height: px(18) }} source={require('../../images/png/address_icon.png')} />
+            <Image style={{ width: px(18), height: px(18) }} source={images.address_icon} />
             <Text style={{ fontSize: sp(14), paddingLeft: px(5), color: '#ffffff' }}>{this.state.location}</Text>
           </View>
         </View>
@@ -85,7 +86,7 @@ export default class HomeScreen extends React.Component {
         >
           {/* 可滚动的申请额度面板 */}
           <View style={{ display: 'flex', alignItems: 'center' }}>
-            <Image style={{ width: '100%', height: px(194) }} source={require('../../images/home/home_top_input_bg.png')} />
+            <Image style={{ width: '100%', height: px(194) }} source={images.home_top_input_bg} />
             <View
               style={{
                 height: '100%',
@@ -121,34 +122,34 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <Text style={styles.text}>秒出额度</Text>
-          <Image style={{ width: '100%', height: px(61) }} source={require('../../images/home/home_second.png')} />
+          <Image style={{ width: '100%', height: px(61) }} source={images.home_second} />
           <Text style={styles.text}>产品服务</Text>
           <View style={styles.product_service}>
             <View>
-              <Image style={styles.product_service_pic} source={require('../../images/png/up_money.png')} />
+              <Image style={styles.product_service_pic} source={images.up_money} />
               <Text style={{ color: '#0F0F0F', marginTop: 5, textAlign: 'center' }}>提升额度</Text>
             </View>
             <View>
-              <Image style={styles.product_service_pic} source={require('../../images/png/new_road.png')} />
+              <Image style={styles.product_service_pic} source={images.new_road} />
               <Text style={{ color: '#0F0F0F', marginTop: 5, textAlign: 'center' }}>新口子</Text>
             </View>
             <View>
-              <Image style={styles.product_service_pic} source={require('../../images/png/all.png')} />
+              <Image style={styles.product_service_pic} source={images.all} />
               <Text style={{ color: '#0F0F0F', marginTop: 5, textAlign: 'center' }}>全部</Text>
             </View>
           </View>
           <Text style={styles.text}>更多服务</Text>
           <View style={styles.more_service}>
             <View style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}>
-              <Image style={{ width: px(24), height: px(24) }} source={require('../../images/png/borrow_question.png')} />
+              <Image style={{ width: px(24), height: px(24) }} source={images.borrow_question} />
               <Text style={styles.more_service_text}>借款问题</Text>
             </View>
             <View style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}>
-              <Image style={{ width: px(30), height: px(24) }} source={require('../../images/png/pay_question.png')} />
+              <Image style={{ width: px(30), height: px(24) }} source={images.pay_question} />
               <Text style={styles.more_service_text}>还款问题</Text>
             </View>
             <View style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}>
-              <Image style={{ width: px(18), height: px(26) }} source={require('../../images/png/limit.png')} />
+              <Image style={{ width: px(18), height: px(26) }} source={images.limit} />
               <Text style={styles.more_service_text}>额度问题</Text>
             </View>
           </View>

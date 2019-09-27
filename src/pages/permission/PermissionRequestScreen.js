@@ -28,7 +28,7 @@ import {
 import { Tab, Tabs, Container, Header, Content, Button, Text, Form, Item, Input, Label, Picker, Icon } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
-import { endpoint } from '../../common/Constants'
+import { endpoint, images } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
@@ -102,7 +102,7 @@ export default class MyMsgScreen extends BaseScreen {
           <View>
             {/* 借款协议头部 */}
             <View style={styles.topcontent}>
-              <Image style={{ width: 54, height: 54, marginRight: 11 }} source={require('../../images/png/agreement_pic.png')} />
+              <Image style={{ width: 54, height: 54, marginRight: 11 }} source={images.agreement_pic} />
               <Text style={{ color: '#111111', fontSize: 12, width: 270 }}>
                 请您仔细阅读下列注意事项，并严格按照说明进行操作，如未按照要求进行操作，将会影响你的借款成功率。
               </Text>

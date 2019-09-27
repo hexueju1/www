@@ -16,6 +16,7 @@ import { blue, black } from 'ansi-colors'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import TabHeader from '../../common/TabHeader'
 import { showToast } from '../../utils/MyToastUtils'
+import { event, localStore, endpoint, images } from '../../common/Constants'
 /**
  *
  *
@@ -53,7 +54,7 @@ export default class RepaymentScreen extends React.Component {
           contentContainerStyle={{}}
         >
           {/* 中间的大图片 */}
-          <ImageBackground style={[styles.main]} source={require('../../images/png/borrow_pic.png')}>
+          <ImageBackground style={[styles.main]} source={images.borrow_pic}>
             {/* 图片中的数据定位 */}
             <View
               style={{
@@ -78,7 +79,7 @@ export default class RepaymentScreen extends React.Component {
               }}
             >
               <Text style={{ color: '#FDFDFD', marginRight: 7 }}>全部还款</Text>
-              <Image style={{ width: 20, height: 20 }} source={require('../../images/png/small_borrow.png')} />
+              <Image style={{ width: 20, height: 20 }} source={images.small_borrow} />
             </View>
 
             {/* 借款金额 */}
@@ -93,7 +94,7 @@ export default class RepaymentScreen extends React.Component {
 
             {/* 账单状态提醒 */}
             <View style={styles.payoffInfo}>
-              <Image style={{ width: 27, height: 30 }} source={require('../../images/png/small_payoff.png')} />
+              <Image style={{ width: 27, height: 30 }} source={images.small_payoff} />
               <Text style={{ fontSize: 16, color: '#0F0F0F', marginLeft: 18 }}>{this.state.is_payoff}</Text>
               <Text style={{ fontSize: 12, marginLeft: 50 }}>还款时间</Text>
               <Text style={{ fontSize: 12, marginLeft: 6 }}>{this.state.payoffDay}</Text>

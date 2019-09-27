@@ -12,13 +12,14 @@ import { LOG, isDebug } from '../../utils/MyDebugUtils'
 import DismissKeyboardView from '../../components/DismissKeyboardHOC'
 import { Container, Header, Content, Button, Text, Form, Item, Input, Label, Picker, Icon } from 'native-base'
 import CountDownInput from '../../components/CountDownInput'
-import { event, localStore, endpoint } from '../../common/Constants'
+import { event, localStore, endpoint, images } from '../../common/Constants'
 import { isEmail, isPhoneNumber, isPassword } from '../../utils/VerifyUtils'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import LoginManager from '../../common/LoginManager'
 import { showToast } from '../../utils/MyToastUtils'
 import MyStoreManager from '../../common/MyStoreManager'
 import { black } from 'ansi-colors'
+
 export default class LoginScreen extends BaseScreen {
   static navigationOptions = () => ({
     header: null,
@@ -49,7 +50,7 @@ export default class LoginScreen extends BaseScreen {
       <DismissKeyboardView style={styles.main_container}>
         {/* <ImageBackground style={{ height: 230, justifyContent: 'center', alignItems: 'center' }} source={require('../../images/img/loginbg1.jpg')}> */}
         <View style={{ height: size.login_height, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-          <Image style={{ width: size.login_pic_width, height: size.login_pic_height }} source={require('../../images/png/login_pic.png')} />
+          <Image style={{ width: size.login_pic_width, height: size.login_pic_height }} source={images.login_pic} />
           <Text style={styles.text}>登录</Text>
         </View>
         <View style={[styles.login]}>
@@ -64,7 +65,7 @@ export default class LoginScreen extends BaseScreen {
           </Item> */}
 
           {/*  */}
-          <ImageBackground source={require('../../images/login_background.png')} style={{ width: 328, height: 49 }}>
+          <ImageBackground source={images.login_background} style={{ width: 328, height: 49 }}>
             <CountDownInput
               endpoint={endpoint.sms.send}
               placeholder={'请输入正确的手机号'}
@@ -93,7 +94,7 @@ export default class LoginScreen extends BaseScreen {
             />
           </ImageBackground>
 
-          <ImageBackground source={require('../../images/login_background.png')} style={{ width: 328, height: 49, marginTop: 32 }}>
+          <ImageBackground source={images.login_background} style={{ width: 328, height: 49, marginTop: 32 }}>
             {/* <Item picker> */}
             <TextInput
               style={{ flex: 1, height: 50, paddingLeft: 36, color: '#ffffff' }}
@@ -112,13 +113,13 @@ export default class LoginScreen extends BaseScreen {
               this.login()
             }}
           >
-            <ImageBackground style={[styles.login_button]} source={require('../../images/login_button.png')}>
+            <ImageBackground style={[styles.login_button]} source={images.login_button}>
               <Text style={{ color: color.white, fontSize: 25, lineHeight: 49, textAlign: 'center' }}>{'登录/注册'}</Text>
             </ImageBackground>
           </Button>
         </View>
         <View style={{ marginTop: 50, alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('../../images/login_bottom.png')} style={{ width: 145, height: 145 }}></Image>
+          <Image source={images.login_bottom} style={{ width: 145, height: 145 }}></Image>
         </View>
       </DismissKeyboardView>
     )

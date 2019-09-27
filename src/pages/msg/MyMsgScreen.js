@@ -28,7 +28,7 @@ import {
 import { Tab, Tabs, Container, Header, Content, Button, Text, Form, Item, Input, Label, Picker, Icon } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
-import { endpoint } from '../../common/Constants'
+import { endpoint, images } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
 import TabHeader from '../../common/TabHeader'
@@ -63,7 +63,7 @@ export default class MyMsgScreen extends BaseScreen {
       >
         <Text style={styles.time}>{item.createtime.split(' ')[0]}</Text>
         <View style={styles.content}>
-          <Image style={{ width: 26, height: 26, marginRight: 34 }} source={require('../../images/png/msglist_logo.png')} />
+          <Image style={{ width: 26, height: 26, marginRight: 34 }} source={images.msglist_logo} />
           <Text>{item.title}</Text>
           <Text style={{ color: '#ABABAB', fontSize: 12, marginLeft: 90 }}>查看详情></Text>
           {/* <Text>{item.content}</Text> */}

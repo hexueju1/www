@@ -29,7 +29,7 @@ import BaseScreen from '../../components/BaseScreen'
 import CommonNoData from '../../components/CommonNoData'
 import { size } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
-import { endpoint } from '../../common/Constants'
+import { endpoint, images } from '../../common/Constants'
 import TabHeader from '../../common/TabHeader'
 
 export default class MsgDetailScreen extends BaseScreen {
@@ -52,7 +52,7 @@ export default class MsgDetailScreen extends BaseScreen {
         {/* <Text>{this.state.status}</Text> */}
         <Text style={styles.time}>{this.createtime.split(' ')[0]}</Text>
         <View style={styles.line}>
-          <Image style={{ width: 26, height: 26, marginRight: 8 }} source={require('../../images/png/msglist_logo.png')} />
+          <Image style={{ width: 26, height: 26, marginRight: 8 }} source={images.msglist_logo} />
           <Text>{this.state.title}</Text>
         </View>
         <View style={styles.contenttext}>

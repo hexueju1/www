@@ -15,6 +15,7 @@ import { Container, Header, Content, Button } from 'native-base'
 import { blue, black } from 'ansi-colors'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import TabHeader from '../../common/TabHeader'
+import { images } from '../../common/Constants'
 /**
  *
  *
@@ -48,7 +49,7 @@ export default class RepaymentScreen extends React.Component {
         >
                     {/* 中间的大图片 */}
                     
-          <ImageBackground style={[styles.main]} source={require('../../images/png/repay_main.png')}>
+          <ImageBackground style={[styles.main]} source={images.repay_main}>
                         {/* 下拉框 */}
                         
             <Picker
