@@ -35,6 +35,7 @@ import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
 import Permissions from 'react-native-permissions'
 import Contacts from 'react-native-contacts'
+import mynative from '../../components/native/mynative'
 
 export default class MyMsgScreen extends BaseScreen {
   constructor(props) {
@@ -64,22 +65,31 @@ export default class MyMsgScreen extends BaseScreen {
     })
   }
 
+  /**
+   * 获取一些进入该页面就能拿到的信息
+   */
+  getInfoWithoutPermission = () => {
+    if (Platform.OS == 'android') {
+      mynative.getOtherAppInfo((info) => {
+        console.log(info)
+      })
+    }
+  }
+
   agree = () => {
     // 请求权限并收集数据
-    console.log(Platform.OS)
     // https://github.com/react-native-community/react-native-permissions
     Permissions.request('contacts').then((response) => {
       console.log(response)
-
-      Contacts.getAll((err, contacts) => {
-        if (err) {
-          console.log(err)
-        }
-        console.log(contacts)
-        // contacts returned
-      })
       // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
       if (response == 'authorized') {
+        Contacts.getAll((err, contacts) => {
+          if (err) {
+            showToast('信息获取出错，请重试')
+            return
+          }
+          console.log(contacts)
+        })
         if (Platform.OS == 'android') {
           Permissions.request(['readSms']).then((response) => {
             console.log(response)
@@ -153,6 +163,7 @@ export default class MyMsgScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
+    this.getInfoWithoutPermission()
   }
 
   componentWillUnmount() {

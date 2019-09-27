@@ -24,6 +24,7 @@ import com.rnfs.RNFSPackage;
 import com.rnlib.geetestsensebot.RNLGeetestSensebotPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.thinktank.shan2dai.Download.DownloadPackage;
+import com.thinktank.shan2dai.Native.MyNativePackage;
 import com.thinktank.shan2dai.NativeUI.BulbSample.BulbPackage;
 import com.thinktank.shan2dai.Share.SharePackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
@@ -72,6 +73,7 @@ public class MainApplication extends Application implements ReactApplication {
                     new RNGestureHandlerPackage(),
                     new BulbPackage(),
                     new SharePackage(),
+                    new MyNativePackage(),
                     new DownloadPackage()
             );
         }
