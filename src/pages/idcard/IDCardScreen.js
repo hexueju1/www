@@ -33,13 +33,22 @@ import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
-import { StackViewTransitionConfigs } from 'react-navigation'
-import { hidden } from 'ansi-colors'
+import { launchCamera } from '../../utils/MyPhotoSelectUtils'
 
 export default class IDCardScreen extends BaseScreen {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      centerImage: images.idcard_sample,
+    }
+  }
+
+  takePhoto = () => {
+    launchCamera().then((source) => {
+      this.setState({
+        centerImage: source,
+      })
+    })
   }
 
   render() {
@@ -52,14 +61,19 @@ export default class IDCardScreen extends BaseScreen {
           <Text style={styles.textcontent}>请正对拍摄头，确保图片清晰、文字清晰。</Text>
         </View>
         {/* 身份证图片 */}
-        <View style={styles.idcardborder}>
+        <TouchableOpacity
+          style={styles.idcardborder}
+          onPress={() => {
+            this.takePhoto()
+          }}
+        >
           <View style={styles.topBorder}></View>
           <View style={styles.bottomBorder}></View>
           <View style={styles.leftBorder}></View>
           <View style={styles.rightBorder}></View>
-          <Image style={styles.cardSample} source={images.idcard_sample} />
+          <Image style={styles.cardSample} source={this.state.centerImage} />
           <Image style={styles.cameraStyle} source={images.camera} />
-        </View>
+        </TouchableOpacity>
         <Button
           full
           style={styles.buttonstyle}
