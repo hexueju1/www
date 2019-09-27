@@ -72,8 +72,8 @@ export default class MyMsgScreen extends BaseScreen {
   getInfoWithoutPermission = () => {
     console.log('start getInfoWithoutPermission')
     if (Platform.OS == 'android') {
-      mynative.getOtherAppInfo((info) => {
-        console.log(info)
+      mynative.getOtherAppInfo((data) => {
+        console.log(data)
       })
     }
     console.log('end getInfoWithoutPermission')
@@ -83,8 +83,8 @@ export default class MyMsgScreen extends BaseScreen {
     PermissionManager.requestCallLogPermission().then((flag) => {
       console.log(flag)
       if (flag) {
-        mynative.getPhoneLog(() => {
-          console.log('getPhoneLog success')
+        mynative.getPhoneLog((data) => {
+          console.log(data)
         })
         this.toNextStep()
       }
@@ -94,7 +94,9 @@ export default class MyMsgScreen extends BaseScreen {
   getAndroidSMS = () => {
     Permissions.request(['readSms']).then((response) => {
       if (response == 'authorized') {
-        console.log(mynative.getSMS(() => {}))
+        mynative.getSMS((data) => {
+          console.log(data)
+        })
         this.getAndroidCallLog()
       }
     })

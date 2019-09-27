@@ -15,13 +15,15 @@ import android.os.Looper;
 import android.provider.CallLog;
 import android.util.Log;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableMap;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,18 +53,17 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void getOtherAppInfo(final Callback resultCallback) {
-        resultCallback.invoke(getInstalledApplication(this.context, false).size() + "size");
+        resultCallback.invoke(getInstalledApplication(this.context, false));
     }
 
     @ReactMethod
-    public List<String> getSMS(final Callback resultCallback) {
-        return getSMS(this.context);
+    public void getSMS(final Callback resultCallback) {
+        resultCallback.invoke(getSMS(this.context));
     }
 
     @ReactMethod
     public void getPhoneLog(final Callback resultCallback) {
-        getContentCallLog(this.context);
-        resultCallback.invoke("size");
+        resultCallback.invoke(getContentCallLog(this.context));
     }
 
     public static String[] columns = {CallLog.Calls.CACHED_NAME// 通话记录的联系人
@@ -73,7 +74,8 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
 
     //获取通话记录
     @SuppressLint({"SimpleDateFormat", "MissingPermission"})
-    public static void getContentCallLog(Context context) {
+    public static WritableArray getContentCallLog(Context context) {
+        WritableArray writableArray = Arguments.createArray();
         Cursor cursor = context.getContentResolver().query(CallLog.Calls.CONTENT_URI, // 查询通话记录的URI
                 columns
                 , null, null, CallLog.Calls.DEFAULT_SORT_ORDER// 按照时间逆序排列，最近打的最先显示
@@ -82,6 +84,7 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
             Log.i("getContentCallLog", "cursor count:" + cursor.getCount());
         }
         while (cursor != null && cursor.moveToNext()) {
+            WritableMap writableMap = Arguments.createMap();
             String name = cursor.getString(cursor.getColumnIndex(CallLog.Calls.CACHED_NAME));  //姓名
             String number = cursor.getString(cursor.getColumnIndex(CallLog.Calls.NUMBER));  //号码
             long dateLong = cursor.getLong(cursor.getColumnIndex(CallLog.Calls.DATE)); //获取通话日期
@@ -91,7 +94,10 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
             int type = cursor.getInt(cursor.getColumnIndex(CallLog.Calls.TYPE)); //获取通话类型：1.呼入2.呼出3.未接
             String dayCurrent = new SimpleDateFormat("dd").format(new Date());
             String dayRecord = new SimpleDateFormat("dd").format(new Date(dateLong));
-
+            writableMap.putString("date", date);
+            writableMap.putString("name", name);
+            writableMap.putString("number", number);
+            writableArray.pushMap(writableMap);
             Log.i("getContentCallLog", "Call log: " + "\n"
                     + "name: " + name + "\n"
                     + "phone number: " + number + "\n"
@@ -99,23 +105,27 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
             );
 
         }
+        return writableArray;
     }
 
-    private static List<String> getSMS(Context context) {
-        List<String> sms = new ArrayList<String>();
+    private static WritableArray getSMS(Context context) {
+        WritableArray writableArray = Arguments.createArray();
         Uri uriSMSURI = Uri.parse("content://sms/inbox");
         Cursor cur = context.getContentResolver().query(uriSMSURI, null, null, null, null);
 
         while (cur != null && cur.moveToNext()) {
+            WritableMap writableMap = Arguments.createMap();
             String address = cur.getString(cur.getColumnIndex("address"));
             String body = cur.getString(cur.getColumnIndexOrThrow("body"));
-            sms.add("Number: $address .Message: $body");
+            writableMap.putString("address", address);
+            writableMap.putString("body", body);
+            writableArray.pushMap(writableMap);
         }
 
         if (cur != null) {
             cur.close();
         }
-        return sms;
+        return writableArray;
     }
 
     //    //包名
@@ -132,7 +142,8 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
 //
 ////APK安装包路径
 //    resolveInfo.activityInfo.applicationInfo.sourceDir
-    private static List<ResolveInfo> getInstalledApplication(Context context, boolean needSysAPP) {
+    private static WritableArray getInstalledApplication(Context context, boolean needSysAPP) {
+        WritableArray writableArray = Arguments.createArray();
         PackageManager packageManager = context.getPackageManager();
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -154,7 +165,15 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
                 }
             }
         }
-        return resolveInfos;
+        for (int i = 0; i < resolveInfos.size(); i++) {
+            ResolveInfo resolveInfo = resolveInfos.get(i);
+            String appName = resolveInfo.activityInfo.applicationInfo.loadLabel(context.getPackageManager()).toString();
+            WritableMap writableMap = Arguments.createMap();
+            writableMap.putString("appName", appName);
+            writableMap.putString("packageName", resolveInfo.activityInfo.packageName);
+            writableArray.pushMap(writableMap);
+        }
+        return writableArray;
     }
 
 
