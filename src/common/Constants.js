@@ -32,7 +32,10 @@ export const images = {
   msglist_logo: require('../images/png/msglist_logo.png'),
   agreement_pic: require('../images/png/agreement_pic.png'),
   repay_main: require('../images/png/repay_main.png'),
-  bank_logo: require('../images/png/bank_logo.png')
+  bank_logo: require('../images/png/bank_logo.png'),
+  about_icon: require('../images/png/about_icon.png'),
+  about_us_one: require('../images/png/about_us_one.png'),
+  about_us_two: require('../images/png/about_us_two.png'),
 }
 /**
  * 定义  DeviceEventEmitter  事件名

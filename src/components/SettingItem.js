@@ -24,7 +24,7 @@ class SettingItem extends Component {
               <Text style={[this.props.TextStyle, { fontSize: 12 }]}>{this.props.rightText}</Text>
 
               <Image
-                style={{ width: 10, height: 20, margin: 14 }}
+                style={this.props.hideImage ? { width: 10, height: 20, marginTop: 14, marginBottom: 14 } : { width: 10, height: 20, margin: 14 }}
                 source={this.props.hideImage ? undefined : require('../images/setting_item_right.png')}
               />
             </View>

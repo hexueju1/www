@@ -29,8 +29,9 @@ import BaseScreen from '../../components/BaseScreen'
 import CommonNoData from '../../components/CommonNoData'
 import { size } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
-import { endpoint } from '../../common/Constants'
+import { endpoint, images } from '../../common/Constants'
 import TabHeader from '../../common/TabHeader'
+import SettingItem from '../../components/SettingItem'
 
 export default class AboutScreen extends BaseScreen {
   constructor(props) {
@@ -43,6 +44,7 @@ export default class AboutScreen extends BaseScreen {
     this.state = {
       name: '聚宝盆',
       version: '123',
+      step: '1.1.10',
     }
   }
 
@@ -50,11 +52,22 @@ export default class AboutScreen extends BaseScreen {
     return (
       <SafeAreaView style={styles.main_container}>
         <TabHeader text="关于我们" />
-        <Text>{this.state.status}</Text>
-        <View style={styles.line}>
+        <ScrollView>
+          <Text>{this.state.status}</Text>
+          <Image style={{ width: 61, height: 61, alignSelf: 'center' }} source={images.about_icon} />
           <Text style={styles.value}>{this.state.name}</Text>
-          <Text style={styles.value}>{this.state.version}</Text>
-        </View>
+          {/* <Text style={styles.value}>{this.state.version}</Text> */}
+          <View style={styles.list}>
+            <SettingItem imageUrl={images.about_us_one} text={'版本号'} rightText={this.state.step} onPress={() => {}} hideImage />
+
+            <SettingItem
+              imageUrl={images.about_us_two}
+              text={'联系客服'}
+              // rightText={this.state.step}
+              onPress={() => {}}
+            />
+          </View>
+        </ScrollView>
       </SafeAreaView>
     )
   }
@@ -72,10 +85,16 @@ var styles = StyleSheet.create({
   main_container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#E9ECEF',
   },
-  line: {
-    paddingHorizontal: 20,
+  value: {
+    alignSelf: 'center',
+    marginTop: 10,
+    marginBottom: 10,
   },
-  title: {},
-  value: {},
+  list: {
+    marginHorizontal: 19,
+    backgroundColor: '#FDFDFD',
+    borderRadius: 8,
+  },
 })

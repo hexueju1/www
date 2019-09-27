@@ -51,7 +51,7 @@ export default class BankInfoScreen extends BaseScreen {
             <Text style={{ alignSelf: 'center', marginTop: 10 }}>卡号</Text>
           </View>
           <View style={styles.idstyle}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row',width:200 }}>
               <Text style={{ flex: 1 }}>{item.bank_name}</Text>
               <Text>{item.card_type}</Text>
             </View>
