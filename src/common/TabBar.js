@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Dimensions } from 'react-native'
 import posed from 'react-native-pose' // react-native 动画库
 import { color } from './MyStyle'
-import { px } from '../utils/Device'
+import { px, isIphoneX } from '../utils/Device'
 
 const Scaler = posed.View({
   // 定义点击缩放
@@ -59,13 +59,14 @@ const TabBar = (props) => {
 const Styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: 53,
+    height: isIphoneX() ? px(63) : px(53),
     borderWidth: 1,
     borderRadius: 1,
     borderColor: '#EEEEEE',
-    shadowOffset: { width: 5, height: 10 },
-    shadowOpacity: 0.75,
+    // shadowOffset: { width: 5, height: 10 },
+    // shadowOpacity: 0.75,
     elevation: 1,
+    paddingBottom: isIphoneX() ? px(10) : 0,
   },
   tabButton: {
     flex: 1,
