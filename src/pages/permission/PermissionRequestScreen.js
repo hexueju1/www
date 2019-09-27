@@ -37,6 +37,7 @@ import Permissions from 'react-native-permissions'
 import Contacts from 'react-native-contacts'
 import mynative from '../../components/native/mynative'
 import PermissionManager from '../../common/PermissionManager'
+import DeviceInfo from 'react-native-device-info'
 
 export default class MyMsgScreen extends BaseScreen {
   constructor(props) {
@@ -70,7 +71,53 @@ export default class MyMsgScreen extends BaseScreen {
    * 获取一些进入该页面就能拿到的信息
    */
   getInfoWithoutPermission = () => {
+    // 不要用1024，因为厂商显示就是这样做的
+    let gbSize = 1000 * 1000 * 1000
     console.log('start getInfoWithoutPermission')
+    DeviceInfo.getBatteryLevel().then((batteryLevel) => {
+      // 0.75 means 75%
+      console.log('batteryLevel' + batteryLevel)
+    })
+    DeviceInfo.getBrand().then((brand) => {
+      // iOS: "Apple"
+      // Android: "xiaomi"
+      console.log('brand' + brand)
+    })
+    DeviceInfo.getModel().then((model) => {
+      console.log('model' + model)
+    })
+    DeviceInfo.getPowerState().then((state) => {
+      // {
+      //   batteryLevel: 0.759999,
+      //   batteryState: 'unplugged',
+      //   lowPowerMode: false,
+      // }
+      console.log('state' + state)
+    })
+    DeviceInfo.getSystemVersion().then((systemVersion) => {
+      // iOS: "11.0"
+      // Android: "7.1.1"
+      console.log('systemVersion' + systemVersion)
+    })
+    DeviceInfo.getTotalDiskCapacity().then((capacity) => {
+      // Android: 17179869184
+      // iOS: 17179869184
+      console.log('capacity' + capacity / gbSize)
+    })
+    DeviceInfo.getFreeDiskStorage().then((freeDiskStorage) => {
+      // Android: 17179869184
+      // iOS: 17179869184
+      console.log('freeDiskStorage' + freeDiskStorage / gbSize)
+    })
+    DeviceInfo.getTotalMemory().then((totalMemory) => {
+      // 1995018240
+      // Gets the device total memory, in bytes.
+      console.log('totalMemory' + totalMemory / gbSize)
+    })
+    DeviceInfo.getUsedMemory().then((usedMemory) => {
+      // 23452345
+      console.log('usedMemory' + usedMemory / gbSize)
+    })
     if (Platform.OS == 'android') {
       mynative.getOtherAppInfo((data) => {
         console.log(data)

@@ -4323,10 +4323,10 @@ react-native-contacts@^5.0.3:
   resolved "https://registry.npm.taobao.org/react-native-contacts/download/react-native-contacts-5.0.3.tgz#8f240e7dd09e654c1ca37f151534909a7cf8e272"
   integrity sha1-jyQOfdCeZUwco38VFTSQmnz44nI=
 
-react-native-device-info@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npm.taobao.org/react-native-device-info/download/react-native-device-info-2.1.0.tgz#55eb82c1ba14c550cef6b71efc368d88b96b826a"
-  integrity sha1-VeuCwboUxVDO9rce/DaNiLlrgmo=
+react-native-device-info@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.npm.taobao.org/react-native-device-info/download/react-native-device-info-3.1.4.tgz#58a1d465ce9e2c28809132b1c68dd7ec7ce5f00f"
+  integrity sha1-WKHUZc6eLCiAkTKxxo3X7Hzl8A8=
 
 react-native-drawer@2.5.1:
   version "2.5.1"
