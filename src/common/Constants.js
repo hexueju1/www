@@ -89,5 +89,11 @@ export const endpoint = {
   },
   common: {
     get_kefu: 'common/get_kefu',
+    /**
+     *  "data": {
+        "city": "上海市"
+    }
+     */
+    get_location: 'common/get_location',
   },
 }

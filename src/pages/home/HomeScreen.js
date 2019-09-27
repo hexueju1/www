@@ -34,6 +34,19 @@ export default class HomeScreen extends React.Component {
 
     this.willFocusSubscription = this.props.navigation.addListener('didFocus', (payload) => {
       console.log('didFocus HomeScreen')
+
+      navigator.geolocation.getCurrentPosition((location) => {
+        // longitude: location.coords.longitude,//经度
+        // latitude: location.coords.latitude,//纬度
+        MyHttpUtils.fetchRequest('post', endpoint.common.get_location, {
+          lng: location.coords.longitude,
+          lat: location.coords.latitude,
+        }).then((responseJson) => {
+          this.setState({
+            location: responseJson.data.city,
+          })
+        })
+      })
     })
   }
 
