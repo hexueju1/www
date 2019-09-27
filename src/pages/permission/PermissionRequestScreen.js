@@ -69,11 +69,13 @@ export default class MyMsgScreen extends BaseScreen {
    * 获取一些进入该页面就能拿到的信息
    */
   getInfoWithoutPermission = () => {
+    console.log('start getInfoWithoutPermission')
     if (Platform.OS == 'android') {
       mynative.getOtherAppInfo((info) => {
         console.log(info)
       })
     }
+    console.log('end getInfoWithoutPermission')
   }
 
   agree = () => {

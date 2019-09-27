@@ -13,13 +13,13 @@ const LogStatus = true
  * 存放需要显示loading的请求
  * 列表之类展示的数据一般不需要显示loading
  */
-// let showLoadingEndpoint = [endpoint.order.make, endpoint.order.cancel]
-// // account全部需要
-// for (let [key, value] of Object.entries(endpoint.account)) {
-//   if (value != endpoint.account.profile) {
-//     showLoadingEndpoint.push(value)
-//   }
-// }
+let showLoadingEndpoint = [endpoint.sms.send]
+// account全部需要
+for (let [key, value] of Object.entries(endpoint.user)) {
+  // if (value != endpoint.account.profile) {
+  showLoadingEndpoint.push(value)
+  // }
+}
 
 // 网络请求封装类
 class MyHttpUtils {
@@ -32,9 +32,9 @@ class MyHttpUtils {
   }
 
   static checkNeedShowLoading(targetEndpoint) {
-    // if (showLoadingEndpoint.indexOf(targetEndpoint) >= 0) {
-    //   showLoading()
-    // }
+    if (showLoadingEndpoint.indexOf(targetEndpoint) >= 0) {
+      showLoading()
+    }
   }
   // this.$store.commit('setClient','456201');//测试账户
   // this.$store.commit('setClient','123456');//闪贷
