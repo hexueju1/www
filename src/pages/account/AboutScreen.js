@@ -46,6 +46,7 @@ export default class AboutScreen extends BaseScreen {
       name: '聚宝盆',
       version: '123',
       step: '1.1.10',
+      tel: '客服电话：0512-7493958',
     }
   }
 
@@ -61,14 +62,7 @@ export default class AboutScreen extends BaseScreen {
           <View style={styles.list}>
             <SettingItem imageUrl={images.about_us_one} text={'版本号'} rightText={this.state.step} onPress={() => {}} hideImage />
 
-            <SettingItem
-              imageUrl={images.about_us_two}
-              text={'联系客服'}
-              // rightText={this.state.step}
-              onPress={() => {
-                this.props.navigation.navigate('AboutKeFu')
-              }}
-            />
+            <SettingItem imageUrl={images.about_us_two} text={'联系客服'} rightText={this.state.tel} onPress={() => {}} hideImage />
           </View>
         </ScrollView>
       </SafeAreaView>
