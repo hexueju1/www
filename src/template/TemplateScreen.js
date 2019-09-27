@@ -17,7 +17,6 @@ import {
   Dimensions,
   ToastAndroid,
   BackHandler,
-  SafeAreaView,
   TextInput,
   FlatList,
   Image,
@@ -47,7 +46,7 @@ export default class TemplateScreen extends BaseScreen {
   }
 
   render() {
-    return <SafeAreaView style={styles.main_container} />
+    return <View style={styles.main_container} />
   }
 
   componentDidMount() {

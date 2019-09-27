@@ -5,7 +5,7 @@
  */
 
 import React from 'react'
-import { View, Image, SafeAreaView, StyleSheet, StatusBar, ScrollView, Text, Picker, ImageBackground } from 'react-native'
+import { View, Image, StyleSheet, StatusBar, ScrollView, Text, Picker, ImageBackground } from 'react-native'
 import { color, size, layout, style } from '../../common/MyStyle'
 import { isDebug, LOG } from '../../utils/MyDebugUtils'
 import LocalConfigManager from '../../common/LocalConfigManager'

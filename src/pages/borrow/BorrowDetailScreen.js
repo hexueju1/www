@@ -17,7 +17,6 @@ import {
   Dimensions,
   ToastAndroid,
   BackHandler,
-  SafeAreaView,
   TextInput,
   FlatList,
   Image,
@@ -50,7 +49,7 @@ export default class BorrowDetailScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
         <TabHeader text="详情" />
         <Text>{this.state.status}</Text>
         <View style={styles.line}>
@@ -74,7 +73,7 @@ export default class BorrowDetailScreen extends BaseScreen {
           <Text style={styles.title}>订单编号</Text>
           <Text style={styles.value}>{this.state.ordersn}</Text>
         </View>
-      </SafeAreaView>
+      </View>
     )
   }
 

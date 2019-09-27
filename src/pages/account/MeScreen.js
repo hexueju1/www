@@ -5,19 +5,7 @@
  */
 
 import React, { Component } from 'react'
-import {
-  TouchableHighlight,
-  ScrollView,
-  DeviceEventEmitter,
-  SafeAreaView,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-  ImageBackground,
-  StatusBar,
-} from 'react-native'
+import { TouchableHighlight, ScrollView, DeviceEventEmitter, Image, StyleSheet, Text, View, Alert, ImageBackground, StatusBar } from 'react-native'
 import BaseScreen from '../../components/BaseScreen'
 import { color, size, layout, style } from '../../common/MyStyle'
 import { event, localStore, images } from '../../common/Constants'

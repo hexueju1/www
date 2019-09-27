@@ -17,7 +17,6 @@ import {
   Dimensions,
   ToastAndroid,
   BackHandler,
-  SafeAreaView,
   TextInput,
   FlatList,
   Image,
@@ -69,7 +68,7 @@ export default class BorrowHistoryScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
         <TabHeader text="借款记录" />
         <FlatList
           style={{ width: size.screen_width }}
@@ -80,7 +79,7 @@ export default class BorrowHistoryScreen extends BaseScreen {
           // 解决唯一key的问题
           keyExtractor={(item, index) => 'index' + index}
         />
-      </SafeAreaView>
+      </View>
     )
   }
 

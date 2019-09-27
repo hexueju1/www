@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react'
-import { BackHandler, SafeAreaView, TextInput, FlatList, Image, StyleSheet, View, ImageBackground } from 'react-native'
+import { BackHandler, TextInput, FlatList, Image, StyleSheet, View, ImageBackground } from 'react-native'
 import BaseScreen from '../../components/BaseScreen'
 import { color, size, layout, style } from '../../common/MyStyle'
 import { LOG, isDebug } from '../../utils/MyDebugUtils'

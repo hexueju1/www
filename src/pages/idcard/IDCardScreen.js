@@ -17,7 +17,6 @@ import {
   Dimensions,
   ToastAndroid,
   BackHandler,
-  SafeAreaView,
   TextInput,
   FlatList,
   Image,
@@ -53,7 +52,8 @@ export default class IDCardScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
+        <StatusBar backgroundColor={color.transparent} barStyle="dark-content" translucent={true} />
         <TabHeader text="身份认证" />
         {/* 身份认证文字内容 */}
         <View style={{ marginTop: px(45) }}>
@@ -83,7 +83,7 @@ export default class IDCardScreen extends BaseScreen {
         >
           <Text style={{ color: color.white, fontSize: sp(16) }}>确定</Text>
         </Button>
-      </SafeAreaView>
+      </View>
     )
   }
 

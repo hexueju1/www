@@ -17,7 +17,6 @@ import {
   Dimensions,
   ToastAndroid,
   BackHandler,
-  SafeAreaView,
   TextInput,
   FlatList,
   Image,
@@ -174,7 +173,7 @@ export default class MyMsgScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
         <ScrollView>
           <TabHeader text="借款服务协议" />
           <View>
@@ -225,7 +224,7 @@ export default class MyMsgScreen extends BaseScreen {
             <Text style={{ color: color.white }}>拒绝</Text>
           </Button>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 

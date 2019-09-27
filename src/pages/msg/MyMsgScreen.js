@@ -17,7 +17,6 @@ import {
   Dimensions,
   ToastAndroid,
   BackHandler,
-  SafeAreaView,
   TextInput,
   FlatList,
   Image,
@@ -76,7 +75,7 @@ export default class MyMsgScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
         <TabHeader text="我的消息" />
         <FlatList
           data={this.state.datalist}
@@ -85,7 +84,7 @@ export default class MyMsgScreen extends BaseScreen {
           style={{ flex: 1 }}
           keyExtractor={(item, index) => index.toString()}
         />
-      </SafeAreaView>
+      </View>
     )
   }
 

@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react'
-import { Alert, SafeAreaView, TextInput, FlatList, Image, StyleSheet, View, ScrollView } from 'react-native'
+import { Alert, TextInput, FlatList, Image, StyleSheet, View, ScrollView } from 'react-native'
 import { Tab, Tabs, Container, Header, Content, Button, Text, Form, Item, Input, Label, Picker, Icon } from 'native-base'
 import BaseScreen from '../components/BaseScreen'
 import { color, size, layout, style } from '../common/MyStyle'
@@ -48,7 +48,7 @@ export default class SampleScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
         <ScrollView keyboardShouldPersistTaps="handled">
           <Button
             full
@@ -133,7 +133,7 @@ export default class SampleScreen extends BaseScreen {
           />
           <Button title="Show modal" onPress={this.toggleModal} />
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 

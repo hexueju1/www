@@ -17,7 +17,6 @@ import {
   Dimensions,
   ToastAndroid,
   BackHandler,
-  SafeAreaView,
   TextInput,
   FlatList,
   Image,
@@ -45,9 +44,9 @@ export default class BorrowConfirmScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
         <StatusBar backgroundColor={color.primary_bg} barStyle="dark-content" translucent={false} />
-      </SafeAreaView>
+      </View>
     )
   }
 

@@ -17,7 +17,6 @@ import {
   Dimensions,
   ToastAndroid,
   BackHandler,
-  SafeAreaView,
   TextInput,
   FlatList,
   Image,
@@ -52,7 +51,7 @@ export default class AboutScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
         <TabHeader text="关于我们" />
         <ScrollView>
           <Text>{this.state.status}</Text>
@@ -65,7 +64,7 @@ export default class AboutScreen extends BaseScreen {
             <SettingItem imageUrl={images.about_us_two} text={'联系客服'} rightText={this.state.tel} onPress={() => {}} hideImage />
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 

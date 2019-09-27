@@ -17,7 +17,6 @@ import {
   Dimensions,
   ToastAndroid,
   BackHandler,
-  SafeAreaView,
   TextInput,
   FlatList,
   Image,
@@ -48,7 +47,7 @@ export default class MsgDetailScreen extends BaseScreen {
 
   render() {
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
         <TabHeader text="消息详情" />
         {/* <Text>{this.state.status}</Text> */}
         <Text style={styles.time}>{this.createtime.split(' ')[0]}</Text>
@@ -59,7 +58,7 @@ export default class MsgDetailScreen extends BaseScreen {
         <View style={styles.contenttext}>
           <Text style={{ fontSize: sp(12), marginLeft: px(41) }}>{this.state.content}</Text>
         </View>
-      </SafeAreaView>
+      </View>
     )
   }
 
