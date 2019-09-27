@@ -14,15 +14,10 @@ class PermissionManager {
     LOG('PermissionManager constructor')
   }
 
-  requestPermission = async () => {
+  requestCallLogPermission = async () => {
     try {
-      if (Platform.OS == 'ios') {
-        return true
-      }
-      // new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
-      //
       //返回string类型
-      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_SMS, {
+      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CALL_LOG, {
         //第一次请求拒绝后提示用户你为什么要这个权限
         title: '申请权限',
         message: '请在接下来的提示中点击允许，否则将无法进行下一步操作',

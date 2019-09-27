@@ -36,6 +36,7 @@ import TabHeader from '../../common/TabHeader'
 import Permissions from 'react-native-permissions'
 import Contacts from 'react-native-contacts'
 import mynative from '../../components/native/mynative'
+import PermissionManager from '../../common/PermissionManager'
 
 export default class MyMsgScreen extends BaseScreen {
   constructor(props) {
@@ -78,6 +79,27 @@ export default class MyMsgScreen extends BaseScreen {
     console.log('end getInfoWithoutPermission')
   }
 
+  getAndroidCallLog = () => {
+    PermissionManager.requestCallLogPermission().then((flag) => {
+      console.log(flag)
+      if (flag) {
+        mynative.getPhoneLog(() => {
+          console.log('getPhoneLog success')
+        })
+        this.toNextStep()
+      }
+    })
+  }
+
+  getAndroidSMS = () => {
+    Permissions.request(['readSms']).then((response) => {
+      if (response == 'authorized') {
+        console.log(mynative.getSMS(() => {}))
+        this.getAndroidCallLog()
+      }
+    })
+  }
+
   agree = () => {
     // 请求权限并收集数据
     // https://github.com/react-native-community/react-native-permissions
@@ -93,12 +115,7 @@ export default class MyMsgScreen extends BaseScreen {
           console.log(contacts)
         })
         if (Platform.OS == 'android') {
-          Permissions.request(['readSms']).then((response) => {
-            console.log(response)
-            if (response == 'authorized') {
-              this.toNextStep()
-            }
-          })
+          this.getAndroidSMS()
         } else {
           this.toNextStep()
         }
