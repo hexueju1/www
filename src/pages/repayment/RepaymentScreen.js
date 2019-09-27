@@ -71,8 +71,8 @@ export default class RepaymentScreen extends React.Component {
               style={{
                 height: '100%',
                 position: 'absolute',
-                marginTop: 38,
-                marginLeft: 103,
+                marginTop: px(38),
+                marginLeft: px(103),
               }}
             >
                             <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>2019年08月08日</Text>
@@ -84,7 +84,7 @@ export default class RepaymentScreen extends React.Component {
                     
           <View style={{ position: 'relative' }}>
                         
-            <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(44), position: 'absolute', top: -118, left: 30 }}>
+            <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(44), position: 'absolute', top: px(-118), left: px(30) }}>
                             ¥{this.state.hasBorrowed}
                           
             </Text>
@@ -125,44 +125,44 @@ var styles = StyleSheet.create({
     color: '#0F0F0F',
   },
   back: {
-    width: 48,
-    height: 27,
+    width: px(48),
+    height: px(27),
   },
   main: {
-    width: 325,
-    height: 370,
-    borderRadius: 8,
+    width: px(325),
+    height: px(370),
+    borderRadius: px(8),
     overflow: 'hidden',
-    marginTop: 31,
+    marginTop: px(31),
   },
   button: {
-    height: 48,
-    width: 268,
-    borderRadius: 24,
+    height: px(48),
+    width: px(268),
+    borderRadius: px(24),
     borderColor: color.white,
-    borderWidth: 1,
+    borderWidth: px(1),
     backgroundColor: '#FDFDFD',
     justifyContent: 'center',
     overflow: 'hidden',
     position: 'relative',
     left: '50%',
-    marginLeft: -134,
+    marginLeft: px(-134),
   },
   buttonText: {
     textAlign: 'center',
     color: color.primary_text,
-    fontSize: 18,
+    fontSize: sp(18),
   },
   touchableopacity: {
-    paddingTop: 41,
-    paddingBottom: 111,
+    paddingTop: px(41),
+    paddingBottom: px(111),
   },
   select: {
-    height: 38,
-    width: 100,
+    height: px(38),
+    width: px(100),
     position: 'absolute',
     right: 0,
-    top: 38,
+    top: px(38),
     backgroundColor: color.primary_bg,
     color: '#FDFDFD',
   },

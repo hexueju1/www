@@ -31,6 +31,7 @@ import { size } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { endpoint, images } from '../../common/Constants'
 import TabHeader from '../../common/TabHeader'
+import { px, sp } from '../../utils/Device'
 
 export default class MsgDetailScreen extends BaseScreen {
   messageId = ''
@@ -52,11 +53,11 @@ export default class MsgDetailScreen extends BaseScreen {
         {/* <Text>{this.state.status}</Text> */}
         <Text style={styles.time}>{this.createtime.split(' ')[0]}</Text>
         <View style={styles.line}>
-          <Image style={{ width: 26, height: 26, marginRight: 8 }} source={images.msglist_logo} />
+          <Image style={{ width: px(26), height: px(26), marginRight: px(8) }} source={images.msglist_logo} />
           <Text>{this.state.title}</Text>
         </View>
         <View style={styles.contenttext}>
-          <Text style={{ fontSize: 12, marginLeft: 41 }}>{this.state.content}</Text>
+          <Text style={{ fontSize: sp(12), marginLeft: px(41) }}>{this.state.content}</Text>
         </View>
       </SafeAreaView>
     )
@@ -105,34 +106,34 @@ var styles = StyleSheet.create({
     backgroundColor: '#E9ECEF',
   },
   line: {
-    marginTop: 7,
-    marginHorizontal: 20,
-    paddingHorizontal: 20,
-    width: 338,
-    height: 45,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    marginTop: px(7),
+    marginHorizontal: px(20),
+    paddingHorizontal: px(20),
+    width: px(338),
+    height: px(45),
+    borderTopLeftRadius: px(8),
+    borderTopRightRadius: px(8),
     backgroundColor: '#FDFDFD',
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomWidth: 1,
+    borderBottomWidth: px(1),
     borderColor: '#F0F0F0',
   },
   time: {
-    width: 119,
-    height: 24,
-    borderRadius: 12,
+    width: px(119),
+    height: px(24),
+    borderRadius: px(12),
     backgroundColor: '#DFDFDF',
     alignSelf: 'center',
     textAlign: 'center',
-    marginTop: 11,
+    marginTop: px(11),
   },
   contenttext: {
-    width: 338,
-    height: 55,
-    marginHorizontal: 20,
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8,
+    width: px(338),
+    height: px(55),
+    marginHorizontal: px(20),
+    borderBottomLeftRadius: px(8),
+    borderBottomRightRadius: px(8),
     backgroundColor: '#FDFDFD',
     flexDirection: 'row',
     alignItems: 'center',

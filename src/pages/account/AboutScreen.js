@@ -32,6 +32,7 @@ import MyHttpUtils from '../../utils/MyHttpUtils'
 import { endpoint, images } from '../../common/Constants'
 import TabHeader from '../../common/TabHeader'
 import SettingItem from '../../components/SettingItem'
+import { px, sp } from '../../utils/Device'
 
 export default class AboutScreen extends BaseScreen {
   constructor(props) {
@@ -54,7 +55,7 @@ export default class AboutScreen extends BaseScreen {
         <TabHeader text="关于我们" />
         <ScrollView>
           <Text>{this.state.status}</Text>
-          <Image style={{ width: 61, height: 61, alignSelf: 'center' }} source={images.about_icon} />
+          <Image style={{ width: px(61), height: px(61), alignSelf: 'center' }} source={images.about_icon} />
           <Text style={styles.value}>{this.state.name}</Text>
           {/* <Text style={styles.value}>{this.state.version}</Text> */}
           <View style={styles.list}>
@@ -91,12 +92,12 @@ var styles = StyleSheet.create({
   },
   value: {
     alignSelf: 'center',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: px(10),
+    marginBottom: px(10),
   },
   list: {
-    marginHorizontal: 19,
+    marginHorizontal: px(19),
     backgroundColor: '#FDFDFD',
-    borderRadius: 8,
+    borderRadius: px(8),
   },
 })

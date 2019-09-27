@@ -47,7 +47,7 @@ export default class IDCardScreen extends BaseScreen {
       <SafeAreaView style={styles.main_container}>
         <TabHeader text="身份认证" />
         {/* 身份认证文字内容 */}
-        <View style={{ marginTop: 45 }}>
+        <View style={{ marginTop: px(45) }}>
           <Text style={styles.textcontent}>请确保本人身份证</Text>
           <Text style={styles.textcontent}>请正对拍摄头，确保图片清晰、文字清晰。</Text>
         </View>
@@ -67,7 +67,7 @@ export default class IDCardScreen extends BaseScreen {
             this.props.navigation.navigate('PersonalPicture')
           }}
         >
-          <Text style={{ color: color.white, fontSize: 16 }}>确定</Text>
+          <Text style={{ color: color.white, fontSize: sp(16) }}>确定</Text>
         </Button>
       </SafeAreaView>
     )
@@ -91,72 +91,72 @@ var styles = StyleSheet.create({
   textcontent: {
     alignSelf: 'center',
     color: '#0F0F0F',
-    fontSize: 16,
+    fontSize: sp(16),
   },
   idcardborder: {
-    width: 260,
-    height: 180,
-    borderWidth: 2,
+    width: px(260),
+    height: px(180),
+    borderWidth: px(2),
     borderColor: '#ABABAB',
-    paddingTop: 7,
+    paddingTop: px(7),
     position: 'absolute',
-    top: 190,
+    top: px(190),
     left: '50%',
-    marginLeft: -130,
+    marginLeft: px(-130),
   },
   topBorder: {
     position: 'absolute',
-    top: -2,
-    left: 54,
-    width: 151,
-    height: 2,
+    top: px(-2),
+    left: px(54),
+    width: px(151),
+    height: px(2),
     backgroundColor: '#E9ECEF',
   },
   bottomBorder: {
     position: 'absolute',
-    top: 176,
-    left: 54,
-    width: 151,
-    height: 2,
+    top: px(176),
+    left: px(54),
+    width: px(151),
+    height: px(2),
     backgroundColor: '#E9ECEF',
   },
   leftBorder: {
     position: 'absolute',
-    left: -2,
-    top: 54,
-    width: 2,
-    height: 70,
+    left: px(-2),
+    top: px(54),
+    width: px(2),
+    height: px(70),
     backgroundColor: '#E9ECEF',
   },
   rightBorder: {
     position: 'absolute',
-    left: 256,
-    top: 54,
-    width: 2,
-    height: 70,
+    left: px(256),
+    top: px(54),
+    width: px(2),
+    height: px(70),
     backgroundColor: '#E9ECEF',
   },
   buttonstyle: {
-    width: 300,
-    height: 40,
+    width: px(300),
+    height: px(40),
     backgroundColor: '#ABABAB',
-    borderRadius: 22,
-    marginTop: 264,
-    marginBottom: 22,
+    borderRadius: px(22),
+    marginTop: px(264),
+    marginBottom: px(22),
     alignSelf: 'center',
   },
   cameraStyle: {
-    width: 98,
-    height: 98,
+    width: px(98),
+    height: px(98),
     position: 'relative',
     left: '50%',
-    marginLeft: -49,
+    marginLeft: px(-49),
     top: '-50%',
-    marginTop: -49,
+    marginTop: px(-49),
   },
   cardSample: {
-    width: 258,
-    height: 164,
+    width: px(258),
+    height: px(164),
     alignSelf: 'center',
   },
 })

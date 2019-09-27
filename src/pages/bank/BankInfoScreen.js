@@ -47,15 +47,15 @@ export default class BankInfoScreen extends BaseScreen {
       <TouchableOpacity onPress={() => {}}>
         <View style={styles.itemstyle}>
           <View>
-            <Image style={{ width: 45, height: 35 }} source={images.bank_logo} />
-            <Text style={{ alignSelf: 'center', marginTop: 10 }}>卡号</Text>
+            <Image style={{ width: px(45), height: px(35) }} source={images.bank_logo} />
+            <Text style={{ alignSelf: 'center', marginTop: px(10) }}>卡号</Text>
           </View>
           <View style={styles.idstyle}>
-            <View style={{ flexDirection: 'row',width:200 }}>
+            <View style={{ flexDirection: 'row', width: px(200) }}>
               <Text style={{ flex: 1 }}>{item.bank_name}</Text>
               <Text>{item.card_type}</Text>
             </View>
-            <Text style={{ paddingTop: 18 }}>{ctime1.substr(0, 3) + '*********' + ctime1.substring(12)}</Text>
+            <Text style={{ paddingTop: px(18) }}>{ctime1.substr(0, 3) + '*********' + ctime1.substring(12)}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -98,18 +98,18 @@ var styles = StyleSheet.create({
     backgroundColor: '#E9ECEF',
   },
   itemstyle: {
-    height: 88,
-    marginHorizontal: 20,
+    height: px(88),
+    marginHorizontal: px(20),
     backgroundColor: '#FDFDFD',
-    marginTop: 13,
-    borderRadius: 8,
-    paddingHorizontal: 15,
+    marginTop: px(13),
+    borderRadius: px(8),
+    paddingHorizontal: px(15),
     flexDirection: 'row',
-    paddingTop: 11,
+    paddingTop: px(11),
   },
   idstyle: {
-    paddingLeft: 61,
-    paddingTop: 5,
+    paddingLeft: px(61),
+    paddingTop: px(5),
     flexDirection: 'column',
   },
 })

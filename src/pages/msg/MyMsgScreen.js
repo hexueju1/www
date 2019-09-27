@@ -63,9 +63,9 @@ export default class MyMsgScreen extends BaseScreen {
       >
         <Text style={styles.time}>{item.createtime.split(' ')[0]}</Text>
         <View style={styles.content}>
-          <Image style={{ width: 26, height: 26, marginRight: 34 }} source={images.msglist_logo} />
+          <Image style={{ width: px(26), height: px(26), marginRight: px(34) }} source={images.msglist_logo} />
           <Text>{item.title}</Text>
-          <Text style={{ color: '#ABABAB', fontSize: 12, marginLeft: 90 }}>查看详情></Text>
+          <Text style={{ color: '#ABABAB', fontSize: sp(12), marginLeft: px(90) }}>查看详情></Text>
           {/* <Text>{item.content}</Text> */}
           {/* <Text>{item.createtime}</Text> */}
           {/* <Text>{item.status_text}</Text> */}
@@ -110,23 +110,23 @@ var styles = StyleSheet.create({
     backgroundColor: '#E9ECEF',
   },
   touch: {
-    paddingHorizontal: 20,
-    marginTop: 12,
+    paddingHorizontal: px(20),
+    marginTop: px(12),
   },
   content: {
-    marginTop: 7,
-    paddingHorizontal: 20,
-    width: 338,
-    height: 45,
-    borderRadius: 8,
+    marginTop: px(7),
+    paddingHorizontal: px(20),
+    width: px(338),
+    height: px(45),
+    borderRadius: px(8),
     backgroundColor: '#FDFDFD',
     flexDirection: 'row',
     alignItems: 'center',
   },
   time: {
-    width: 119,
-    height: 24,
-    borderRadius: 12,
+    width: px(119),
+    height: px(24),
+    borderRadius: px(12),
     backgroundColor: '#DFDFDF',
     alignSelf: 'center',
     textAlign: 'center',

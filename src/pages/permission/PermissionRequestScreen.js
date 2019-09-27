@@ -180,20 +180,20 @@ export default class MyMsgScreen extends BaseScreen {
           <View>
             {/* 借款协议头部 */}
             <View style={styles.topcontent}>
-              <Image style={{ width: 54, height: 54, marginRight: 11 }} source={images.agreement_pic} />
-              <Text style={{ color: '#111111', fontSize: 12, width: 270 }}>
+              <Image style={{ width: px(54), height: px(54), marginRight: px(11) }} source={images.agreement_pic} />
+              <Text style={{ color: '#111111', fontSize: sp(12), width: px(270) }}>
                 请您仔细阅读下列注意事项，并严格按照说明进行操作，如未按照要求进行操作，将会影响你的借款成功率。
               </Text>
             </View>
 
             {/* 借款协议中部内容 */}
             <View style={styles.content}>
-              <Text style={{ fontSize: 12, color: '#111111', lineHeight: 20 }}>
+              <Text style={{ fontSize: sp(12), color: '#111111', lineHeight: px(20) }}>
                 1.请在接下来的操作中的权限申请全部给予允许，若无法通过，请重试或卸载软件后重新安装。{'\n'}
                 {'\n'}
                 2.我们将会对您的身份信息进行严格验证，请您准备如下材料：{'\n'}
                 {'\n'}
-                <Text style={{ fontSize: 12, color: '#E91818' }}>
+                <Text style={{ fontSize: sp(12), color: '#E91818' }}>
                   （a） 您本人有效的大陆居民身份证证件。{'\n'}
                   {'\n'}
                   （b） 您本人储蓄银行卡一张及对应绑定的手机号。{'\n'}
@@ -248,25 +248,25 @@ var styles = StyleSheet.create({
   topcontent: {
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingTop: 23,
-    paddingBottom: 23,
+    paddingTop: px(23),
+    paddingBottom: px(23),
   },
   content: {
-    marginHorizontal: 20,
-    height: 352,
+    marginHorizontal: px(20),
+    height: px(352),
     backgroundColor: '#FDFDFD',
-    borderRadius: 8,
-    borderTopWidth: 2,
+    borderRadius: px(8),
+    borderTopWidth: px(2),
     borderColor: '#F58C00',
-    padding: 21,
-    marginBottom: 23,
+    padding: px(21),
+    marginBottom: px(23),
   },
   buttonstyle: {
-    width: 130,
-    height: 38,
+    width: px(130),
+    height: px(38),
     backgroundColor: '#F58C00',
-    borderRadius: 19,
-    marginBottom: 22,
+    borderRadius: px(19),
+    marginBottom: px(22),
     alignSelf: 'center',
   },
 })

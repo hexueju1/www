@@ -19,6 +19,7 @@ import LoginManager from '../../common/LoginManager'
 import { showToast } from '../../utils/MyToastUtils'
 import MyStoreManager from '../../common/MyStoreManager'
 import { black } from 'ansi-colors'
+import { px, sp } from '../../utils/Device'
 
 export default class LoginScreen extends BaseScreen {
   static navigationOptions = () => ({
@@ -65,7 +66,7 @@ export default class LoginScreen extends BaseScreen {
           </Item> */}
 
           {/*  */}
-          <ImageBackground source={images.login_background} style={{ width: 328, height: 49 }}>
+          <ImageBackground source={images.login_background} style={{ width: px(328), height: px(49) }}>
             <CountDownInput
               endpoint={endpoint.sms.send}
               placeholder={'请输入正确的手机号'}
@@ -94,10 +95,10 @@ export default class LoginScreen extends BaseScreen {
             />
           </ImageBackground>
 
-          <ImageBackground source={images.login_background} style={{ width: 328, height: 49, marginTop: 32 }}>
+          <ImageBackground source={images.login_background} style={{ width: px(328), height: px(49), marginTop: px(32) }}>
             {/* <Item picker> */}
             <TextInput
-              style={{ flex: 1, height: 50, paddingLeft: 36, color: '#ffffff' }}
+              style={{ flex: 1, height: px(50), paddingLeft: px(36), color: '#ffffff' }}
               placeholder={'请输入验证码'}
               placeholderTextColor={'#fdfdfd'}
               value={this.state.phoneCode}
@@ -108,18 +109,18 @@ export default class LoginScreen extends BaseScreen {
           </ImageBackground>
           <Button
             full
-            style={{ backgroundColor: '#ffffff', marginTop: 45 }}
+            style={{ backgroundColor: '#ffffff', marginTop: px(45) }}
             onPress={() => {
               this.login()
             }}
           >
             <ImageBackground style={[styles.login_button]} source={images.login_button}>
-              <Text style={{ color: color.white, fontSize: 25, lineHeight: 49, textAlign: 'center' }}>{'登录/注册'}</Text>
+              <Text style={{ color: color.white, fontSize: sp(25), lineHeight: px(49), textAlign: 'center' }}>{'登录/注册'}</Text>
             </ImageBackground>
           </Button>
         </View>
-        <View style={{ marginTop: 50, alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={images.login_bottom} style={{ width: 145, height: 145 }}></Image>
+        <View style={{ marginTop: px(50), alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={images.login_bottom} style={{ width: px(145), height: px(145) }}></Image>
         </View>
       </DismissKeyboardView>
     )
@@ -145,7 +146,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
   },
   login_button: {
-    width: 328,
-    height: 49,
+    width: px(328),
+    height: px(49),
   },
 })

@@ -211,7 +211,7 @@ var styles = StyleSheet.create({
   },
   more_service_text: {
     color: '#111111',
-    fontSize: px(12),
+    fontSize: sp(12),
     paddingTop: px(5),
     paddingLeft: px(4),
   },

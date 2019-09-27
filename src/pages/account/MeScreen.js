@@ -30,6 +30,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { showToast } from '../../utils/MyToastUtils'
 import MyStoreManager from '../../common/MyStoreManager'
 import { Label, Button } from 'native-base'
+import { px, sp } from '../../utils/Device'
 
 export default class MeScreen extends BaseScreen {
   static navigationOptions = () => ({
@@ -58,19 +59,19 @@ export default class MeScreen extends BaseScreen {
           {/* 顶部图标 */}
           <View
             style={{
-              padding: 18,
+              padding: px(18),
               marginTop: size.statusbar_height,
               // position: 'absolute',
               width: '100%',
             }}
           >
             <View style={{ flex: 1 }}>
-              <Image style={{ width: 23, height: 22 }} source={images.logo} />
+              <Image style={{ width: px(23), height: px(22) }} source={images.logo} />
             </View>
           </View>
           {/* 顶部背景 */}
           <View style={{ display: 'flex', alignItems: 'center' }}>
-            <Image style={{ width: 354, height: 268, position: 'relative', top: -40 }} source={images.personal_pic} />
+            <Image style={{ width: px(354), height: px(268), position: 'relative', top: px(-40) }} source={images.personal_pic} />
             <View
               style={{
                 height: '100%',
@@ -80,16 +81,16 @@ export default class MeScreen extends BaseScreen {
                 top: '20%',
               }}
             >
-              <Text style={{ color: '#0F0F0F', fontSize: 18 }}>{this.state.displayTitle}</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: sp(18) }}>{this.state.displayTitle}</Text>
               <View style={{ flexDirection: 'row' }}>
-                <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: 40 }}>¥</Text>
-                <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: 40 }}>{this.state.maxCanBorrow}</Text>
+                <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(40) }}>¥</Text>
+                <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(40) }}>{this.state.maxCanBorrow}</Text>
               </View>
             </View>
-            <Text style={{ fontSize: 18, color: '#E7912D', position: 'absolute', top: 190, left: 94 }}>{this.state.displayName}</Text>
-            <Text style={{ fontSize: 18, color: '#E7912D', position: 'absolute', top: 165, left: 300 }}>
+            <Text style={{ fontSize: sp(18), color: '#E7912D', position: 'absolute', top: px(190), left: px(94) }}>{this.state.displayName}</Text>
+            <Text style={{ fontSize: sp(18), color: '#E7912D', position: 'absolute', top: px(165), left: px(300) }}>
               {this.state.number}
-              <Text style={{ color: '#FDFDFD', fontSize: 12 }}>笔</Text>
+              <Text style={{ color: '#FDFDFD', fontSize: sp(12) }}>笔</Text>
             </Text>
           </View>
           {/* 个人界面--列表 */}
@@ -204,9 +205,9 @@ var styles = StyleSheet.create({
     backgroundColor: '#f58c00',
   },
   button: {
-    height: 48,
-    width: 268,
-    borderRadius: 24,
+    height: px(48),
+    width: px(268),
+    borderRadius: px(24),
     borderColor: color.white,
     borderWidth: 1,
     backgroundColor: '#FDFDFD',
@@ -214,21 +215,21 @@ var styles = StyleSheet.create({
     overflow: 'hidden',
     position: 'relative',
     left: '50%',
-    marginLeft: -134,
+    marginLeft: px(-134),
   },
   buttonText: {
     textAlign: 'center',
     color: color.primary_text,
-    fontSize: 18,
+    fontSize: sp(18),
   },
   settingitem: {
     backgroundColor: '#FDFDFD',
-    marginLeft: 19,
-    marginRight: 19,
-    borderRadius: 8,
+    marginLeft: px(19),
+    marginRight: px(19),
+    borderRadius: px(8),
   },
   touchableopacity: {
-    paddingTop: 19,
-    paddingBottom: 60,
+    paddingTop: px(19),
+    paddingBottom: px(60),
   },
 })

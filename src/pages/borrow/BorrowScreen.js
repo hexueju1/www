@@ -65,7 +65,7 @@ export default class RepaymentScreen extends React.Component {
               }}
             >
               <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.state.Date_main}</Text>
-              <Text style={{ color: '#0F0F0F', fontSize: sp(14), marginTop: 5 }}>{this.state.Date_detail}</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: sp(14), marginTop: px(5) }}>{this.state.Date_detail}</Text>
             </View>
           </ImageBackground>
 
@@ -78,26 +78,26 @@ export default class RepaymentScreen extends React.Component {
                 this.props.navigation.navigate('BorrowHistory')
               }}
             >
-              <Text style={{ color: '#FDFDFD', marginRight: 7 }}>全部还款</Text>
-              <Image style={{ width: 20, height: 20 }} source={images.small_borrow} />
+              <Text style={{ color: '#FDFDFD', marginRight: px(7) }}>全部还款</Text>
+              <Image style={{ width: px(20), height: px(20) }} source={images.small_borrow} />
             </View>
 
             {/* 借款金额 */}
-            <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(44), position: 'absolute', left: 69, top: -225 }}>
+            <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(44), position: 'absolute', left: px(69), top: px(-225) }}>
               ¥{this.state.hasBorrowed}
             </Text>
 
             {/* 借款天数 */}
-            <Text style={{ color: '#F0A00B', fontSize: sp(14), position: 'absolute', right: 40, top: -125 }}>
+            <Text style={{ color: '#F0A00B', fontSize: sp(14), position: 'absolute', right: px(40), top: px(-125) }}>
               <Text style={{ color: '#F0A00B', fontSize: sp(36) }}>{this.state.borrowDays}</Text>天
             </Text>
 
             {/* 账单状态提醒 */}
             <View style={styles.payoffInfo}>
-              <Image style={{ width: 27, height: 30 }} source={images.small_payoff} />
-              <Text style={{ fontSize: 16, color: '#0F0F0F', marginLeft: 18 }}>{this.state.is_payoff}</Text>
-              <Text style={{ fontSize: 12, marginLeft: 50 }}>还款时间</Text>
-              <Text style={{ fontSize: 12, marginLeft: 6 }}>{this.state.payoffDay}</Text>
+              <Image style={{ width: px(27), height: px(30) }} source={images.small_payoff} />
+              <Text style={{ fontSize: sp(16), color: '#0F0F0F', marginLeft: px(18) }}>{this.state.is_payoff}</Text>
+              <Text style={{ fontSize: sp(12), marginLeft: px(50) }}>还款时间</Text>
+              <Text style={{ fontSize: sp(12), marginLeft: px(6) }}>{this.state.payoffDay}</Text>
             </View>
           </View>
 
@@ -135,20 +135,20 @@ var styles = StyleSheet.create({
     color: '#0F0F0F',
   },
   back: {
-    width: 48,
-    height: 27,
+    width: px(48),
+    height: px(27),
   },
   main: {
-    width: 325,
-    height: 342,
-    borderRadius: 8,
+    width: px(325),
+    height: px(342),
+    borderRadius: px(8),
     overflow: 'hidden',
-    marginTop: 31,
+    marginTop: px(31),
   },
   button: {
-    height: 48,
-    width: 268,
-    borderRadius: 24,
+    height: px(48),
+    width: px(268),
+    borderRadius: px(24),
     borderColor: color.white,
     borderWidth: 1,
     backgroundColor: '#FDFDFD',
@@ -156,23 +156,23 @@ var styles = StyleSheet.create({
     overflow: 'hidden',
     position: 'relative',
     left: '50%',
-    marginLeft: -134,
+    marginLeft: px(-134),
   },
   buttonText: {
     textAlign: 'center',
     color: '#F58C00',
-    fontSize: 18,
+    fontSize: sp(18),
   },
   touchableopacity: {
-    paddingTop: 41,
-    paddingBottom: 111,
+    paddingTop: px(41),
+    paddingBottom: px(111),
   },
   select: {
-    height: 38,
-    width: 100,
+    height: px(38),
+    width: px(100),
     position: 'absolute',
     right: 0,
-    top: 38,
+    top: px(38),
     backgroundColor: '#F58C00',
     color: '#FDFDFD',
   },
@@ -180,20 +180,20 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 109,
-    height: 38,
+    width: px(109),
+    height: px(38),
     backgroundColor: '#F58C00',
     position: 'absolute',
-    top: -300,
+    top: px(-300),
     right: 0,
-    borderTopLeftRadius: 25,
-    borderBottomLeftRadius: 25,
+    borderTopLeftRadius: px(25),
+    borderBottomLeftRadius: px(25),
   },
   payoffInfo: {
     position: 'absolute',
     flexDirection: 'row',
     alignItems: 'center',
     top: -40,
-    left: 15,
+    left: px(15),
   },
 })
