@@ -28,8 +28,9 @@ import BaseScreen from '../../components/BaseScreen'
 import CommonNoData from '../../components/CommonNoData'
 import { size } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
-import { endpoint } from '../../common/Constants'
+import { endpoint, images } from '../../common/Constants'
 import TabHeader from '../../common/TabHeader'
+import { px, sp } from '../../utils/Device'
 
 export default class BorrowDetailScreen extends BaseScreen {
   sn = ''
@@ -44,6 +45,7 @@ export default class BorrowDetailScreen extends BaseScreen {
       apply_borrow: 2,
       createtime: 2,
       checktime: 2,
+      statusText: '账单已还清',
     }
   }
 
@@ -51,27 +53,31 @@ export default class BorrowDetailScreen extends BaseScreen {
     return (
       <View style={styles.main_container}>
         <TabHeader text="详情" />
-        <Text>{this.state.status}</Text>
-        <View style={styles.line}>
-          <Text style={styles.title}>申请时间</Text>
-          <Text style={styles.value}>{this.state.createtime}</Text>
-        </View>
-        {/* 根据status控制显示和隐藏 , 参考MeScreen的debug按钮*/}
-        <View style={styles.line}>
-          <Text style={styles.title}>还款时间</Text>
-          <Text style={styles.value}>{this.state.checktime}</Text>
-        </View>
-        <View style={styles.line}>
-          <Text style={styles.title}>产品名称</Text>
-          <Text style={styles.value}>{this.state.goods_name}</Text>
-        </View>
-        <View style={styles.line}>
-          <Text style={styles.title}>申请金额</Text>
-          <Text style={styles.value}>{this.state.apply_borrow}</Text>
-        </View>
-        <View style={styles.line}>
-          <Text style={styles.title}>订单编号</Text>
-          <Text style={styles.value}>{this.state.ordersn}</Text>
+        {/* <Text>{this.state.status}</Text> */}
+        <View style={styles.content}>
+          <Image style={{ width: px(68), height: px(88), alignSelf: 'center', marginTop: px(24) }} source={images.small_payoff} />
+          <Text style={{ alignSelf: 'center', marginBottom: px(30) }}>{this.state.statusText}</Text>
+          <View style={styles.line}>
+            <Text style={styles.title}>申请时间</Text>
+            <Text style={styles.value}>{this.state.createtime}</Text>
+          </View>
+          {/* 根据status控制显示和隐藏 , 参考MeScreen的debug按钮*/}
+          <View style={styles.line}>
+            <Text style={styles.title}>还款时间</Text>
+            <Text style={styles.value}>{this.state.checktime}</Text>
+          </View>
+          <View style={styles.line}>
+            <Text style={styles.title}>产品名称</Text>
+            <Text style={styles.value}>{this.state.goods_name}</Text>
+          </View>
+          <View style={styles.line}>
+            <Text style={styles.title}>申请金额</Text>
+            <Text style={styles.value}>{this.state.apply_borrow}</Text>
+          </View>
+          <View style={styles.line}>
+            <Text style={styles.title}>订单编号</Text>
+            <Text style={styles.value}>{this.state.ordersn}</Text>
+          </View>
         </View>
       </View>
     )
@@ -101,10 +107,25 @@ var styles = StyleSheet.create({
   main_container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#E9ECEF',
+  },
+  content: {
+    margin: 20,
+    height: px(374),
+    backgroundColor: '#FDFDFD',
+    borderRadius: px(8),
   },
   line: {
     paddingHorizontal: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: px(42),
+    borderBottomWidth: px(1),
+    borderBottomColor: '#E9ECEF',
   },
   title: {},
-  value: {},
+  value: {
+    marginLeft: px(19),
+    fontSize: sp(12),
+  },
 })
