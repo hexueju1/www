@@ -30,6 +30,8 @@ import { size } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { endpoint } from '../../common/Constants'
 import TabHeader from '../../common/TabHeader'
+import BorrowList from '../../components/BorrowList'
+import { showToast } from '../../utils/MyToastUtils'
 
 export default class BorrowHistoryScreen extends BaseScreen {
   constructor(props) {
@@ -49,20 +51,12 @@ export default class BorrowHistoryScreen extends BaseScreen {
    */
   renderItem = ({ item }) => {
     return (
-      <TouchableWithoutFeedback
-        style={{ flexDirection: 'row', justifyContent: 'center' }}
+      <BorrowList
+        setitem={item}
         onPress={() => {
           this.props.navigation.navigate('BorrowDetail', { sn: item.sn })
         }}
-      >
-        <View style={{ paddingHorizontal: 20 }}>
-          <Text>{item.titgoods_namele}</Text>
-          <Text>{item.date}</Text>
-          <Text>{item.days}</Text>
-          <Text>{item.status}</Text>
-          <Text>{item.borrow_money}</Text>
-        </View>
-      </TouchableWithoutFeedback>
+      ></BorrowList>
     )
   }
 
@@ -71,7 +65,7 @@ export default class BorrowHistoryScreen extends BaseScreen {
       <View style={styles.main_container}>
         <TabHeader text="借款记录" />
         <FlatList
-          style={{ width: size.screen_width }}
+          style={{ width: size.screen_width, marginTop: 25 }}
           data={this.state.listData}
           renderItem={this.renderItem}
           // ListHeaderComponent={this.header}
@@ -102,5 +96,6 @@ var styles = StyleSheet.create({
   main_container: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#E9ECEF',
   },
 })

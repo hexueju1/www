@@ -36,6 +36,10 @@ export const images = {
   about_icon: require('../images/png/about_icon.png'),
   about_us_one: require('../images/png/about_us_one.png'),
   about_us_two: require('../images/png/about_us_two.png'),
+  refuse: require('../images/png/refuse.png'),
+  successed: require('../images/png/successed.png'),
+  passed: require('../images/png/passed.png'),
+  using: require('../images/png/using.png'),
 }
 /**
  * 定义  DeviceEventEmitter  事件名
