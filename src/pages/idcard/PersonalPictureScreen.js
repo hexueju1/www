@@ -118,7 +118,7 @@ var styles = StyleSheet.create({
     top: px(256),
     left: px(54),
     width: px(151),
-    height: px(2),
+    height: px(3),
     backgroundColor: '#E9ECEF',
   },
   leftBorder: {
@@ -138,13 +138,13 @@ var styles = StyleSheet.create({
     backgroundColor: '#E9ECEF',
   },
   line: {
-    width: px(257),
+    width: px(256),
     height: px(2),
     backgroundColor: '#22AAEF',
     marginTop: px(120),
   },
   linear: {
-    width: px(257),
+    width: px(256),
     height: px(82),
   },
   buttonstyle: {

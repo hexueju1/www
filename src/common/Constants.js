@@ -40,6 +40,8 @@ export const images = {
   successed: require('../images/png/successed.png'),
   passed: require('../images/png/passed.png'),
   using: require('../images/png/using.png'),
+  allow: require('../images/png/allow.png'),
+  unallow: require('../images/png/unallow.png'),
 }
 /**
  * 定义  DeviceEventEmitter  事件名

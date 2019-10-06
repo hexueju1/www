@@ -11,6 +11,7 @@ import { CheckBox, Body, Container, Header, Content, Button, Text, Form, Item, I
 import { color, size } from '../common/MyStyle'
 import MyHttpUtils from '../utils/MyHttpUtils'
 import { showToast } from '../utils/MyToastUtils'
+import PropTypes from 'prop-types'
 
 class CountDownInput extends Component {
   // 最大读秒数
@@ -30,12 +31,16 @@ class CountDownInput extends Component {
     // 返回默认的一些属性值
     value: '',
     label: '获取验证码',
+    labelColor: '#FFFFFF',
     placeholder: '请输入验证码',
+    placeholderTextColor: '#FFFFFF',
     endpoint: '',
     onPress() {},
     onChangeText(text) {},
   }
-
+  static PropTypes = {
+    labelColor: PropTypes.string.isRequired,
+  }
   clickSendCode = () => {
     if (!this.props.onPress()) {
       return
@@ -76,9 +81,9 @@ class CountDownInput extends Component {
       <Item picker>
         <TextInput
           placeholder={this.props.placeholder}
-          placeholderTextColor={'#fdfdfd'}
+          placeholderTextColor={this.props.placeholderTextColor}
           keyboardType="numeric"
-          style={{ flex: 1, height: 49, paddingLeft: 36, color: '#ffffff' }}
+          style={{ flex: 1, height: 49, paddingLeft: 36, color: this.props.placeholderTextColor }}
           value={this.props.value}
           onChangeText={(text) => this.props.onChangeText(text)}
         />
@@ -89,8 +94,8 @@ class CountDownInput extends Component {
             this.clickSendCode()
           }}
         >
-          <Text style={{ color: '#fdfdfd', fontSize: 12 }}>
-            <Text style={{ color: '#6DC9F7' }}>|&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+          <Text style={{ color: this.props.labelColor, fontSize: 12 }}>
+            <Text style={{ color: this.props.placeholderTextColor }}>|&nbsp;&nbsp;&nbsp;&nbsp;</Text>
             {this.state.counting ? this.state.seconds + '秒' : this.props.label}{' '}
           </Text>
         </Button>
