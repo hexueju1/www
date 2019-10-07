@@ -12,6 +12,7 @@ import { color, size } from '../common/MyStyle'
 import MyHttpUtils from '../utils/MyHttpUtils'
 import { showToast } from '../utils/MyToastUtils'
 import PropTypes from 'prop-types'
+import { px } from '../utils/Device'
 
 class CountDownInput extends Component {
   // 最大读秒数
@@ -78,12 +79,12 @@ class CountDownInput extends Component {
 
   render() {
     return (
-      <Item picker>
+      <Item picker style={{ borderBottomWidth: 0 }}>
         <TextInput
           placeholder={this.props.placeholder}
           placeholderTextColor={this.props.placeholderTextColor}
           keyboardType="numeric"
-          style={{ flex: 1, height: 49, paddingLeft: 36, color: this.props.placeholderTextColor }}
+          style={{ flex: 1, height: 49, paddingLeft: 36, color: this.props.placeholderTextColor, borderBottom: px(0) }}
           value={this.props.value}
           onChangeText={(text) => this.props.onChangeText(text)}
         />

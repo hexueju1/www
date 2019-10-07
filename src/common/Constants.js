@@ -42,6 +42,7 @@ export const images = {
   using: require('../images/png/using.png'),
   allow: require('../images/png/allow.png'),
   unallow: require('../images/png/unallow.png'),
+  bank_camera: require('../images/png/bank_camera.png'),
 }
 /**
  * 定义  DeviceEventEmitter  事件名

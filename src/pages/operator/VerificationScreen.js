@@ -48,24 +48,25 @@ export default class OperatorScreen extends BaseScreen {
       <SafeAreaView style={styles.main_container}>
         <TabHeader text="运行商认证" />
         {/* 动态密码框 */}
-        <CountDownInput
-          // endpoint={endpoint.sms.send}
-          placeholder={'请输入动态密码'}
-          placeholderTextColor={'#ABABAB'}
-          label={'获取密码'}
-          labelColor={'#E7912D'}
-          style={styles.countdowninput}
-          value={this.state.tel}
-          keyboardType="numeric"
-          onChangeText={(text) => this.setState({ tel: text })}
-          onPress={() => {
-            showToast('获取密码')
-          }}
-        />
+        <View style={styles.countdowninput}>
+          <CountDownInput
+            // endpoint={endpoint.sms.send}
+            placeholder={'请输入动态密码'}
+            placeholderTextColor={'#ABABAB'}
+            label={'获取密码'}
+            labelColor={'#E7912D'}
+            value={this.state.tel}
+            keyboardType="numeric"
+            onChangeText={(text) => this.setState({ tel: text })}
+            onPress={() => {
+              showToast('获取密码')
+            }}
+          />
+        </View>
         <Button
           style={styles.button}
           onPress={() => {
-            this.props.navigation.navigate('')
+            this.props.navigation.navigate('BankCard')
           }}
         >
           <Text style={{ fontSize: px(16) }}>确认</Text>
@@ -117,5 +118,6 @@ var styles = StyleSheet.create({
     borderRadius: px(8),
     borderWidth: px(1),
     borderColor: '#ABABAB',
+    marginTop: px(30),
   },
 })
