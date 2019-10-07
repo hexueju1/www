@@ -23,7 +23,7 @@ import { event, localStore, endpoint, images } from '../../common/Constants'
  * 写页面的时候，可变的数据不要写死，统一放在state里面引用
  *
  */
-export default class RepaymentScreen extends React.Component {
+export default class BorrowScreen extends React.Component {
   // props是在父组件中指定，而且一经指定，在被指定的组件的生命周期中则不再改变。
   constructor(props) {
     super(props)

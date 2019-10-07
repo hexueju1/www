@@ -37,7 +37,7 @@ import { hidden } from 'ansi-colors'
 import LinearGradient from 'react-native-linear-gradient'
 import Operator from '../../pages/operator/OperatorScreen'
 
-export default class IDCardScreen extends BaseScreen {
+export default class PersonalPictureScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {}

@@ -35,7 +35,7 @@ import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
 import CountDownInput from '../../components/CountDownInput'
 
-export default class OperatorScreen extends BaseScreen {
+export default class BankCardScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {
@@ -106,7 +106,7 @@ export default class OperatorScreen extends BaseScreen {
         <Button
           style={styles.button}
           onPress={() => {
-            this.props.navigation.navigate('BankCard')
+            this.props.navigation.navigate('CertificationStatus')
           }}
         >
           <Text style={{ fontSize: px(16) }}>确认</Text>

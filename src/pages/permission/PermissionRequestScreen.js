@@ -38,7 +38,7 @@ import mynative from '../../components/native/mynative'
 import PermissionManager from '../../common/PermissionManager'
 import DeviceInfo from 'react-native-device-info'
 
-export default class MyMsgScreen extends BaseScreen {
+export default class PermissionRequestScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {}

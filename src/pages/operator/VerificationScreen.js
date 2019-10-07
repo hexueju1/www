@@ -35,7 +35,7 @@ import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
 import CountDownInput from '../../components/CountDownInput'
 
-export default class OperatorScreen extends BaseScreen {
+export default class VerificationScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {
