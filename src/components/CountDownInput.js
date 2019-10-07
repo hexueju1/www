@@ -39,7 +39,7 @@ class CountDownInput extends Component {
     onPress() {},
     onChangeText(text) {},
   }
-  static PropTypes = {
+  static propTypes = {
     labelColor: PropTypes.string.isRequired,
   }
   clickSendCode = () => {
@@ -79,12 +79,12 @@ class CountDownInput extends Component {
 
   render() {
     return (
-      <Item picker style={{ borderBottomWidth: 0 }}>
+      <Item picker style={{ borderBottomColor: '#F3F3F3' }}>
         <TextInput
           placeholder={this.props.placeholder}
           placeholderTextColor={this.props.placeholderTextColor}
           keyboardType="numeric"
-          style={{ flex: 1, height: 49, paddingLeft: 36, color: this.props.placeholderTextColor, borderBottom: px(0) }}
+          style={{ flex: 1, height: 49, paddingLeft: 36, color: this.props.placeholderTextColor, borderBottomColor: '#F3F3F3' }}
           value={this.props.value}
           onChangeText={(text) => this.props.onChangeText(text)}
         />

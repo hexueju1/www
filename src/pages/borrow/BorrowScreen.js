@@ -78,7 +78,7 @@ export default class BorrowScreen extends React.Component {
                 this.props.navigation.navigate('BorrowHistory')
               }}
             >
-              <Text style={{ color: '#FDFDFD', marginRight: px(7) }}>全部还款</Text>
+              <Text style={{ color: '#FDFDFD', marginRight: px(7) }}>全部借款</Text>
               <Image style={{ width: px(20), height: px(20) }} source={images.small_borrow} />
             </View>
 
