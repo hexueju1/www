@@ -1777,7 +1777,22 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited) $(SRCROOT)/../node_modules/react-native-gesture-handler/ios/** $(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate/** $(SRCROOT)/../node_modules/@react-native-community/async-storage/ios $(SRCROOT)/../node_modules/react-native-update/ios $(SRCROOT)/../node_modules/react-native-webview/ios $(SRCROOT)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/** $(SRCROOT)/../node_modules/react-native-svg/ios/** $(SRCROOT)/../node_modules/react-native-view-shot/ios $(SRCROOT)/../node_modules/@react-native-community/cameraroll/ios $(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo $(SRCROOT)/../node_modules/react-native-i18n/ios $(SRCROOT)/../node_modules/react-native-splash-screen/ios $(SRCROOT)/../node_modules/react-native-fs";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-update/ios",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
+					"$(SRCROOT)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-view-shot/ios",
+					"$(SRCROOT)/../node_modules/@react-native-community/cameraroll/ios",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs",
+				);
 				INFOPLIST_FILE = oneday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks node_modules/@yyyyu/react-native-geetest-sensebot/ios/SDK/GT3Captcha.framework";
 				LIBRARY_SEARCH_PATHS = (
@@ -1835,7 +1850,22 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited) $(SRCROOT)/../node_modules/react-native-gesture-handler/ios/** $(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate/** $(SRCROOT)/../node_modules/@react-native-community/async-storage/ios $(SRCROOT)/../node_modules/react-native-update/ios $(SRCROOT)/../node_modules/react-native-webview/ios $(SRCROOT)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/** $(SRCROOT)/../node_modules/react-native-svg/ios/** $(SRCROOT)/../node_modules/react-native-view-shot/ios $(SRCROOT)/../node_modules/@react-native-community/cameraroll/ios $(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo $(SRCROOT)/../node_modules/react-native-i18n/ios $(SRCROOT)/../node_modules/react-native-fs/** $(SRCROOT)/../node_modules/react-native-splash-screen/ios";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-update/ios",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
+					"$(SRCROOT)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-view-shot/ios",
+					"$(SRCROOT)/../node_modules/@react-native-community/cameraroll/ios",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+				);
 				INFOPLIST_FILE = oneday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks node_modules/@yyyyu/react-native-geetest-sensebot/ios/SDK/GT3Captcha.framework";
 				LIBRARY_SEARCH_PATHS = (
@@ -1994,7 +2024,22 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited) $(SRCROOT)/../node_modules/react-native-gesture-handler/ios/** $(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate/** $(SRCROOT)/../node_modules/@react-native-community/async-storage/ios $(SRCROOT)/../node_modules/react-native-update/ios $(SRCROOT)/../node_modules/react-native-webview/ios $(SRCROOT)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/** $(SRCROOT)/../node_modules/react-native-svg/ios/** $(SRCROOT)/../node_modules/react-native-view-shot/ios $(SRCROOT)/../node_modules/@react-native-community/cameraroll/ios $(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo $(SRCROOT)/../node_modules/react-native-i18n/ios $(SRCROOT)/../node_modules/react-native-splash-screen/ios $(SRCROOT)/../node_modules/react-native-fs";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-update/ios",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
+					"$(SRCROOT)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-view-shot/ios",
+					"$(SRCROOT)/../node_modules/@react-native-community/cameraroll/ios",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs",
+				);
 				INFOPLIST_FILE = "oneday copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks node_modules/@yyyyu/react-native-geetest-sensebot/ios/SDK/GT3Captcha.framework";
 				LIBRARY_SEARCH_PATHS = (
@@ -2051,7 +2096,22 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited) $(SRCROOT)/../node_modules/react-native-gesture-handler/ios/** $(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate/** $(SRCROOT)/../node_modules/@react-native-community/async-storage/ios $(SRCROOT)/../node_modules/react-native-update/ios $(SRCROOT)/../node_modules/react-native-webview/ios $(SRCROOT)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/** $(SRCROOT)/../node_modules/react-native-svg/ios/** $(SRCROOT)/../node_modules/react-native-view-shot/ios $(SRCROOT)/../node_modules/@react-native-community/cameraroll/ios $(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo $(SRCROOT)/../node_modules/react-native-i18n/ios $(SRCROOT)/../node_modules/react-native-fs/** $(SRCROOT)/../node_modules/react-native-splash-screen/ios";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-update/ios/RCTHotUpdate/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-update/ios",
+					"$(SRCROOT)/../node_modules/react-native-webview/ios",
+					"$(SRCROOT)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-view-shot/ios",
+					"$(SRCROOT)/../node_modules/@react-native-community/cameraroll/ios",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+				);
 				INFOPLIST_FILE = "oneday copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks node_modules/@yyyyu/react-native-geetest-sensebot/ios/SDK/GT3Captcha.framework";
 				LIBRARY_SEARCH_PATHS = (

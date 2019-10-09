@@ -25,7 +25,7 @@ const { appKey } = _updateConfig[Platform.OS]
 
 class UpdateManager {
   versionName = packageVersion
-  versionCode = 10307
+  versionCode = 0
   lastHash = undefined
 
   constructor() {

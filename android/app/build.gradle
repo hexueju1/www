@@ -154,8 +154,8 @@ android {
         applicationId "com.thinktank.shan2dai"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 20003
-        versionName "2.0.3"
+        versionCode 10001
+        versionName "1.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

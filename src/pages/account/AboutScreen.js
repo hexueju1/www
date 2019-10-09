@@ -19,6 +19,7 @@ import {
   BackHandler,
   TextInput,
   FlatList,
+  Linking,
   Image,
   StyleSheet,
   View,
@@ -30,6 +31,7 @@ import { size } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { endpoint, images } from '../../common/Constants'
 import TabHeader from '../../common/TabHeader'
+import UpdateManager from '../../common/UpdateManager'
 import SettingItem from '../../components/SettingItem'
 import { px, sp } from '../../utils/Device'
 
@@ -43,9 +45,8 @@ export default class AboutScreen extends BaseScreen {
      */
     this.state = {
       name: '聚宝盆',
-      version: '123',
-      step: '1.1.10',
-      tel: '客服电话：0512-7493958',
+      version: '1.1.10',
+      tel: '0512-7493958',
     }
   }
 
@@ -59,9 +60,23 @@ export default class AboutScreen extends BaseScreen {
           <Text style={styles.value}>{this.state.name}</Text>
           {/* <Text style={styles.value}>{this.state.version}</Text> */}
           <View style={styles.list}>
-            <SettingItem imageUrl={images.about_us_one} text={'版本号'} rightText={this.state.step} onPress={() => {}} hideImage />
+            <SettingItem
+              imageUrl={images.about_us_one}
+              text={'版本号'}
+              rightText={'V_' + UpdateManager.versionName + '(' + '' + UpdateManager.versionCode + ')'}
+              onPress={() => {}}
+              hideImage
+            />
 
-            <SettingItem imageUrl={images.about_us_two} text={'联系客服'} rightText={this.state.tel} onPress={() => {}} hideImage />
+            <SettingItem
+              imageUrl={images.about_us_two}
+              text={'联系客服'}
+              rightText={'客服电话：' + this.state.tel}
+              onPress={() => {
+                Linking.openURL('tel:' + this.state.tel)
+              }}
+              hideImage
+            />
           </View>
         </ScrollView>
       </View>
