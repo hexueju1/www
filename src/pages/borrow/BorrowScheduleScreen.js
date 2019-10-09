@@ -32,7 +32,7 @@ let Info = [
     desc: '闪贷',
   },
 ]
-export default class BorrowSuccessScreen extends BaseScreen {
+export default class BorrowScheduleScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {}
@@ -51,22 +51,12 @@ export default class BorrowSuccessScreen extends BaseScreen {
     }
     return (
       <View style={styles.main_container}>
-        <TabHeader text="借款" />
+        <TabHeader text="借款进度" />
         <ScrollView>
           <View style={styles.content}>
-            <Image style={{ width: px(60), height: px(60), marginTop: px(16) }} source={images.sucess} />
-            <Text style={{ marginTop: px(11) }}>借款成功</Text>
+            <Image style={{ width: px(60), height: px(60), marginTop: px(16) }} source={images.acceptance} />
+            <Text style={{ marginTop: px(11) }}>借款受理中</Text>
             <View style={styles.box}>{list}</View>
-            <Button
-              disabled={this.state.button_status}
-              style={[styles.button, { backgroundColor: this.state.allow_status === false ? '#ABABAB' : '#E7912D' }]}
-              onPress={() => {
-                // this.props.navigation.navigate('BorrowSchedule')
-                this.props.navigation.navigate('AccountedS')
-              }}
-            >
-              <Text style={{ fontSize: px(16) }}>查看借款进度</Text>
-            </Button>
           </View>
         </ScrollView>
       </View>
@@ -117,24 +107,5 @@ var styles = StyleSheet.create({
   list_item_desc: {
     color: '#0F0F0F',
     fontSize: sp(14),
-  },
-  line: {
-    height: px(1),
-    width: px(338),
-    backgroundColor: '#E9ECEF',
-  },
-  permission: {
-    height: px(20),
-    flexDirection: 'row',
-    marginLeft: px(10),
-    marginTop: px(15),
-  },
-  button: {
-    marginTop: px(11),
-    width: px(300),
-    height: px(44),
-    borderRadius: px(22),
-    justifyContent: 'center',
-    alignSelf: 'center',
   },
 })

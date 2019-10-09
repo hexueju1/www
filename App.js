@@ -33,6 +33,8 @@ import BankCardScreen from './src/pages/bankcard/BankCardScreen'
 import CertificationStatusScreen from './src/pages/certificationstatus/CertificationStatusScreen'
 import BillDetailScreen from './src/pages/borrow/BillDetailScreen'
 import BorrowSuccessScreen from './src/pages/borrow/BrrowSuccessScreen'
+import BorrowScheduleScreen from './src/pages/borrow/BorrowScheduleScreen'
+import AccountedScreen from './src/pages/borrow/AccountedScreen'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
 
@@ -62,6 +64,8 @@ const commonPages = {
   CertificationStatus: CertificationStatusScreen,
   BillDetail: BillDetailScreen,
   BorrowSuccess: BorrowSuccessScreen,
+  BorrowSchedule: BorrowScheduleScreen,
+  AccountedS: AccountedScreen,
 }
 
 // StackNavigator用于实现各个页面之间的跳转
