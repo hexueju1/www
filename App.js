@@ -31,6 +31,7 @@ import PersonalPictureScreen from './src/pages/idcard/PersonalPictureScreen'
 import VerificationScreen from './src/pages/operator/VerificationScreen'
 import BankCardScreen from './src/pages/bankcard/BankCardScreen'
 import CertificationStatusScreen from './src/pages/certificationstatus/CertificationStatusScreen'
+import BillDetailScreen from './src/pages/borrow/BillDetailScreen'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
 
@@ -58,6 +59,7 @@ const commonPages = {
   Verification: VerificationScreen,
   BankCard: BankCardScreen,
   CertificationStatus: CertificationStatusScreen,
+  BillDetail: BillDetailScreen,
 }
 
 // StackNavigator用于实现各个页面之间的跳转
@@ -89,10 +91,12 @@ HomeStack.navigationOptions = ({ navigation }) => ({
 const RepaymentStack = createStackNavigator(
   {
     Borrow: BorrowScreen,
+    // BorrowConfirm: BorrowConfirmScreen,
     ...commonPages,
   },
   {
     initialRouteName: 'Borrow',
+    // initialRouteName: 'BorrowConfirm',
     defaultNavigationOptions: style.defaultNavigation,
     headerLayoutPreset: 'center',
   },
