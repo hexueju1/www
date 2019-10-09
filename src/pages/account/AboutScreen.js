@@ -34,6 +34,7 @@ import TabHeader from '../../common/TabHeader'
 import UpdateManager from '../../common/UpdateManager'
 import SettingItem from '../../components/SettingItem'
 import { px, sp } from '../../utils/Device'
+import DeviceInfo from 'react-native-device-info'
 
 export default class AboutScreen extends BaseScreen {
   constructor(props) {
@@ -44,7 +45,7 @@ export default class AboutScreen extends BaseScreen {
      * 不要单独给我的客服建立一个页面，合并为一个页面即可
      */
     this.state = {
-      name: '聚宝盆',
+      name: '**',
       version: '1.1.10',
       tel: '0512-7493958',
     }
@@ -85,6 +86,11 @@ export default class AboutScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
+    DeviceInfo.getApplicationName().then((appName) => {
+      this.setState({
+        name: appName,
+      })
+    })
   }
 
   componentWillUnmount() {
