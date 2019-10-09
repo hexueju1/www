@@ -8,6 +8,16 @@ waiting
 
 waiting
 
+## 后台账号
+
+https://shandaicn.com/admin/index/login.html
+满天星后台登录：
+用户名mantianxing
+密码123123
+信用花：fiveday
+密码：921016
+玫瑰花 threeday 921016
+
 # 一些约定&规范（重要）
 
 * 添加第三方库之后要检查Android和iOS两个平台

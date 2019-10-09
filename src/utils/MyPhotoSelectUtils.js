@@ -4,6 +4,9 @@ import ImagePicker from 'react-native-image-picker'
  *
  * 选择照片或拍照
  *
+ *     maxWidth?: number;
+    maxHeight?: number;
+    quality?: number; 	0 to 1, photos only
  */
 
 const options = {
@@ -11,6 +14,9 @@ const options = {
     skipBackup: true,
     path: 'images',
   },
+  quality: 0.3,
+  maxWidth: 1000,
+  maxHeight: 1000,
 }
 
 function handleResult(resolve, reject, response) {
@@ -23,6 +29,7 @@ function handleResult(resolve, reject, response) {
   } else if (response.customButton) {
     console.log('User tapped custom button: ', response.customButton)
   } else {
+    console.log('Responseuri = ', response.uri)
     const source = { uri: response.uri }
     resolve(source)
   }

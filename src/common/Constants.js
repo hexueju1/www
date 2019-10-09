@@ -107,4 +107,7 @@ export const endpoint = {
      */
     get_location: 'common/get_location',
   },
+  oss: {
+    get_signature: 'oss/get_signature',
+  },
 }
