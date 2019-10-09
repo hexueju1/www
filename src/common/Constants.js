@@ -45,6 +45,7 @@ export const images = {
   bank_camera: require('../images/png/bank_camera.png'),
   certification_suc: require('../images/png/certification_suc.png'),
   certification_fail: require('../images/png/certification_fail.png'),
+  sucess: require('../images/png/success.png'),
 }
 /**
  * 定义  DeviceEventEmitter  事件名

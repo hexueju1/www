@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from 'react'
-import { ScrollView, StyleSheet, View, TouchableOpacity, Image } from 'react-native'
+import { ScrollView, StyleSheet, View, TouchableOpacity, Image, showToast } from 'react-native'
 import { Button, Text } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
@@ -71,12 +71,22 @@ export default class BillDetailScreen extends BaseScreen {
         <ScrollView>
           <View style={styles.content}>
             <View style={styles.box}>
+              {/* 各种服务费 */}
+              <View style={styles.tip}>
+                <Text style={styles.text}>平台管理费&nbsp;&nbsp;&nbsp;&nbsp;500</Text>
+                <Text style={styles.text}>通道管理费&nbsp;&nbsp;&nbsp;&nbsp;200</Text>
+                <Text style={styles.text}>资金管理费&nbsp;&nbsp;&nbsp;&nbsp;100</Text>
+              </View>
+
+              {/* 信息列表 */}
               <Text style={{ fontSize: sp(14), color: '#ABABAB', marginLeft: px(10), marginTop: px(18) }}>借款总额（元）</Text>
               <Text style={{ fontSize: sp(38), color: '#0F0F0F', marginLeft: px(10), marginTop: px(6), marginBottom: px(8), fontWeight: 'bold' }}>
                 {this.state.money}
               </Text>
               {list}
               <View style={styles.line}></View>
+
+              {/* 承诺协议 */}
               <View style={styles.permission}>
                 <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => this.allow_pic()}>
                   <Image
@@ -94,14 +104,16 @@ export default class BillDetailScreen extends BaseScreen {
                 </TouchableOpacity>
               </View>
             </View>
+
+            {/* 按钮 */}
             <Button
               disabled={this.state.button_status}
               style={[styles.button, { backgroundColor: this.state.allow_status === false ? '#ABABAB' : '#E7912D' }]}
               onPress={() => {
-                this.props.navigation.navigate('Login')
+                this.props.navigation.navigate('BorrowSuccess')
               }}
             >
-              <Text style={{ fontSize: px(16) }}>确认</Text>
+              <Text style={{ fontSize: px(16) }}>下一步</Text>
             </Button>
           </View>
         </ScrollView>
@@ -167,10 +179,27 @@ var styles = StyleSheet.create({
   },
   button: {
     marginTop: px(74),
+    marginBottom: px(33),
     width: px(300),
     height: px(44),
     borderRadius: px(22),
     justifyContent: 'center',
     alignSelf: 'center',
+  },
+  tip: {
+    width: px(130),
+    height: px(65),
+    backgroundColor: '#F8A900',
+    borderTopLeftRadius: px(49),
+    borderBottomLeftRadius: px(49),
+    position: 'absolute',
+    right: px(0),
+    top: px(32),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    color: '#FDFDFD',
+    fontSize: px(12),
   },
 })
