@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { color } from './MyStyle'
 import { px, getStatusBarHeight, sp } from '../utils/Device'
+import { images } from './Constants'
 const TabHeaderTextPaddingTop = px(10) // 字上方间距
 const TabHeaderTextPaddingButtom = px(12) // 字下方间距
 
@@ -31,7 +32,7 @@ class TabHeader extends Component {
       >
         <Text style={styles.HeaderText}>{text}</Text>
         <TouchableOpacity style={{ left: 0, position: 'absolute', top: this.state.TabHeight + TabHeaderTextPaddingTop - 4 }} onPress={this.gotoBack}>
-          <Image style={styles.LeftImage} source={require('../images/png/back.png')}></Image>
+          <Image style={styles.LeftImage} source={images.header_back}></Image>
         </TouchableOpacity>
       </View>
     )
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   },
   HeaderText: {
     fontSize: sp(16),
-    color: color.text_0f,
+    color: color.header_text,
   },
   LeftImage: {
     width: px(48),

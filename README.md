@@ -8,6 +8,12 @@ waiting
 
 waiting
 
+# 不同版本UI适配
+
+* 颜色适配：根据styleType统一在Mystyle解决，已有例子
+* 图片适配：根据styleType统一在Constants解决，已有例子
+* 整体布局有变化的，根据styleType返回不同的view
+
 ## 后台账号
 
 https://shandaicn.com/admin/index/login.html

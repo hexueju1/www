@@ -3,10 +3,17 @@ import { Header } from 'react-navigation'
 import { getStatusBarHeight } from '../utils/Device'
 const { width, height } = Dimensions.get('window')
 
+/**
+ * 0 正常UI
+ * 1 商务UI
+ */
+export const styleType = 1
+
 // 用于存放整个项目的全部颜色,建议下载对应插件实时查看颜色
-export const color = {
+export var color = {
   // 透明
   text_0f: '#0F0F0F',
+  header_text: '#0F0F0F',
   transparent: 'rgba(0, 0, 0, 0)',
   white: '#fff',
   primary_bg: '#F58C00',
@@ -18,18 +25,13 @@ export const color = {
   black: '#000',
   hint: '#93989d',
   white_gray: '#F0F0F0',
-
   home_data_text: '#474747',
-  // 涨跌幅颜色，一些按钮也会用到
-  up: '#00acdc',
-  down: '#f04a5d',
-  change: '#FF9AFF',
-  //边框颜色
-  border_line: '#f3f3f3',
-  yellow: '#f7d800',
-  dark_yellow: '#E0B23E',
-  pink: 'pink',
-  item_pressed: '#f5f5f5',
+}
+
+if (styleType == 1) {
+  color.primary_bg = '#EC5C61'
+  color.primary_text = '#EC5C61'
+  color.header_text = '#FDFDFD'
 }
 
 // size：用于存放整个项目的通用大小，比如说行高、间距、字体大小等公共的数值参数。
@@ -73,17 +75,5 @@ export const style = {
     //   left: TITLE_OFFSET,
     //   right: TITLE_OFFSET,
     // }
-  },
-  buttonStyle: {
-    fontSize: 20,
-    color: color.white,
-  },
-  buttonContainer: {
-    marginTop: 20,
-    padding: 10,
-    height: size.button_height,
-    overflow: 'hidden',
-    borderRadius: 4,
-    backgroundColor: color.up,
   },
 }

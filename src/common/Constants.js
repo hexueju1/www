@@ -1,3 +1,5 @@
+import { styleType } from './MyStyle'
+
 /**
  * 存放所有图片资源
  */
@@ -47,7 +49,13 @@ export const images = {
   certification_fail: require('../images/png/certification_fail.png'),
   sucess: require('../images/png/success.png'),
   acceptance: require('../images/png/Acceptance.png'),
+  header_back: require('../images/png/back.png'),
 }
+
+if (styleType == 1) {
+  images.header_back = require('../images1/png/back.png')
+}
+
 /**
  * 定义  DeviceEventEmitter  事件名
  */
