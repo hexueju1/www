@@ -77,6 +77,7 @@ export default class PersonalPictureScreen extends BaseScreen {
             realPersonPath: urlPath,
           })
         },
+        '_autodyne.jpg',
       )
     })
   }
@@ -116,7 +117,26 @@ export default class PersonalPictureScreen extends BaseScreen {
               showToast('请等待图片上传完成')
               return
             }
-            this.props.navigation.navigate('Operator')
+            MyHttpUtils.fetchRequest('post', endpoint.liveness.check_identity, {
+              front_url: this.idcardPath,
+              autodyne_url: this.state.realPersonPath,
+            }).then((responseJson) => {
+              //  "state": 1, // 0 需进行人证核验 1 需进行运营商认证 2 无需认证
+              switch (responseJson.data.state) {
+                case 1:
+                  this.props.navigation.navigate('Operator')
+                  break
+                case 2:
+                  this.props.navigation.navigate('CertificationStatus')
+                  break
+                case 3:
+                  this.props.navigation.navigate('BankCard')
+                  break
+                default:
+                  this.props.navigation.navigate('CertificationStatus')
+                  break
+              }
+            })
           }}
         >
           <Text style={{ color: color.white, fontSize: 16 }}>确定</Text>

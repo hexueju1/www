@@ -54,7 +54,7 @@ export const images = {
 
 if (styleType == 1) {
   images.header_back = require('../images1/png/back.png')
-  images.login_button=require('../images1/png/login_pic.png')
+  images.login_button = require('../images1/png/login_pic.png')
 }
 
 /**
@@ -118,5 +118,8 @@ export const endpoint = {
   },
   oss: {
     get_signature: 'oss/get_signature',
+  },
+  liveness: {
+    check_identity: 'liveness/check_identity',
   },
 }

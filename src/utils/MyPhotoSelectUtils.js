@@ -70,8 +70,8 @@ export function showImagePicker() {
 }
 
 // 图片上传
-export function uploadFileToOss(responseJson, targetUri, progressCallback, successCallback) {
-  let ossbase = responseJson.data.dir + 'authentication/idcard/' + responseJson.data.number + '_front.jpg'
+export function uploadFileToOss(responseJson, targetUri, progressCallback, successCallback, tail = '_front.jpg') {
+  let ossbase = responseJson.data.dir + 'authentication/idcard/' + responseJson.data.number + tail
   let urlPath = responseJson.data.host + '/' + ossbase
   console.log('target:' + urlPath)
 
