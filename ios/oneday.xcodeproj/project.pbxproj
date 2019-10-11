@@ -54,6 +54,7 @@
 		DFCEB4A329B443D1B8DC067B /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C40A8B57CED140C89713D7D4 /* rubicon-icon-font.ttf */; };
 		F441F2C9A92C4001B7366729 /* libRNViewShot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6BFB033D2214C909BD81EB9 /* libRNViewShot.a */; };
 		FD2060B922C9FA0000BDCFC0 /* toastmodule.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2060B822C9FA0000BDCFC0 /* toastmodule.m */; };
+		FD4A44D823509671001815A1 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4A449F23509646001815A1 /* libART.a */; };
 		FD5D4E12228EC46D0026142B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5D4E11228EC46C0026142B /* JavaScriptCore.framework */; };
 		FD5D4E13228EC61C0026142B /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD2FF94721E2540B0068E27C /* libRNGestureHandler.a */; };
 		FDB67326229CE8F500EB82CB /* GT3Captcha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB67325229CE8F500EB82CB /* GT3Captcha.framework */; };
@@ -368,6 +369,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNGestureHandler;
 		};
+		FD4A449E23509646001815A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD4A449923509646001815A1 /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
+		};
+		FD4A44A023509646001815A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD4A449923509646001815A1 /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 323A12871E5F266B004975B8;
+			remoteInfo = "ART-tvOS";
+		};
 		FD5D4DF9228EC1FC0026142B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -561,6 +576,7 @@
 		F90ACBE99B924E5D9BFD9BB9 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		FD20608222C9F9ED00BDCFC0 /* toastmodule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toastmodule.h; sourceTree = "<group>"; };
 		FD2060B822C9FA0000BDCFC0 /* toastmodule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = toastmodule.m; sourceTree = "<group>"; };
+		FD4A449923509646001815A1 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		FD55ED9DE15F438DBE4922C0 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		FD5D4E11228EC46C0026142B /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FD88BA0522A665AD0073FB10 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -578,6 +594,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD4A44D823509671001815A1 /* libART.a in Frameworks */,
 				FF45C58922D724F400003818 /* libSplashScreen.a in Frameworks */,
 				FDB67326229CE8F500EB82CB /* GT3Captcha.framework in Frameworks */,
 				FDE0EF0A229661E40088B1C0 /* libRCTHotUpdate.a in Frameworks */,
@@ -819,6 +836,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				FD4A449923509646001815A1 /* ART.xcodeproj */,
 				FF45C54E22D7225E00003818 /* SplashScreen.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -928,6 +946,15 @@
 			children = (
 				FD2FF94721E2540B0068E27C /* libRNGestureHandler.a */,
 				FD5D4E04228EC1FC0026142B /* libRNGestureHandler-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FD4A449A23509646001815A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FD4A449F23509646001815A1 /* libART.a */,
+				FD4A44A123509646001815A1 /* libART-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1082,6 +1109,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = FD4A449A23509646001815A1 /* Products */;
+					ProjectRef = FD4A449923509646001815A1 /* ART.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -1438,6 +1469,20 @@
 			fileType = archive.ar;
 			path = libRNGestureHandler.a;
 			remoteRef = FD2FF94621E2540B0068E27C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FD4A449F23509646001815A1 /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = FD4A449E23509646001815A1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FD4A44A123509646001815A1 /* libART-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libART-tvOS.a";
+			remoteRef = FD4A44A023509646001815A1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		FD5D4DFA228EC1FC0026142B /* libjsi.a */ = {

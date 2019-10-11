@@ -29,6 +29,8 @@ PODS:
     - React
   - react-native-netinfo (4.1.3):
     - React
+  - React/ART (0.59.8):
+    - React/Core
   - React/Core (0.59.8):
     - yoga (= 0.59.8.React)
   - React/CxxBridge (0.59.8):
@@ -97,6 +99,7 @@ DEPENDENCIES:
   - react-native-contacts (from `../node_modules/react-native-contacts`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
+  - React/ART (from `../node_modules/react-native`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -159,6 +162,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: 5d3a21f600ffeda453a0157e9fa2351fcb84ed0f
+PODFILE CHECKSUM: 2374594b3674d747ab29c1542cb5cab9126f6b67
 
 COCOAPODS: 1.5.3

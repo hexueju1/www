@@ -87,6 +87,7 @@ pod 'React', path: rn_path, subspecs: [
 'RCTText',
 'RCTVibration',
 'RCTWebSocket',
+'ART',
 ]
 pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
 
