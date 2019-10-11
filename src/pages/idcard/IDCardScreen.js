@@ -33,7 +33,7 @@ import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
 import { launchCamera } from '../../utils/MyPhotoSelectUtils'
-
+import * as Progress from 'react-native-progress'
 export default class IDCardScreen extends BaseScreen {
   constructor(props) {
     super(props)
@@ -89,6 +89,7 @@ export default class IDCardScreen extends BaseScreen {
       (progressEvent) => {
         // progress 就是上穿的进度， 更新 state 里面的uploadProgress
         const progress = progressEvent.loaded / progressEvent.total
+        console.log('progress = ' + progress)
         this.setState({
           uploadProgress: progress,
         })
@@ -150,6 +151,7 @@ export default class IDCardScreen extends BaseScreen {
           <Image style={styles.cardSample} source={this.state.centerImage} />
           <Image style={styles.cameraStyle} source={images.camera} />
         </TouchableOpacity>
+
         <Button
           full
           style={styles.buttonstyle}
@@ -165,6 +167,10 @@ export default class IDCardScreen extends BaseScreen {
         >
           <Text style={{ color: color.white, fontSize: sp(16) }}>确定</Text>
         </Button>
+
+        <View style={{ alignItems: 'center' }}>
+          <Progress.Circle progress={this.state.uploadProgress} size={100} showsText={true} />
+        </View>
       </View>
     )
   }
