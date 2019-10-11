@@ -32,7 +32,6 @@ export default class LoginScreen extends BaseScreen {
     this.state = {
       phone: '18963985141',
       phoneCode: '123456',
-      show: '',
     }
   }
 
@@ -50,7 +49,7 @@ export default class LoginScreen extends BaseScreen {
 
   render() {
     let showContent =
-      this.state.show == '1' ? <Image style={{ width: size.login_pic_width, height: size.login_pic_height }} source={images.login_pic} /> : null
+      styleType == 0 ? <Image style={{ width: size.login_pic_width, height: size.login_pic_height }} source={images.login_pic} /> : null
     return (
       <DismissKeyboardView style={styles.main_container}>
         {/* <ImageBackground style={{ height: 230, justifyContent: 'center', alignItems: 'center' }} source={require('../../images/img/loginbg1.jpg')}> */}
@@ -131,11 +130,7 @@ export default class LoginScreen extends BaseScreen {
     )
   }
 
-  componentDidMount() {
-    if (styleType == 1) {
-      this.setState({ show: '1' })
-    }
-  }
+  componentDidMount() {}
 
   componentWillUnmount() {}
 }
