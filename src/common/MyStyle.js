@@ -11,7 +11,7 @@ export const styleType = 1
 
 // 用于存放整个项目的全部颜色,建议下载对应插件实时查看颜色
 export var color = {
-  // 透明
+  item_pressed: '#f5f5f5',
   text_0f: '#0F0F0F',
   header_text: '#0F0F0F',
   transparent: 'rgba(0, 0, 0, 0)',
