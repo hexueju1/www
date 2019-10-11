@@ -20,6 +20,7 @@ import { showToast } from '../../utils/MyToastUtils'
 import MyStoreManager from '../../common/MyStoreManager'
 import { black } from 'ansi-colors'
 import { px, sp } from '../../utils/Device'
+import { styleType } from '../../common/MyStyle'
 
 export default class LoginScreen extends BaseScreen {
   static navigationOptions = () => ({
@@ -31,6 +32,7 @@ export default class LoginScreen extends BaseScreen {
     this.state = {
       phone: '18963985141',
       phoneCode: '123456',
+      show: '',
     }
   }
 
@@ -47,11 +49,14 @@ export default class LoginScreen extends BaseScreen {
   }
 
   render() {
+    let showContent =
+      this.state.show == '1' ? <Image style={{ width: size.login_pic_width, height: size.login_pic_height }} source={images.login_pic} /> : null
     return (
       <DismissKeyboardView style={styles.main_container}>
         {/* <ImageBackground style={{ height: 230, justifyContent: 'center', alignItems: 'center' }} source={require('../../images/img/loginbg1.jpg')}> */}
         <View style={{ height: size.login_height, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-          <Image style={{ width: size.login_pic_width, height: size.login_pic_height }} source={images.login_pic} />
+          {/* <Image style={{ width: size.login_pic_width, height: size.login_pic_height }} source={images.login_pic} /> */}
+          {showContent}
           <Text style={styles.text}>登录</Text>
         </View>
         <View style={[styles.login]}>
@@ -126,7 +131,11 @@ export default class LoginScreen extends BaseScreen {
     )
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (styleType == 1) {
+      this.setState({ show: '1' })
+    }
+  }
 
   componentWillUnmount() {}
 }
@@ -146,7 +155,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
   },
   login_button: {
-    width: px(328),
-    height: px(49),
+    width: px(330),
+    height: px(49.5),
   },
 })
