@@ -18,7 +18,6 @@ import MyMsgScreen from './src/pages/msg/MyMsgScreen'
 import MsgDetailScreen from './src/pages/msg/MsgDetailScreen'
 import PermissionRequestScreen from './src/pages/permission/PermissionRequestScreen'
 import IDCardScreen from './src/pages/idcard/IDCardScreen'
-import BindBankScreen from './src/pages/bank/BindBankScreen'
 import BankInfoScreen from './src/pages/bank/BankInfoScreen'
 import OperatorScreen from './src/pages/operator/OperatorScreen'
 import BorrowConfirmScreen from './src/pages/borrow/BorrowConfirmScreen'
@@ -56,7 +55,6 @@ const commonPages = {
   BorrowConfirm: BorrowConfirmScreen,
   BorrowHistory: BorrowHistoryScreen,
   IDCard: IDCardScreen,
-  BindBank: BindBankScreen,
   Operator: OperatorScreen,
   PersonalPicture: PersonalPictureScreen,
   Verification: VerificationScreen,

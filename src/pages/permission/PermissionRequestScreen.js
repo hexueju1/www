@@ -55,7 +55,7 @@ export default class PermissionRequestScreen extends BaseScreen {
       } else if (responseJson.data.state == 2) {
         url = 'BorrowConfirm'
       } else if (responseJson.data.state == 3) {
-        url = 'BindBank'
+        url = 'BankCard'
       }
       if (url != '') {
         this.props.navigation.navigate(url)
