@@ -36,11 +36,49 @@ import { StackViewTransitionConfigs } from 'react-navigation'
 import { hidden } from 'ansi-colors'
 import LinearGradient from 'react-native-linear-gradient'
 import Operator from '../../pages/operator/OperatorScreen'
+import { launchCamera, uploadFileToOss } from '../../utils/MyPhotoSelectUtils'
+import * as Progress from 'react-native-progress'
 
 export default class PersonalPictureScreen extends BaseScreen {
+  idcardPath = ''
+
   constructor(props) {
     super(props)
-    this.state = {}
+    this.idcardPath = this.props.navigation.getParam('idcardPath')
+    this.state = {
+      centerImage: images.camera,
+      uploadProgress: 0,
+      realPersonPath: '',
+    }
+  }
+
+  takePhoto = () => {
+    launchCamera().then((source) => {
+      this.setState({
+        centerImage: source,
+      })
+      this.autoUpload()
+    })
+  }
+
+  autoUpload = () => {
+    MyHttpUtils.fetchRequest('post', endpoint.oss.get_signature).then((responseJson) => {
+      uploadFileToOss(
+        responseJson,
+        this.state.centerImage.uri,
+        (progress) => {
+          this.setState({
+            uploadProgress: progress,
+          })
+        },
+        (urlPath) => {
+          console.log('urlPath = ' + urlPath)
+          this.setState({
+            realPersonPath: urlPath,
+          })
+        },
+      )
+    })
   }
 
   render() {
@@ -52,24 +90,41 @@ export default class PersonalPictureScreen extends BaseScreen {
           <Text style={styles.textcontent}>请正对手机，确保光线充足</Text>
         </View>
         {/* 本人照片 */}
-        <View style={styles.idcardborder}>
+        <TouchableOpacity
+          style={styles.idcardborder}
+          onPress={() => {
+            this.takePhoto()
+          }}
+        >
           <View style={styles.topBorder}></View>
           <View style={styles.bottomBorder}></View>
           <View style={styles.leftBorder}></View>
           <View style={styles.rightBorder}></View>
           <View style={styles.line}></View>
           <LinearGradient style={styles.linear} colors={['#A6DAF2', '#E9ECEF']}></LinearGradient>
-          <Image style={styles.cameraStyle} source={images.camera} />
-        </View>
+          <Image style={styles.cameraStyle} source={this.state.centerImage} />
+        </TouchableOpacity>
         <Button
           full
           style={styles.buttonstyle}
           onPress={() => {
+            if (this.state.centerImage == images.camera) {
+              showToast('请先上传照片')
+              return
+            }
+            if (this.state.uploadProgress != 1) {
+              showToast('请等待图片上传完成')
+              return
+            }
             this.props.navigation.navigate('Operator')
           }}
         >
           <Text style={{ color: color.white, fontSize: 16 }}>确定</Text>
         </Button>
+
+        <View style={{ alignItems: 'center' }}>
+          <Progress.Circle progress={this.state.uploadProgress} size={100} showsText={true} />
+        </View>
       </View>
     )
   }

@@ -34,12 +34,14 @@ import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
 import { launchCamera, uploadFileToOss } from '../../utils/MyPhotoSelectUtils'
 import * as Progress from 'react-native-progress'
+
 export default class IDCardScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {
       centerImage: images.idcard_sample,
       uploadProgress: 0,
+      idcardPath: '',
     }
   }
 
@@ -48,6 +50,27 @@ export default class IDCardScreen extends BaseScreen {
       this.setState({
         centerImage: source,
       })
+      this.autoUpload()
+    })
+  }
+
+  autoUpload = () => {
+    MyHttpUtils.fetchRequest('post', endpoint.oss.get_signature).then((responseJson) => {
+      uploadFileToOss(
+        responseJson,
+        this.state.centerImage.uri,
+        (progress) => {
+          this.setState({
+            uploadProgress: progress,
+          })
+        },
+        (urlPath) => {
+          console.log('urlPath = ' + urlPath)
+          this.setState({
+            idcardPath: urlPath,
+          })
+        },
+      )
     })
   }
 
@@ -84,20 +107,11 @@ export default class IDCardScreen extends BaseScreen {
               showToast('请先上传照片')
               return
             }
-            MyHttpUtils.fetchRequest('post', endpoint.oss.get_signature).then((responseJson) => {
-              uploadFileToOss(
-                responseJson,
-                this.state.centerImage.uri,
-                (progress) => {
-                  this.setState({
-                    uploadProgress: progress,
-                  })
-                },
-                (urlPath) => {
-                  console.log('urlPath = ' + urlPath)
-                },
-              )
-            })
+            if (this.state.uploadProgress != 1) {
+              showToast('请等待图片上传完成')
+              return
+            }
+            this.props.navigation.navigate('PersonalPicture', { idcardPath: this.state.idcardPath })
           }}
         >
           <Text style={{ color: color.white, fontSize: sp(16) }}>确定</Text>

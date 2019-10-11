@@ -2,9 +2,9 @@
 
 # 接口文档
 
-waiting
+http://docs.shandaicn.com/docs/jubaopen_doc/overview
 
-# 线上产品（uniapp）
+# 线上产品
 
 waiting
 
