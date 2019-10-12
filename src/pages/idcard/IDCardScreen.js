@@ -42,6 +42,10 @@ export default class IDCardScreen extends BaseScreen {
       centerImage: images.idcard_sample,
       uploadProgress: 0,
       idcardPath: '',
+      // hidden:值为0表示未上传身份证，hidden:值为1表示上传身份证失败，hidden:值为2表示上传身份证成功
+      hidden: '',
+      name: '***',
+      id: '123456789012345678',
     }
   }
 
@@ -56,6 +60,11 @@ export default class IDCardScreen extends BaseScreen {
 
   autoUpload = () => {
     MyHttpUtils.fetchRequest('post', endpoint.oss.get_signature).then((responseJson) => {
+      if (responseJson.state == 'success') {
+        this.setState({ hidden: '1' })
+      } else {
+        this.setState({ hidden: '2' })
+      }
       uploadFileToOss(
         responseJson,
         this.state.centerImage.uri,
@@ -75,15 +84,39 @@ export default class IDCardScreen extends BaseScreen {
   }
 
   render() {
+    let showcontent =
+      this.state.hidden == '' ? (
+        <View style={{ marginTop: px(45) }}>
+          <Text style={styles.textcontent}>请确保本人身份证</Text>
+          <Text style={styles.textcontent}>请正对拍摄头，确保图片清晰、文字清晰。</Text>
+        </View>
+      ) : this.state.hidden == '1' ? (
+        <View style={{ marginTop: px(13) }}>
+          <Text style={[styles.textcontent, { color: '#ED0909' }]}>身份证识别有无，请重新拍摄识别</Text>
+          <Text style={styles.textleft}>
+            姓名：<Text>{this.state.name}</Text>
+          </Text>
+          <Text style={styles.textleft}>
+            身份证：<Text>{this.state.id}</Text>
+          </Text>
+        </View>
+      ) : (
+        <View style={{ marginTop: px(45) }}>
+          <Text style={styles.textleft}>
+            姓名：<Text>{this.state.name}</Text>
+          </Text>
+          <Text style={styles.textleft}>
+            身份证：<Text>{this.state.id}</Text>
+          </Text>
+        </View>
+      )
+    let bottontext = this.state.hidden == '' ? '上传身份证正面' : this.state.hidden == '1' ? '重新拍摄' : '下一步'
     return (
       <View style={styles.main_container}>
         <StatusBar backgroundColor={color.transparent} barStyle="dark-content" translucent={true} />
         <TabHeader text="身份认证" />
         {/* 身份认证文字内容 */}
-        <View style={{ marginTop: px(45) }}>
-          <Text style={styles.textcontent}>请确保本人身份证</Text>
-          <Text style={styles.textcontent}>请正对拍摄头，确保图片清晰、文字清晰。</Text>
-        </View>
+        {showcontent}
         {/* 身份证图片 */}
         <TouchableOpacity
           style={styles.idcardborder}
@@ -111,10 +144,14 @@ export default class IDCardScreen extends BaseScreen {
               showToast('请等待图片上传完成')
               return
             }
-            this.props.navigation.navigate('PersonalPicture', { idcardPath: this.state.idcardPath })
+            if (this.state.hidden == '1') {
+              this.takePhoto()
+            } else if (this.state.hidden == '2') {
+              this.props.navigation.navigate('PersonalPicture', { idcardPath: this.state.idcardPath })
+            }
           }}
         >
-          <Text style={{ color: color.white, fontSize: sp(16) }}>确定</Text>
+          <Text style={{ color: color.white, fontSize: sp(16) }}>{bottontext}</Text>
         </Button>
 
         <View style={{ alignItems: 'center' }}>
@@ -157,25 +194,25 @@ var styles = StyleSheet.create({
   },
   topBorder: {
     position: 'absolute',
-    top: px(-2),
+    top: px(-3),
     left: px(54),
     width: px(151),
-    height: px(2),
+    height: px(6),
     backgroundColor: '#E9ECEF',
   },
   bottomBorder: {
     position: 'absolute',
-    top: px(176),
+    top: px(175),
     left: px(54),
     width: px(151),
-    height: px(2),
+    height: px(6),
     backgroundColor: '#E9ECEF',
   },
   leftBorder: {
     position: 'absolute',
     left: px(-2),
     top: px(54),
-    width: px(2),
+    width: px(6),
     height: px(70),
     backgroundColor: '#E9ECEF',
   },
@@ -183,14 +220,14 @@ var styles = StyleSheet.create({
     position: 'absolute',
     left: px(256),
     top: px(54),
-    width: px(2),
+    width: px(6),
     height: px(70),
     backgroundColor: '#E9ECEF',
   },
   buttonstyle: {
     width: px(300),
     height: px(40),
-    backgroundColor: '#ABABAB',
+    backgroundColor: '#E7912D',
     borderRadius: px(22),
     marginTop: px(264),
     marginBottom: px(22),
@@ -209,5 +246,11 @@ var styles = StyleSheet.create({
     width: px(258),
     height: px(164),
     alignSelf: 'center',
+  },
+  textleft: {
+    marginTop: px(10),
+    left: '15%',
+    color: '#ABABAB',
+    fontSize: sp(16),
   },
 })
