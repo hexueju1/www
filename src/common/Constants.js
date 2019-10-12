@@ -112,6 +112,7 @@ export const endpoint = {
     detail: 'borrow/detail',
     before_borrow: 'borrow/before_borrow',
     productInfo: 'borrow/productInfo',
+    borrow: 'borrow/borrow',
   },
   common: {
     get_kefu: 'common/get_kefu',

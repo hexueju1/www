@@ -7,12 +7,14 @@
  */
 
 import React, { Component } from 'react'
-import { ScrollView, StyleSheet, View, TouchableOpacity, Image, showToast } from 'react-native'
+import { ScrollView, StyleSheet, View, TouchableOpacity, Image } from 'react-native'
+import { showToast } from '../../utils/MyToastUtils'
 import { Button, Text } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
 import TabHeader from '../../common/TabHeader'
 import { images } from '../../common/Constants'
+import { color } from '../../common/MyStyle'
 
 let Info = [
   {
@@ -108,7 +110,7 @@ export default class BillDetailScreen extends BaseScreen {
             {/* 按钮 */}
             <Button
               disabled={this.state.button_status}
-              style={[styles.button, { backgroundColor: this.state.allow_status === false ? '#ABABAB' : '#E7912D' }]}
+              style={[styles.button, { backgroundColor: this.state.allow_status === false ? '#ABABAB' : color.primary_bg }]}
               onPress={() => {
                 this.props.navigation.navigate('BorrowSuccess')
               }}
@@ -189,7 +191,7 @@ var styles = StyleSheet.create({
   tip: {
     width: px(130),
     height: px(65),
-    backgroundColor: '#F8A900',
+    backgroundColor: color.primary_bg,
     borderTopLeftRadius: px(49),
     borderBottomLeftRadius: px(49),
     position: 'absolute',

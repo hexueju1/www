@@ -56,6 +56,10 @@ export default class BorrowConfirmScreen extends BaseScreen {
             <Button
               style={styles.button}
               onPress={() => {
+                // 借款，暂时屏蔽
+                // MyHttpUtils.fetchRequest('post', endpoint.borrow.borrow).then((responseJson) => {
+
+                // })
                 this.props.navigation.navigate('BillDetail')
               }}
             >
