@@ -93,6 +93,10 @@ export const endpoint = {
     // 发送登录手机验证码
     send: 'sms/send',
   },
+  bank: {
+    send_sms: 'bank/send_sms',
+    bind: 'bank/bind',
+  },
   user: {
     checkApply: 'user/checkApply',
     mobilelogin: 'user/mobilelogin',

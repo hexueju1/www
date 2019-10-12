@@ -37,6 +37,7 @@ class CountDownInput extends Component {
     placeholderTextColor: '#FFFFFF',
     endpoint: '',
     onPress() {},
+    onSuccess(responseJson) {},
     onChangeText(text) {},
   }
   static propTypes = {
@@ -50,6 +51,9 @@ class CountDownInput extends Component {
       this.setState({ enable: false })
       MyHttpUtils.fetchRequest('post', this.props.endpoint, this.props.httpParams)
         .then((responseJson) => {
+          if (this.props.onSuccess) {
+            this.props.onSuccess(responseJson)
+          }
           showToast('验证码已发送，请注意查收')
           // 开始倒计时
           this.setState({ counting: true })

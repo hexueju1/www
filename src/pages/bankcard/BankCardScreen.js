@@ -7,25 +7,8 @@
  */
 
 import React, { Component } from 'react'
-import {
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  ScrollView,
-  DeviceEventEmitter,
-  requireNativeComponent,
-  Platform,
-  Dimensions,
-  ToastAndroid,
-  BackHandler,
-  TextInput,
-  FlatList,
-  Image,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  StatusBar,
-} from 'react-native'
-import { Tab, Tabs, Container, Header, Content, Button, Text, Form, Item, Input, Label, Picker, Icon } from 'native-base'
+import { TouchableOpacity, TextInput, Image, StyleSheet, View, SafeAreaView } from 'react-native'
+import { Button, Text } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
 import { endpoint, images } from '../../common/Constants'
@@ -34,15 +17,21 @@ import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
 import CountDownInput from '../../components/CountDownInput'
+import { isDebug } from '../../utils/MyDebugUtils'
 
 export default class BankCardScreen extends BaseScreen {
+  // 发送验证码后获得
+  serial_number = ''
+
   constructor(props) {
     super(props)
     this.state = {
-      name: '某某',
-      idcard: '请输入正确的银行卡号',
-      bank: '',
+      name: '**',
+      bankCard: isDebug() ? '6214851211358317' : '',
+      bankName: '**',
       tel: '',
+      // 验证码
+      code: '',
     }
   }
   render() {
@@ -65,15 +54,23 @@ export default class BankCardScreen extends BaseScreen {
                 showToast('绑定银行卡')
               }}
             >
-              <Text style={styles.textstyle_right}>{this.state.idcard}</Text>
-              <Image style={{ width: px(13), height: px(11), alignSelf: 'center' }} source={images.bank_camera} />
+              <TextInput
+                style={styles.textstyle_right}
+                placeholder={'请输入正确的银行卡号'}
+                keyboardType="numeric"
+                placeholderTextColor={'#ABABAB'}
+                value={this.state.bankCard}
+                // secureTextEntry={true}
+                onChangeText={(text) => this.setState({ bankCard: text })}
+              />
+              {/* <Image style={{ width: px(13), height: px(11), alignSelf: 'center' }} source={images.bank_camera} /> */}
             </TouchableOpacity>
           </View>
 
           {/* 所属银行 */}
           <View style={[styles.text_one, { borderColor: '#F3F3F3' }]}>
             <Text style={styles.textstyle}>所属银行</Text>
-            <Text style={styles.textstyle_right}>{this.state.bank}</Text>
+            <Text style={styles.textstyle_right}>{this.state.bankName}</Text>
           </View>
         </View>
 
@@ -82,23 +79,43 @@ export default class BankCardScreen extends BaseScreen {
           <View style={styles.text_one}>
             <Text style={styles.textstyle}>预留手机号</Text>
             {/* <Text style={styles.textstyle_right}>{this.state.tel}</Text> */}
-            <TextInput placeholder={'预留号码'} placeholderTextColor={'#ABABAB'} />
+            <TextInput
+              style={styles.textstyle_right}
+              placeholder={'预留号码'}
+              placeholderTextColor={'#ABABAB'}
+              value={this.state.tel}
+              keyboardType="numeric"
+              onChangeText={(text) => this.setState({ tel: text })}
+            />
           </View>
 
           {/* 验证码 */}
           <View style={{ marginLeft: px(-18) }}>
             <CountDownInput
-              endpoint={endpoint.sms.send}
+              endpoint={endpoint.bank.send_sms}
               style={{ borderBottomColor: '#F3F3F3' }}
               placeholder={'请输入动态密码'}
               placeholderTextColor={'#ABABAB'}
               label={'获取密码'}
               labelColor={'#E7912D'}
-              value={this.state.tel}
+              value={this.state.code}
               keyboardType="numeric"
-              onChangeText={(text) => this.setState({ tel: text })}
+              httpParams={{
+                card: this.state.bankCard,
+                mobile: this.state.tel,
+              }}
+              onChangeText={(text) => this.setState({ code: text })}
               onPress={() => {
-                showToast('获取密码')
+                if (this.state.tel === '') {
+                  showToast('请输入手机号')
+                  return
+                }
+                return true
+              }}
+              onSuccess={(responseJson) => {
+                console.log('fuck here')
+                this.serial_number = responseJson.data.serial_number
+                console.log(this.serial_number)
               }}
             />
           </View>
@@ -106,7 +123,16 @@ export default class BankCardScreen extends BaseScreen {
         <Button
           style={styles.button}
           onPress={() => {
-            this.props.navigation.navigate('CertificationStatus')
+            // 判断输入
+            MyHttpUtils.fetchRequest('post', endpoint.bank.bind, {
+              card: this.state.bankCard,
+              mobile: this.state.tel,
+              code: this.state.code,
+              number: this.serial_number,
+            }).then((responseJson) => {
+              showToast('绑定成功')
+              this.props.navigation.navigate('CertificationStatus')
+            })
           }}
         >
           <Text style={{ fontSize: px(16) }}>确认</Text>
