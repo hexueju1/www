@@ -110,6 +110,8 @@ export const endpoint = {
     get_list: 'borrow/get_list',
     // ordersn type
     detail: 'borrow/detail',
+    before_borrow: 'borrow/before_borrow',
+    productInfo: 'borrow/productInfo',
   },
   common: {
     get_kefu: 'common/get_kefu',

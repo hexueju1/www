@@ -7,23 +7,7 @@
  */
 
 import React, { Component } from 'react'
-import {
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  ScrollView,
-  DeviceEventEmitter,
-  requireNativeComponent,
-  Platform,
-  Dimensions,
-  ToastAndroid,
-  BackHandler,
-  TextInput,
-  FlatList,
-  Image,
-  StyleSheet,
-  View,
-  StatusBar,
-} from 'react-native'
+import { TouchableWithoutFeedback, TouchableOpacity, ScrollView, StyleSheet, View } from 'react-native'
 import { Tab, Tabs, Container, Header, Content, Button, Text, Form, Item, Input, Label, Picker, Icon } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
@@ -34,20 +18,17 @@ import { showToast } from '../../utils/MyToastUtils'
 import SettingItem from '../../components/SettingItem'
 import TabHeader from '../../common/TabHeader'
 import CustomAlertDialog from '../../components/CustomAlertDialog'
+import LoginManager from '../../common/LoginManager'
 
 const typeArr = ['日常消费', '装修', '教育', '旅游']
 export default class BorrowConfirmScreen extends BaseScreen {
-  // static navigationOptions = {
-  //   title: '借款',
-  // }
-
   constructor(props) {
     super(props)
     this.state = {
-      money: '2,000.00',
-      time: '1周',
+      money: '*',
+      time: '*',
       typeName: '借款用途',
-      bank_name: '中国银行',
+      bank_name: LoginManager.userInfo.bank_name + LoginManager.userInfo.card_number,
       type: 0,
       showTypePop: false,
     }
@@ -64,8 +45,8 @@ export default class BorrowConfirmScreen extends BaseScreen {
             <Text style={{ color: '#666666', fontSize: sp(12), fontWeight: 'bold' }}>当前可借多少（元）</Text>
             <Text style={{ color: '#111111', fontSize: sp(40), fontWeight: 'bold', marginTop: px(12) }}>{this.state.money}</Text>
             <View style={styles.daypay}>
-              <Text style={{ color: '#ECAC3A', fontSize: px(16) }}>按日计息</Text>
-              <Text style={{ color: '#ECAC3A', fontSize: px(10) }}>随借随还更灵活</Text>
+              <Text style={{ color: color.primary_bg, fontSize: px(16) }}>按日计息</Text>
+              <Text style={{ color: color.primary_bg, fontSize: px(10) }}>随借随还更灵活</Text>
             </View>
             <View style={styles.list}>
               <SettingItem text={'借多久'} rightText={this.state.time} hideImage />
@@ -103,6 +84,16 @@ export default class BorrowConfirmScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
+    MyHttpUtils.fetchRequest('post', endpoint.borrow.before_borrow).then((responseJson) => {
+      this.setState({
+        money: responseJson.data.info.money,
+      })
+    })
+    MyHttpUtils.fetchRequest('post', endpoint.borrow.productInfo).then((responseJson) => {
+      this.setState({
+        time: responseJson.data.config.days + '天',
+      })
+    })
   }
 
   componentWillUnmount() {
@@ -124,7 +115,7 @@ var styles = StyleSheet.create({
     width: px(338),
     height: px(44),
     borderWidth: px(1),
-    borderColor: '#ECAC3A',
+    borderColor: color.primary_bg,
     borderRadius: px(8),
     marginTop: px(33),
     alignItems: 'center',
@@ -140,7 +131,7 @@ var styles = StyleSheet.create({
   button: {
     width: px(300),
     height: px(44),
-    backgroundColor: '#ABABAB',
+    backgroundColor: color.primary_bg,
     borderRadius: px(22),
     justifyContent: 'center',
     alignSelf: 'center',
