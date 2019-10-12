@@ -51,7 +51,7 @@ export default class PermissionRequestScreen extends BaseScreen {
       if (responseJson.data.state == 0) {
         url = 'IDCard'
       } else if (responseJson.data.state == 1) {
-        url = 'OperatorVerify'
+        url = 'Operator'
       } else if (responseJson.data.state == 2) {
         url = 'BorrowConfirm'
       } else if (responseJson.data.state == 3) {
