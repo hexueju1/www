@@ -7,7 +7,7 @@ const { width, height } = Dimensions.get('window')
  * 0 正常UI
  * 1 商务UI
  */
-export const styleType = 1
+export const styleType = 0
 
 // 用于存放整个项目的全部颜色,建议下载对应插件实时查看颜色
 export var color = {

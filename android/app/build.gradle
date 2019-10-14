@@ -135,23 +135,23 @@ MobSDK {
 android {
     signingConfigs {
         release {
-            keyAlias 'shandai'
-            keyPassword '123456'
-            storeFile file('../google.jks')
-            storePassword '123456'
+            keyAlias 'jbp'
+            keyPassword 'asddsa'
+            storeFile file('../jbp.keystore')
+            storePassword 'asddsa'
         }
         debug {
-            keyAlias 'shandai'
-            keyPassword '123456'
-            storeFile file('../google.jks')
-            storePassword '123456'
+            keyAlias 'jbp'
+            keyPassword 'asddsa'
+            storeFile file('../jbp.keystore')
+            storePassword 'asddsa'
         }
     }
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.thinktank.shan2dai"
+        applicationId "com.thinktank.jubaopen"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 10002

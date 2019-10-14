@@ -1,4 +1,4 @@
-package com.thinktank.shan2dai.Native;
+package com.thinktank.jubaopen.Native;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

@@ -1,4 +1,4 @@
-package com.thinktank.shan2dai.NativeUI.BulbSample;
+package com.thinktank.jubaopen.NativeUI.BulbSample;
 
 import android.content.Context;
 import android.graphics.Color;

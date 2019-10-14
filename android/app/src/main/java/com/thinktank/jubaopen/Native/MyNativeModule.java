@@ -1,4 +1,4 @@
-package com.thinktank.shan2dai.Native;
+package com.thinktank.jubaopen.Native;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

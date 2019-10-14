@@ -1,4 +1,4 @@
-package com.thinktank.shan2dai.Download;
+package com.thinktank.jubaopen.Download;
 
 
 import android.app.DownloadManager;

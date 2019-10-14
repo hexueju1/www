@@ -1,4 +1,4 @@
-package com.thinktank.shan2dai;
+package com.thinktank.jubaopen;
 
 import android.app.Application;
 import android.content.Context;
@@ -24,10 +24,10 @@ import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.rnfs.RNFSPackage;
 import com.rnlib.geetestsensebot.RNLGeetestSensebotPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.thinktank.shan2dai.Download.DownloadPackage;
-import com.thinktank.shan2dai.Native.MyNativePackage;
-import com.thinktank.shan2dai.NativeUI.BulbSample.BulbPackage;
-import com.thinktank.shan2dai.Share.SharePackage;
+import com.thinktank.jubaopen.Download.DownloadPackage;
+import com.thinktank.jubaopen.Native.MyNativePackage;
+import com.thinktank.jubaopen.NativeUI.BulbSample.BulbPackage;
+import com.thinktank.jubaopen.Share.SharePackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
 import org.devio.rn.splashscreen.SplashScreenReactPackage;

@@ -1,4 +1,4 @@
-package com.thinktank.shan2dai.NativeUI.BulbSample;
+package com.thinktank.jubaopen.NativeUI.BulbSample;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

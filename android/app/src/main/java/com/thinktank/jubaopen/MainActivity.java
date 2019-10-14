@@ -1,10 +1,6 @@
-package com.thinktank.shan2dai;
+package com.thinktank.jubaopen;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
