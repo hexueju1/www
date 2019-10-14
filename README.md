@@ -144,3 +144,24 @@ metaInfo:
 # 其他命令
 
  react-native start --reset-cache
+
+
+## iOS开发者账号
+账号密码.txt
+南京阿梵达网络技术有限公司
+邓白氏编码：542315730
+账号：jijiao470621968@163.com
+密码：Ks898989
+邮箱：jijiao470621968@163.com
+密码：gong06384
+生日：1999年09月09日
+密保：好朋友，好工作，好上司
+* 证书管理 (https://developer.apple.com/account/resources/identifiers/list)
+
+## fir
+https://fir.im/apps  
+账号:593426273@qq.com
+密码:921016zhzjty)
+
+
+

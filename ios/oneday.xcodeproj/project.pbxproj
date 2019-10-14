@@ -1086,7 +1086,7 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = C47KHDYWPC;
+						DevelopmentTeam = WY79B8H424;
 						ProvisioningStyle = Manual;
 					};
 					FDC1857922F2E82B00D2DAFC = {
@@ -1801,7 +1801,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 19;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = C47KHDYWPC;
+				DEVELOPMENT_TEAM = WY79B8H424;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/SDK",
@@ -1856,9 +1856,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thinktank.shandai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thinktank.jubaopen;
 				PRODUCT_NAME = oneday;
-				PROVISIONING_PROFILE_SPECIFIER = "shandai-pro";
+				PROVISIONING_PROFILE_SPECIFIER = jubaopen;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1874,7 +1874,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 19;
-				DEVELOPMENT_TEAM = C47KHDYWPC;
+				DEVELOPMENT_TEAM = WY79B8H424;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../node_modules/@yyyyu/react-native-geetest-sensebot/ios/SDK",
@@ -1929,9 +1929,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thinktank.shandai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thinktank.jubaopen;
 				PRODUCT_NAME = oneday;
-				PROVISIONING_PROFILE_SPECIFIER = "shandai-pro";
+				PROVISIONING_PROFILE_SPECIFIER = jubaopen;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

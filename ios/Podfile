@@ -104,6 +104,10 @@ post_install do |installer|
         if target.name == "React"
             target.remove_from_project
         end
+        # why : https://stackoverflow.com/questions/50718018/xcode-10-error-multiple-commands-produce/54362472
+        if target.name == "yoga"
+            target.remove_from_project
+        end
     end
 end
   pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
