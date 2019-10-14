@@ -85,6 +85,10 @@ class UpdateManager {
   }
 
   checkUpdate = (auto = false) => {
+    // 暂时不要更新
+    if (auto || !auto) {
+      return
+    }
     console.log('isFirstTime')
     console.log(isFirstTime)
     console.log('isRolledBack')
