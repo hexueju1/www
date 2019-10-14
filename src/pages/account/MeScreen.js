@@ -99,6 +99,7 @@ export default class MeScreen extends BaseScreen {
               text={'我要借钱'}
               onPress={() => {
                 if (LoginManager.isLogin()) {
+                  this.props.navigation.navigate('Home')
                 } else {
                   this.props.navigation.navigate('Login')
                 }
