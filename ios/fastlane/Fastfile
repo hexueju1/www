@@ -38,6 +38,7 @@ platform :ios do
     # firim 是一个插件，执行 fastlane add_plugin firim 即可把插件装好
     # fastlane add_plugin pgyer  蒲公英
     # 上传ipa到fir.im服务器，在fir.im获取firim_api_token
-    firim(firim_api_token: "651e2d6ca20bf4313463edb8f3b6743f")
+    # 我的 038dd919a79e96aac09a775f60903a1f
+    firim(firim_api_token: "038dd919a79e96aac09a775f60903a1f")
   end
 end

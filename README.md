@@ -40,6 +40,7 @@ https://shandaicn.com/admin/index/login.html
 * http请求对应的url放在Constants.js的endpoint里面，根目录data下按照名称存放api返回数据方便查看
 * 定时器必须在unmount的时候清理掉（clearTimeout/clearInterval）
 * 屏幕适配使用import { px } from '../../utils/Device'，   设计稿长度为N，使用的时候就用px(N),  字体使用sp(N) 具体参考HomeScreen（首页）
+* 格式化:Prettier(在保存时自动格式化) https://prettier.io/docs/en/options.html
 
 # 目录结构
 
@@ -59,22 +60,6 @@ https://shandaicn.com/admin/index/login.html
 原生项目结构在修改图标，启动页，接入第三方sdk，一些针对原生的特殊处理时会用到
 
 /template 存放一些模板文件，开发新的页面直接复制即可
-
-
-# 国际化(暂不考虑)
-
-<!-- 基本使用：
-import { I18n } from '../common/LanguageManager'
-把文字替换成：
-I18n.t('xxxxx')
-并在src/language/对应文件中添加翻译字段
-
-所有包含navigation的页面需要改写为：
-  static navigationOptions = () => ({
-    title: I18n.t('xxxxx')
-  });
-  
-底部固定页面（首页，行情，理财，我的）的特殊处理参考MeScreen中refreshLanguage的逻辑 -->
 
 # 快速点击问题
 
@@ -130,21 +115,20 @@ metaInfo:
 * 基准包已上传热更新后台
 * 覆盖安装没问题
 
-# 格式化&代码规范
-
-* 格式化:Prettier(在保存时自动格式化) https://prettier.io/docs/en/options.html
-
 # 打包
 
+iOS:
 * 进入iOS目录下
 * 安装fastlane（随便搜个教程即可，不要再次初始化，目前已经有相关配置文件）
 * 安装firim的插件 fastlane add_plugin firim
 * 打包： fastlane fir
+* 打包完成会在ios/firim生成ipa，并主动上传到https://fir.im/l69d（注意查看更新时间）
+
+Android:
 
 # 其他命令
 
- react-native start --reset-cache
-
+* 解决更新&删除文件后报错的问题 react-native start --reset-cache
 
 ## iOS开发者账号
 账号密码.txt
