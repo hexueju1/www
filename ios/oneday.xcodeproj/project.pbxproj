@@ -583,7 +583,6 @@
 		FD88BA0622A665BC0073FB10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FDB67325229CE8F500EB82CB /* GT3Captcha.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GT3Captcha.framework; path = "../node_modules/@yyyyu/react-native-geetest-sensebot/ios/SDK/GT3Captcha.framework"; sourceTree = "<group>"; };
 		FDC185B822F2E82B00D2DAFC /* oneday copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oneday copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FDC185B922F2E82B00D2DAFC /* oneday copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "oneday copy-Info.plist"; path = "/Users/zhangjin.yan/dianhongbao/shandai/ios/oneday copy-Info.plist"; sourceTree = "<absolute>"; };
 		FDF8DEB022B3864C00111268 /* sharemodule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sharemodule.m; sourceTree = "<group>"; };
 		FDF8DEB122B3864C00111268 /* sharemodule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sharemodule.h; sourceTree = "<group>"; };
 		FF45C54E22D7225E00003818 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
@@ -884,7 +883,6 @@
 				FD2FF91D21E254060068E27C /* Recovered References */,
 				1C55BD33069C47768869BA06 /* Resources */,
 				790A4362CE4CB11CFFED9022 /* Pods */,
-				FDC185B922F2E82B00D2DAFC /* oneday copy-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -1799,7 +1797,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = WY79B8H424;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1873,7 +1871,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = WY79B8H424;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2046,7 +2044,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = C47KHDYWPC;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2119,7 +2117,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = C47KHDYWPC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -118,13 +118,15 @@ metaInfo:
 # 打包
 
 iOS:
-* 进入iOS目录下
-* 安装fastlane（随便搜个教程即可，不要再次初始化，目前已经有相关配置文件）
-* 安装firim的插件 fastlane add_plugin firim
+* 进入ios目录下
+* （第一次需要）安装fastlane（随便搜个教程即可，不要再次初始化，目前已经有相关配置文件）
+* （第一次需要）安装firim的插件 fastlane add_plugin firim
 * 打包： fastlane fir
 * 打包完成会在ios/firim生成ipa，并主动上传到https://fir.im/l69d（注意查看更新时间）
 
 Android:
+* 进入android目录下
+* 打包：./gradlew assembleReleaseChannels -PchannelList=release
 
 # 其他命令
 
