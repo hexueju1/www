@@ -42,10 +42,9 @@ export default class IDCardScreen extends BaseScreen {
       centerImage: images.idcard_sample,
       uploadProgress: 0,
       idcardPath: '',
-      // hidden:值为0表示未上传身份证，hidden:值为1表示上传身份证失败，hidden:值为2表示上传身份证成功
-      hidden: '',
       name: '***',
       id: '123456789012345678',
+      status: true,
     }
   }
 
@@ -60,11 +59,7 @@ export default class IDCardScreen extends BaseScreen {
 
   autoUpload = () => {
     MyHttpUtils.fetchRequest('post', endpoint.oss.get_signature).then((responseJson) => {
-      if (responseJson.state == 'success') {
-        this.setState({ hidden: '1' })
-      } else {
-        this.setState({ hidden: '2' })
-      }
+      this.setState({ status: false })
       uploadFileToOss(
         responseJson,
         this.state.centerImage.uri,
@@ -81,24 +76,15 @@ export default class IDCardScreen extends BaseScreen {
         },
       )
     })
+    // this.setState({ hidden: '1' })
   }
 
   render() {
     let showcontent =
-      this.state.hidden == '' ? (
+      this.state.status == true ? (
         <View style={{ marginTop: px(45) }}>
           <Text style={styles.textcontent}>请确保本人身份证</Text>
           <Text style={styles.textcontent}>请正对拍摄头，确保图片清晰、文字清晰。</Text>
-        </View>
-      ) : this.state.hidden == '1' ? (
-        <View style={{ marginTop: px(13) }}>
-          <Text style={[styles.textcontent, { color: '#ED0909' }]}>身份证识别有无，请重新拍摄识别</Text>
-          <Text style={styles.textleft}>
-            姓名：<Text>{this.state.name}</Text>
-          </Text>
-          <Text style={styles.textleft}>
-            身份证：<Text>{this.state.id}</Text>
-          </Text>
         </View>
       ) : (
         <View style={{ marginTop: px(45) }}>
@@ -110,7 +96,7 @@ export default class IDCardScreen extends BaseScreen {
           </Text>
         </View>
       )
-    let bottontext = this.state.hidden == '' ? '上传身份证正面' : this.state.hidden == '1' ? '重新拍摄' : '下一步'
+    let bottontext = this.state.status == true ? '上传身份证正面' : '下一步'
     return (
       <View style={styles.main_container}>
         <StatusBar backgroundColor={color.transparent} barStyle="dark-content" translucent={true} />
@@ -133,8 +119,9 @@ export default class IDCardScreen extends BaseScreen {
         </TouchableOpacity>
 
         <Button
+          disabled={this.state.status}
           full
-          style={styles.buttonstyle}
+          style={[styles.buttonstyle, { backgroundColor: this.state.status == false ? '#E7912D' : '#ABABAB' }]}
           onPress={() => {
             if (this.state.centerImage == images.idcard_sample) {
               showToast('请先上传照片')
@@ -144,9 +131,7 @@ export default class IDCardScreen extends BaseScreen {
               showToast('请等待图片上传完成')
               return
             }
-            if (this.state.hidden == '1') {
-              this.takePhoto()
-            } else if (this.state.hidden == '2') {
+            if (this.state.status == false) {
               this.props.navigation.navigate('PersonalPicture', { idcardPath: this.state.idcardPath })
             }
           }}

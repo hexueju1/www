@@ -46,9 +46,10 @@ export default class PersonalPictureScreen extends BaseScreen {
     super(props)
     this.idcardPath = this.props.navigation.getParam('idcardPath')
     this.state = {
-      centerImage: images.camera,
+      centerImage: '',
       uploadProgress: 0,
       realPersonPath: '',
+      status: true,
     }
   }
 
@@ -63,6 +64,7 @@ export default class PersonalPictureScreen extends BaseScreen {
 
   autoUpload = () => {
     MyHttpUtils.fetchRequest('post', endpoint.oss.get_signature).then((responseJson) => {
+      this.setState({ status: false })
       uploadFileToOss(
         responseJson,
         this.state.centerImage.uri,
@@ -83,13 +85,22 @@ export default class PersonalPictureScreen extends BaseScreen {
   }
 
   render() {
+    let showcontent =
+      this.state.status == true ? (
+        <View style={{ marginTop: px(45) }}>
+          <Text style={styles.textcontent}>请正对手机，确保光线充足</Text>
+        </View>
+      ) : (
+        <View style={{ marginTop: px(45) }}>
+          <Text style={styles.textcontent}>上传成功</Text>
+        </View>
+      )
+    let bottontext = this.state.status == true ? '上传本人照片' : '下一步'
     return (
       <View style={styles.main_container}>
         <TabHeader text="身份认证" />
         {/* 身份认证文字内容 */}
-        <View style={{ marginTop: px(45) }}>
-          <Text style={styles.textcontent}>请正对手机，确保光线充足</Text>
-        </View>
+        {showcontent}
         {/* 本人照片 */}
         <TouchableOpacity
           style={styles.idcardborder}
@@ -106,8 +117,9 @@ export default class PersonalPictureScreen extends BaseScreen {
           <Image style={styles.cameraStyle} source={this.state.centerImage} />
         </TouchableOpacity>
         <Button
+          disabled={this.state.status}
           full
-          style={styles.buttonstyle}
+          style={[styles.buttonstyle, { backgroundColor: this.state.status == false ? '#E7912D' : '#ABABAB' }]}
           onPress={() => {
             if (this.state.centerImage == images.camera) {
               showToast('请先上传照片')
@@ -139,7 +151,7 @@ export default class PersonalPictureScreen extends BaseScreen {
             })
           }}
         >
-          <Text style={{ color: color.white, fontSize: 16 }}>确定</Text>
+          <Text style={{ color: color.white, fontSize: 16 }}>{bottontext}</Text>
         </Button>
 
         <View style={{ alignItems: 'center' }}>
@@ -225,19 +237,21 @@ var styles = StyleSheet.create({
   buttonstyle: {
     width: px(300),
     height: px(40),
-    backgroundColor: '#ABABAB',
+    backgroundColor: '#E7912D',
     borderRadius: px(22),
     marginTop: px(350),
     marginBottom: px(22),
     alignSelf: 'center',
   },
   cameraStyle: {
-    width: px(98),
-    height: px(98),
+    // width: px(98),
+    // height: px(98),
+    width: px(250),
+    height: px(250),
     position: 'relative',
     left: '50%',
-    marginLeft: px(-49),
-    marginTop: px(-135),
+    marginLeft: px(-125),
+    marginTop: px(-210),
   },
   cardSample: {
     width: px(258),
