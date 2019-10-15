@@ -154,8 +154,8 @@ android {
         applicationId "com.thinktank.jubaopen"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10004
-        versionName "1.00.04"
+        versionCode 10005
+        versionName "1.00.05"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

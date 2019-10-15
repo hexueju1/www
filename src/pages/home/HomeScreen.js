@@ -52,10 +52,7 @@ export default class HomeScreen extends React.Component {
 
   applyNow = () => {
     if (LoginManager.isLogin()) {
-      MyHttpUtils.fetchRequest('post', endpoint.user.checkApply).then((responseJson) => {
-        // 能运行到这里说明可以borrow
-        this.props.navigation.navigate('PermissionRequest')
-      })
+      this.props.navigation.navigate('PermissionRequest')
     } else {
       this.props.navigation.navigate('Login')
     }
@@ -173,11 +170,6 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    MyHttpUtils.fetchRequest('post', endpoint.index.index).then((responseJson) => {
-      this.setState({
-        maxCanBorrow: responseJson.data.max_money,
-      })
-    })
     if (isDebug()) {
       setTimeout(() => {
         if (LocalConfigManager.debugScreen) {

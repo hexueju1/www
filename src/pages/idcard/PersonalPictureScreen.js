@@ -63,7 +63,7 @@ export default class PersonalPictureScreen extends BaseScreen {
   }
 
   autoUpload = () => {
-    MyHttpUtils.fetchRequest('post', endpoint.oss.get_signature).then((responseJson) => {
+    MyHttpUtils.fetchRequest('post', endpoint.common.oss_signature).then((responseJson) => {
       this.setState({ status: false })
       uploadFileToOss(
         responseJson,

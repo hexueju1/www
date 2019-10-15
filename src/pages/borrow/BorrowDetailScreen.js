@@ -90,7 +90,7 @@ export default class BorrowDetailScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
-    MyHttpUtils.fetchRequest('post', endpoint.borrow.detail, { type: 0, ordersn: this.sn }).then((responseJson) => {
+    MyHttpUtils.fetchRequest('post', endpoint.user.borrowDetail, { type: 0, ordersn: this.sn }).then((responseJson) => {
       let detail = responseJson.data.detail
       this.setState({
         status: detail.status,

@@ -83,7 +83,7 @@ export default class MsgDetailScreen extends BaseScreen {
     }
 }
                      * */
-    MyHttpUtils.fetchRequest('post', endpoint.user.messageDetails, { id: this.messageId }).then((responseJson) => {
+    MyHttpUtils.fetchRequest('post', endpoint.message.detail, { id: this.messageId }).then((responseJson) => {
       let detail = responseJson.data
       this.setState({
         title: detail.title,

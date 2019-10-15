@@ -40,7 +40,7 @@ class BorrowList extends Component {
                 <View style={{ width: px(1), height: px(46), backgroundColor: '#F0F0F0', marginTop: px(29) }}></View>
                 <View style={styles.right}>
                   <Text style={styles.textstyle}>借款天数</Text>
-                  <Text style={{ color: '#ABABAB', fontSize: sp(22), paddingLeft: px(55), paddingTop: px(10) }}>{setitem.days}</Text>
+                  <Text style={{ color: '#ABABAB', fontSize: sp(22), paddingLeft: px(55), paddingTop: px(10) }}>{setitem.borrowing_days}</Text>
                 </View>
               </View>
               <View style={styles.bottom}>

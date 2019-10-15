@@ -85,7 +85,7 @@ export default class BankInfoScreen extends BaseScreen {
     super.componentDidMount()
     MyHttpUtils.fetchRequest('post', endpoint.user.bankinfo).then((responseJson) => {
       this.setState({
-        datalist: responseJson.data.rows,
+        datalist: [responseJson.data],
       })
     })
   }

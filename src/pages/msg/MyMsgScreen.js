@@ -90,9 +90,9 @@ export default class MyMsgScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
-    MyHttpUtils.fetchRequest('post', endpoint.user.get_msg_list).then((responseJson) => {
+    MyHttpUtils.fetchRequest('post', endpoint.message.list).then((responseJson) => {
       this.setState({
-        datalist: responseJson.data.rows,
+        datalist: responseJson.data.data,
       })
     })
   }

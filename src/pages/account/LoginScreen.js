@@ -36,13 +36,13 @@ export default class LoginScreen extends BaseScreen {
   }
 
   login = () => {
-    MyHttpUtils.fetchRequest('post', endpoint.user.mobilelogin, {
+    MyHttpUtils.fetchRequest('post', endpoint.user.login, {
       mobile: this.state.phone,
       captcha: this.state.phoneCode,
       applogin: '1',
     }).then((responseJson) => {
       showToast('登录成功')
-      LoginManager.afterLogin(responseJson.data.userinfo, true)
+      LoginManager.afterLogin(responseJson.data, true)
       this.props.navigation.goBack()
     })
   }

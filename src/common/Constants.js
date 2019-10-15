@@ -98,33 +98,29 @@ export const endpoint = {
     bind: 'bank/bind',
   },
   user: {
-    checkApply: 'user/checkApply',
-    mobilelogin: 'user/mobilelogin',
-    get_msg_list: 'user/get_msg_list',
-    messageDetails: 'user/messageDetails',
-    checkAuthentication: 'user/checkAuthentication',
+    login: 'user/login',
+    detail: 'user/detail',
+    checkAuthentication: 'user/auth_status',
     bankinfo: 'user/bankinfo',
+    borrowList: 'user/borrow/list',
+    borrowDetail: 'user/borrow/detail',
+    billMonth: 'user/bill/month',
+    billYear: 'user/bill/year',
+  },
+  message: {
+    list: 'message/list',
+    check: 'message/check',
+    detail: 'message/detail',
   },
   borrow: {
-    // type 还款1 借款0 page
-    get_list: 'borrow/get_list',
-    // ordersn type
-    detail: 'borrow/detail',
-    before_borrow: 'borrow/before_borrow',
-    productInfo: 'borrow/productInfo',
-    borrow: 'borrow/borrow',
+    before_borrow: 'borrow/detail',
+    productInfo: 'borrow/product',
+    borrow: 'borrow/apply',
   },
   common: {
     get_kefu: 'common/get_kefu',
-    /**
-     *  "data": {
-        "city": "上海市"
-    }
-     */
     get_location: 'common/get_location',
-  },
-  oss: {
-    get_signature: 'oss/get_signature',
+    oss_signature: 'common/oss_signature',
   },
   liveness: {
     check_identity: 'liveness/check_identity',
