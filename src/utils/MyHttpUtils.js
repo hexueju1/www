@@ -115,9 +115,13 @@ class MyHttpUtils {
             MyHttpUtils.log('success fetch data')
             MyHttpUtils.log(responseJson)
             // 服务器返回错误信息
-            // { code: 0, msg: '发送频繁，请稍后再试！', time: '1564134222', data: null }
-            if (responseJson.code == 0) {
-              showErrorToast(responseJson.msg)
+            /**{
+    "status": "error",
+    "code": "422",
+    "message": "请输入正确的手机号!"
+} */
+            if (responseJson.code != 200) {
+              showErrorToast(responseJson.message)
               reject(responseJson)
               return
             }
