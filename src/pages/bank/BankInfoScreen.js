@@ -64,7 +64,12 @@ export default class BankInfoScreen extends BaseScreen {
   render() {
     return (
       <View style={styles.main_container}>
-        <TabHeader text="我的卡片" />
+        <TabHeader
+          text="我的卡片"
+          onPress={() => {
+            this.props.navigation.goBack()
+          }}
+        />
         <FlatList
           data={this.state.datalist}
           renderItem={this.renderItem}

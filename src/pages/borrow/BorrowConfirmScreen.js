@@ -39,7 +39,12 @@ export default class BorrowConfirmScreen extends BaseScreen {
   render() {
     return (
       <View style={styles.main_container}>
-        <TabHeader text="借款" />
+        <TabHeader
+          text="借款"
+          onPress={() => {
+            this.props.navigation.navigate('Home')
+          }}
+        />
         <ScrollView>
           <View style={styles.content}>
             <Text style={{ color: '#666666', fontSize: sp(12), fontWeight: 'bold' }}>当前可借多少（元）</Text>

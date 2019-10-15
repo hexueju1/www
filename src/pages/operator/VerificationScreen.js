@@ -46,7 +46,12 @@ export default class VerificationScreen extends BaseScreen {
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <TabHeader text="运行商认证" />
+        <TabHeader
+          text="运行商认证"
+          onPress={() => {
+            this.props.navigation.goBack()
+          }}
+        />
         {/* 动态密码框 */}
         <View style={styles.countdowninput}>
           <CountDownInput

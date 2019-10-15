@@ -175,7 +175,12 @@ export default class PermissionRequestScreen extends BaseScreen {
     return (
       <View style={styles.main_container}>
         <ScrollView>
-          <TabHeader text="借款服务协议" />
+          <TabHeader
+            text="借款服务协议"
+            onPress={() => {
+              this.props.navigation.goBack()
+            }}
+          />
           <View>
             {/* 借款协议头部 */}
             <View style={styles.topcontent}>

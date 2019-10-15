@@ -35,7 +35,12 @@ export default class RepaymentScreen extends React.Component {
     return (
       <View style={styles.main_container}>
                 {/* 统一头部 */}
-        <TabHeader text="借款" />
+        <TabHeader
+          text="借款"
+          onPress={() => {
+            this.props.navigation.goBack()
+          }}
+        />
                 
         <ScrollView
           style={{

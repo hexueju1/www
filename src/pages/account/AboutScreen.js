@@ -54,7 +54,12 @@ export default class AboutScreen extends BaseScreen {
   render() {
     return (
       <View style={styles.main_container}>
-        <TabHeader text="关于我们" />
+        <TabHeader
+          text="关于我们"
+          onPress={() => {
+            this.props.navigation.goBack()
+          }}
+        />
         <ScrollView>
           <Text>{this.state.status}</Text>
           <Image style={{ width: px(61), height: px(61), alignSelf: 'center' }} source={images.about_icon} />

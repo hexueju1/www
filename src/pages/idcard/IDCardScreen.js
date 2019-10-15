@@ -100,7 +100,12 @@ export default class IDCardScreen extends BaseScreen {
     return (
       <View style={styles.main_container}>
         <StatusBar backgroundColor={color.transparent} barStyle="dark-content" translucent={true} />
-        <TabHeader text="身份认证" />
+        <TabHeader
+          text="身份认证"
+          onPress={() => {
+            this.props.navigation.navigate('Home')
+          }}
+        />
         {/* 身份认证文字内容 */}
         {showcontent}
         {/* 身份证图片 */}

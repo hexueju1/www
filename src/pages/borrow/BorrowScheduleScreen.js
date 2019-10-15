@@ -51,7 +51,12 @@ export default class BorrowScheduleScreen extends BaseScreen {
     }
     return (
       <View style={styles.main_container}>
-        <TabHeader text="借款进度" />
+        <TabHeader
+          text="借款进度"
+          onPress={() => {
+            this.props.navigation.goback()
+          }}
+        />
         <ScrollView>
           <View style={styles.content}>
             <Image style={{ width: px(60), height: px(60), marginTop: px(16) }} source={images.acceptance} />

@@ -52,7 +52,12 @@ export default class BorrowDetailScreen extends BaseScreen {
   render() {
     return (
       <View style={styles.main_container}>
-        <TabHeader text="详情" />
+        <TabHeader
+          text="详情"
+          onPress={() => {
+            this.props.navigation.goback()
+          }}
+        />
         {/* <Text>{this.state.status}</Text> */}
         <View style={styles.content}>
           <Image style={{ width: px(68), height: px(88), alignSelf: 'center', marginTop: px(24) }} source={images.small_payoff} />

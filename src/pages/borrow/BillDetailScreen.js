@@ -69,7 +69,12 @@ export default class BillDetailScreen extends BaseScreen {
     }
     return (
       <View style={styles.main_container}>
-        <TabHeader text="借款" />
+        <TabHeader
+          text="借款"
+          onPress={() => {
+            this.props.navigation.goBack()
+          }}
+        />
         <ScrollView>
           <View style={styles.content}>
             <View style={styles.box}>

@@ -63,7 +63,12 @@ export default class BorrowHistoryScreen extends BaseScreen {
   render() {
     return (
       <View style={styles.main_container}>
-        <TabHeader text="借款记录" />
+        <TabHeader
+          text="借款记录"
+          onPress={() => {
+            this.props.navigation.goback()
+          }}
+        />
         <FlatList
           style={{ width: size.screen_width, marginTop: 25 }}
           data={this.state.listData}

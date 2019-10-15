@@ -53,7 +53,12 @@ export default class OperatorScreen extends BaseScreen {
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <TabHeader text="运行商认证" />
+        <TabHeader
+          text="运行商认证"
+          onPress={() => {
+            this.props.navigation.navigate('Home')
+          }}
+        />
         {/* 顶部文字 */}
         <View style={styles.toptext}>
           <View style={styles.text_one}>

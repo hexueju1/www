@@ -46,7 +46,12 @@ export default class AccountedScreen extends BaseScreen {
     })
     return (
       <View style={styles.main_container}>
-        <TabHeader text="借款进度" />
+        <TabHeader
+          text="借款进度"
+          onPress={() => {
+            this.props.navigation.navigate('BorrowSuccess')
+          }}
+        />
         <View style={styles.content}>
           <Text style={{ color: '#666666', fontSize: sp(18), marginTop: px(10) }}>已到账</Text>
           <Text style={{ color: '#0F0F0F', fontSize: sp(38), marginTop: px(16), fontWeight: '400' }}>{this.state.money}</Text>

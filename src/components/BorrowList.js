@@ -22,7 +22,7 @@ class BorrowList extends Component {
         <View>
           {/* <Text>{setitem.titgoods_namele}</Text> */}
           <View style={styles.datestyle}>
-            <Text>{setitem.date}</Text>
+            <Text style={{ alignSelf: 'center' }}>{setitem.date}</Text>
             <Image style={styles.pic_style} source={images.successed} />
           </View>
           <View style={styles.bodystyle}>
@@ -69,6 +69,8 @@ var styles = StyleSheet.create({
   pic_style: {
     width: px(20),
     height: px(20),
+    alignSelf: 'center',
+    marginLeft: px(5),
   },
   bodystyle: {
     height: px(180),

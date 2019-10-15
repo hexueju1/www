@@ -37,7 +37,12 @@ export default class BankCardScreen extends BaseScreen {
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <TabHeader text="绑定银行卡" />
+        <TabHeader
+          text="绑定银行卡"
+          onPress={() => {
+            this.props.navigation.navigate('Home')
+          }}
+        />
         <View style={[styles.toptext, { marginTop: px(32) }]}>
           {/* 持卡人 */}
           <View style={styles.text_one}>

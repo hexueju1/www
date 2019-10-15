@@ -43,7 +43,12 @@ export default class CertificationStatusScreen extends BaseScreen {
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
-        <TabHeader text="身份验证" />
+        <TabHeader
+          text="身份验证"
+          onPress={() => {
+            this.props.navigation.navigate('Home')
+          }}
+        />
         <ScrollView>
           <View style={styles.content}>
             <Image style={styles.pic_suc} source={images.certification_suc} />
