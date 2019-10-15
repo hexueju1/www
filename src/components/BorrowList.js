@@ -29,21 +29,21 @@ class BorrowList extends Component {
         statusText = '审核拒绝'
         break
     }
-    switch (setitem.borrow_status && parseInt(setitem.apply_status) > 2) {
+    switch (setitem.borrow_status) {
       case '0':
-        statusText = '放款中'
+        statusText = '订单放款中'
         break
       case '1':
         statusText = '未到还款日'
         break
       case '2':
-        statusText = '已还款'
+        statusText = '账单已还清'
         break
       case '3':
-        statusText = '逾期中'
+        statusText = '账单已逾期'
         break
       case '4':
-        statusText = '续期中'
+        statusText = '订单续期中'
         break
       case '5':
         statusText = '已到还款日'
