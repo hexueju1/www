@@ -5,10 +5,11 @@ import { px, sp } from '../utils/Device'
 import { endpoint, images } from '../common/Constants'
 
 class BorrowList extends Component {
+  static statusText = ''
   static defaultProps = {
     // 返回默认的一些属性值
     defaultColor_time: '#ECAC3A',
-    borrow_money: '借款金额',
+    apply_borrow: '',
     borrow_days: '',
     setitem: ['123', '123'],
   }
@@ -17,12 +18,43 @@ class BorrowList extends Component {
   }
   render() {
     const { setitem } = this.props
+    switch (setitem.apply_status) {
+      case '0':
+        statusText = '审核中'
+        break
+      case '1':
+        statusText = '审核通过'
+        break
+      case '2':
+        statusText = '审核拒绝'
+        break
+    }
+    switch (setitem.borrow_status && parseInt(setitem.apply_status) > 2) {
+      case '0':
+        statusText = '放款中'
+        break
+      case '1':
+        statusText = '未到还款日'
+        break
+      case '2':
+        statusText = '已还款'
+        break
+      case '3':
+        statusText = '逾期中'
+        break
+      case '4':
+        statusText = '续期中'
+        break
+      case '5':
+        statusText = '已到还款日'
+        break
+    }
     return (
       <TouchableWithoutFeedback style={{ flexDirection: 'row', justifyContent: 'center' }} onPress={this.props.onPress}>
         <View>
           {/* <Text>{setitem.titgoods_namele}</Text> */}
           <View style={styles.datestyle}>
-            <Text style={{ alignSelf: 'center' }}>{setitem.date}</Text>
+            <Text style={{ alignSelf: 'center' }}>{setitem.create_time.substr(0, 10)}</Text>
             <Image style={styles.pic_style} source={images.successed} />
           </View>
           <View style={styles.bodystyle}>
@@ -34,7 +66,7 @@ class BorrowList extends Component {
                 <View style={styles.left}>
                   <Text style={styles.textstyle}>借款金额</Text>
                   <Text style={{ color: '#F8A900', fontWeight: 'bold', fontSize: sp(22), paddingLeft: px(20), paddingTop: px(10) }}>
-                    ¥{setitem.borrow_money}
+                    ¥{setitem.apply_borrow}
                   </Text>
                 </View>
                 <View style={{ width: px(1), height: px(46), backgroundColor: '#F0F0F0', marginTop: px(29) }}></View>
@@ -45,9 +77,11 @@ class BorrowList extends Component {
               </View>
               <View style={styles.bottom}>
                 <Image style={{ margin: px(7), width: px(27), height: px(30) }} source={images.small_payoff} />
-                <Text style={{ fontSize: sp(16), alignSelf: 'center' }}>账单已还清</Text>
+                <Text style={{ fontSize: sp(16), alignSelf: 'center' }}>{statusText}</Text>
                 <Text style={{ color: '#666666', fontSize: sp(10), alignSelf: 'center', marginLeft: px(50) }}>还款时间</Text>
-                <Text style={{ color: '#666666', fontSize: sp(10), alignSelf: 'center', marginLeft: px(10) }}>{setitem.date}</Text>
+                <Text style={{ color: '#666666', fontSize: sp(10), alignSelf: 'center', marginLeft: px(10) }}>
+                  {setitem.check_time.substr(0, 10)}
+                </Text>
               </View>
             </View>
           </View>

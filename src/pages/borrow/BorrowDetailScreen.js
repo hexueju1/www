@@ -45,7 +45,7 @@ export default class BorrowDetailScreen extends BaseScreen {
       apply_borrow: 2,
       createtime: 2,
       checktime: 2,
-      statusText: '账单已还清',
+      statusText: '',
     }
   }
 
@@ -55,7 +55,7 @@ export default class BorrowDetailScreen extends BaseScreen {
         <TabHeader
           text="详情"
           onPress={() => {
-            this.props.navigation.goback()
+            this.props.navigation.goBack()
           }}
         />
         {/* <Text>{this.state.status}</Text> */}
@@ -90,16 +90,48 @@ export default class BorrowDetailScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
-    MyHttpUtils.fetchRequest('post', endpoint.user.borrowDetail, { type: 0, ordersn: this.sn }).then((responseJson) => {
-      let detail = responseJson.data.detail
+    MyHttpUtils.fetchRequest('post', endpoint.user.borrowDetail, { ordersn: this.sn }).then((responseJson) => {
+      // let detail = responseJson.data.detail
+      let detail = responseJson
       this.setState({
         status: detail.status,
-        ordersn: detail.ordersn,
-        goods_name: detail.goods_name,
-        apply_borrow: detail.apply_borrow,
-        createtime: detail.createtime,
-        checktime: detail.checktime,
+        ordersn: detail.data.data.ordersn,
+        goods_name: detail.data.data.goods_name,
+        apply_borrow: detail.data.data.apply_borrow,
+        createtime: detail.data.data.createtime,
+        checktime: detail.data.data.checktime,
       })
+      switch (detail.data.data.apply_status) {
+        case '0':
+          this.setState({ statusText: '审核中' })
+          break
+        case '1':
+          this.setState({ statusText: '审核通过' })
+          break
+        case '2':
+          this.setState({ statusText: '审核拒绝' })
+          break
+      }
+      switch (detail.data.data.borrow_status && detail.data.data.apply_status > 2) {
+        case '0':
+          this.setState({ statusText: '放款中' })
+          break
+        case '1':
+          this.setState({ statusText: '未到还款日' })
+          break
+        case '2':
+          this.setState({ statusText: '已还款' })
+          break
+        case '3':
+          this.setState({ statusText: '逾期中' })
+          break
+        case '4':
+          this.setState({ statusText: '续期中' })
+          break
+        case '5':
+          this.setState({ statusText: '已到还款日' })
+          break
+      }
     })
   }
 

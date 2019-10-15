@@ -98,7 +98,12 @@ export default class PersonalPictureScreen extends BaseScreen {
     let bottontext = this.state.status == true ? '上传本人照片' : '下一步'
     return (
       <View style={styles.main_container}>
-        <TabHeader text="身份认证" />
+        <TabHeader
+          text="身份认证"
+          onPress={() => {
+            this.props.navigation.goBack()
+          }}
+        />
         {/* 身份认证文字内容 */}
         {showcontent}
         {/* 本人照片 */}

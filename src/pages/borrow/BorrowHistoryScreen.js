@@ -38,6 +38,7 @@ export default class BorrowHistoryScreen extends BaseScreen {
     super(props)
     this.state = {
       listData: [],
+      statusText: '',
     }
   }
 
@@ -66,7 +67,7 @@ export default class BorrowHistoryScreen extends BaseScreen {
         <TabHeader
           text="借款记录"
           onPress={() => {
-            this.props.navigation.goback()
+            this.props.navigation.goBack()
           }}
         />
         <FlatList
@@ -86,9 +87,8 @@ export default class BorrowHistoryScreen extends BaseScreen {
     super.componentDidMount()
     // 借款记录1 申请0
     MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { page: 1, type: this.props.type }).then((responseJson) => {
-      this.setState({
-        listData: responseJson.data.data,
-      })
+      let detail = responseJson.data.data
+      this.setState({ listData: detail })
     })
   }
 

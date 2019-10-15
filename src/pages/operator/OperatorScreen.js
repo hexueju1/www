@@ -31,18 +31,20 @@ import { px, sp } from '../../utils/Device'
 import { endpoint, images } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
-import { showToast } from '../../utils/MyToastUtils'
+import { showToast, showLoading, hideLoading } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
+import CountDownInput from '../../components/CountDownInput'
 
 export default class OperatorScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {
-      operator: '中国移动',
-      tel: '1881256354',
+      // operator: '中国移动',
+      tel: '18816236937',
       text: '123456',
       allow_status: false,
       button_status: true,
+      move: '',
     }
   }
   allow_pic = () => {
@@ -50,6 +52,15 @@ export default class OperatorScreen extends BaseScreen {
     this.setState({ button_status: !this.state.button_status })
   }
 
+  getCode = () => {
+    showLoading('11111')
+    setTimeout(()=>hideLoading(),1000)
+    
+  }
+
+  upda = () => {
+    MyHttpUtils.fetchRequest('post', endpoint.collect.collectgethc, {})
+  }
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
@@ -61,10 +72,10 @@ export default class OperatorScreen extends BaseScreen {
         />
         {/* 顶部文字 */}
         <View style={styles.toptext}>
-          <View style={styles.text_one}>
+          {/* <View style={styles.text_one}>
             <Text style={styles.textstyle}>运营商</Text>
             <Text style={styles.textstyle_right}>{this.state.operator}</Text>
-          </View>
+          </View> */}
           <View style={styles.text_one}>
             <Text style={styles.textstyle}>电话</Text>
             <Text style={styles.textstyle_right}>{this.state.tel}</Text>
@@ -78,6 +89,25 @@ export default class OperatorScreen extends BaseScreen {
           keyboardType="numeric"
           onChangeText={(text) => this.setState({ phoneCode: text })}
         />
+        {/* 动态密码 */}
+        <View style={styles.countdowninput}>
+          <CountDownInput
+            // endpoint={endpoint.sms.send}
+            style={{ borderBottomColor: '#000000' }}
+            placeholder={'请输入动态密码'}
+            placeholderTextColor={'#ABABAB'}
+            label={'获取密码'}
+            labelColor={'#E7912D'}
+            value={this.state.move}
+            keyboardType="numeric"
+            httpParams={{
+              event: 'mobilelogin',
+              mobile: this.state.phone,
+            }}
+            onChangeText={(text) => this.setState({ move: text })}
+            onPress={() => this.getCode()}
+          />
+        </View>
         {/* 协议阅读选择 */}
         <View style={styles.permission}>
           <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => this.allow_pic()}>
@@ -98,18 +128,30 @@ export default class OperatorScreen extends BaseScreen {
         <Button
           disabled={this.state.button_status}
           style={[styles.button, { backgroundColor: this.state.allow_status === false ? '#ABABAB' : '#E7912D' }]}
-          onPress={() => {
-            this.props.navigation.navigate('Verification')
-          }}
+          onPress={
+            () => this.upda()
+            // this.props.navigation.navigate('BankCard')
+          }
         >
           <Text style={{ fontSize: px(16) }}>确认</Text>
         </Button>
+        <View style={{ marginLeft: px(41), marginTop: px(27) }}>
+          <Text style={{ color: '#ABABAB', fontSize: sp(10) }}>如果忘记您的服务密码</Text>
+          <Text style={{ color: '#ABABAB', fontSize: sp(10), marginTop: px(11) }}>移动用户：请联系10086进行咨询</Text>
+          <Text style={{ color: '#ABABAB', fontSize: sp(10), marginTop: px(11) }}>联通用户：请联系10010进行咨询</Text>
+          <Text style={{ color: '#ABABAB', fontSize: sp(10), marginTop: px(11) }}>电信用户：请联系10000进行咨询</Text>
+        </View>
       </SafeAreaView>
     )
   }
 
   componentDidMount() {
     super.componentDidMount()
+    MyHttpUtils.fetchRequest('post', endpoint.user.userinfo).then((responseJson) => {
+      this.setState({
+        tel: responseJson.data.userinfo.mobile,
+      })
+    })
   }
 
   componentWillUnmount() {
@@ -126,7 +168,7 @@ var styles = StyleSheet.create({
   toptext: {
     marginHorizontal: px(20),
     marginTop: px(32),
-    height: px(90),
+    height: px(45),
     backgroundColor: '#FDFDFD',
     borderRadius: px(8),
   },
@@ -174,5 +216,16 @@ var styles = StyleSheet.create({
     borderRadius: px(22),
     justifyContent: 'center',
     alignSelf: 'center',
+  },
+  countdowninput: {
+    marginHorizontal: px(20),
+    width: px(334),
+    height: px(50),
+    backgroundColor: '#FDFDFD',
+    borderRadius: px(8),
+    borderWidth: px(1),
+    borderColor: '#ABABAB',
+    marginTop: px(16),
+    marginBottom: px(16),
   },
 })
