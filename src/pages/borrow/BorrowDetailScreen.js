@@ -46,19 +46,13 @@ export default class BorrowDetailScreen extends BaseScreen {
       createtime: 2,
       checktime: 2,
       statusText: '',
+      days: '',
     }
   }
 
   render() {
-    return (
-      <View style={styles.main_container}>
-        <TabHeader
-          text="详情"
-          onPress={() => {
-            this.props.navigation.goBack()
-          }}
-        />
-        {/* <Text>{this.state.status}</Text> */}
+    let shoecontent =
+      this.state.apply_status == '0' || this.state.apply_status == '2' ? (
         <View style={styles.content}>
           <Image style={{ width: px(68), height: px(88), alignSelf: 'center', marginTop: px(24) }} source={images.small_payoff} />
           <Text style={{ alignSelf: 'center', marginBottom: px(30) }}>{this.state.statusText}</Text>
@@ -84,6 +78,41 @@ export default class BorrowDetailScreen extends BaseScreen {
             <Text style={styles.value}>{this.state.ordersn}</Text>
           </View>
         </View>
+      ) : (
+        <View style={styles.content}>
+          <Image style={{ width: px(68), height: px(88), alignSelf: 'center', marginTop: px(24) }} source={images.small_payoff} />
+          <Text style={{ alignSelf: 'center', marginBottom: px(30) }}>{this.state.statusText}</Text>
+          <View style={styles.line}>
+            <Text style={styles.title}>订单编号</Text>
+            <Text style={styles.value}>{this.state.ordersn}</Text>
+          </View>
+          <View style={styles.line}>
+            <Text style={styles.title}>产品名称</Text>
+            <Text style={styles.value}>{this.state.goods_name}</Text>
+          </View>
+          <View style={styles.line}>
+            <Text style={styles.title}>申请金额</Text>
+            <Text style={styles.value}>{this.state.apply_borrow}</Text>
+          </View>
+          <View style={styles.line}>
+            <Text style={styles.title}>申请天数</Text>
+            <Text style={styles.value}>{this.state.days}天</Text>
+          </View>
+          <View style={styles.line}>
+            <Text style={styles.title}>申请时间</Text>
+            <Text style={styles.value}>{this.state.createtime}</Text>
+          </View>
+        </View>
+      )
+    return (
+      <View style={styles.main_container}>
+        <TabHeader
+          text="详情"
+          onPress={() => {
+            this.props.navigation.goBack()
+          }}
+        />
+        {shoecontent}
       </View>
     )
   }
@@ -100,6 +129,7 @@ export default class BorrowDetailScreen extends BaseScreen {
         apply_borrow: detail.data.data.apply_borrow,
         createtime: detail.data.data.createtime,
         checktime: detail.data.data.checktime,
+        days: detail.data.data.days,
       })
       switch (detail.data.data.apply_status) {
         case '0':
@@ -112,25 +142,27 @@ export default class BorrowDetailScreen extends BaseScreen {
           this.setState({ statusText: '审核拒绝' })
           break
       }
-      switch (detail.data.data.borrow_status) {
-        case '0':
-          this.setState({ statusText: '放款中' })
-          break
-        case '1':
-          this.setState({ statusText: '未到还款日' })
-          break
-        case '2':
-          this.setState({ statusText: '账单已还清' })
-          break
-        case '3':
-          this.setState({ statusText: '账单已逾期' })
-          break
-        case '4':
-          this.setState({ statusText: '续期中' })
-          break
-        case '5':
-          this.setState({ statusText: '已到还款日' })
-          break
+      if (detail.data.data.apply_status == '1') {
+        switch (detail.data.data.borrow_status) {
+          case '0':
+            this.setState({ statusText: '放款中' })
+            break
+          case '1':
+            this.setState({ statusText: '未到还款日' })
+            break
+          case '2':
+            this.setState({ statusText: '账单已还清' })
+            break
+          case '3':
+            this.setState({ statusText: '账单已逾期' })
+            break
+          case '4':
+            this.setState({ statusText: '续期中' })
+            break
+          case '5':
+            this.setState({ statusText: '已到还款日' })
+            break
+        }
       }
     })
   }

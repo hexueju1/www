@@ -20,34 +20,38 @@ class BorrowList extends Component {
     const { setitem } = this.props
     switch (setitem.apply_status) {
       case '0':
-        statusText = '审核中'
+        statusText = '订单审核中'
+        setitem.check_time = ''
         break
       case '1':
         statusText = '审核通过'
         break
       case '2':
         statusText = '审核拒绝'
+        setitem.check_time = ''
         break
     }
-    switch (setitem.borrow_status) {
-      case '0':
-        statusText = '订单放款中'
-        break
-      case '1':
-        statusText = '未到还款日'
-        break
-      case '2':
-        statusText = '账单已还清'
-        break
-      case '3':
-        statusText = '账单已逾期'
-        break
-      case '4':
-        statusText = '订单续期中'
-        break
-      case '5':
-        statusText = '已到还款日'
-        break
+    if (setitem.apply_status == '1') {
+      switch (setitem.borrow_status) {
+        case '0':
+          statusText = '订单放款中'
+          break
+        case '1':
+          statusText = '未到还款日'
+          break
+        case '2':
+          statusText = '账单已还清'
+          break
+        case '3':
+          statusText = '账单已逾期'
+          break
+        case '4':
+          statusText = '订单续期中'
+          break
+        case '5':
+          statusText = '已到还款日'
+          break
+      }
     }
     return (
       <TouchableWithoutFeedback style={{ flexDirection: 'row', justifyContent: 'center' }} onPress={this.props.onPress}>

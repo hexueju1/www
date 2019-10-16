@@ -86,7 +86,7 @@ export default class BorrowHistoryScreen extends BaseScreen {
   componentDidMount() {
     super.componentDidMount()
     // 借款记录1 申请0
-    MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { page: 1, type: this.props.type }).then((responseJson) => {
+    MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { limit: 500 }).then((responseJson) => {
       let detail = responseJson.data.data
       this.setState({ listData: detail })
     })
