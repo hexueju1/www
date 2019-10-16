@@ -13,6 +13,47 @@ import MyStoreManager from '../common/MyStoreManager'
 import { event, localStore, endpoint } from '../common/Constants'
 
 class LoginManager {
+  /**
+{
+    "status": "success",
+    "code": 200,
+    "data": {
+        "id": 65538,
+        "number": "0758136429",
+        "admin_id": 120,
+        "group_id": 1,
+        "username": "18963985141",
+        "mobile": "18963985141",
+        "token": "ifimeGZXSrWBVkOnlpMpgbpEkaAEBdrX",
+        "status": "normal",
+        "realname": "严张锦",
+        "address": "湖北省荆州市荆州区东堤街190号",
+        "id_number": "421003199110081593",
+        "id_authority": "",
+        "id_timelimit": "",
+        "verification": "",
+        "face_validate": "0",
+        "mobile_validate": "normal",
+        "card_validate": "normal",
+        "face_time": 1564495158,
+        "collect_time": 0,
+        "card_time": 1564496040,
+        "bank_name": "招商银行",
+        "card_number": "6214851211358317",
+        "card_type": "借记卡",
+        "card_name": "银联IC金卡",
+        "lng": "120.663915",
+        "lat": "0.00",
+        "money": "0.00",
+        "score": 0,
+        "borrow_limit": "2099.99",
+        "borrow_days": "6",
+        "borrow_total": 8,
+        "using_quota": 1600.01,
+        "createtime": "2019-07-22 22:18:57"
+    }
+}
+   */
   userInfo = undefined
 
   constructor() {

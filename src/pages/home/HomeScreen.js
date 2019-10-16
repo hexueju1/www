@@ -17,7 +17,7 @@ import { endpoint } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import LoginManager from '../../common/LoginManager'
 import { event, localStore, images } from '../../common/Constants'
-import { showLoading } from '../../utils/MyToastUtils'
+import { showLoading, showToast } from '../../utils/MyToastUtils'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -28,7 +28,7 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      maxCanBorrow: '20,000.00',
+      maxCanBorrow: '*',
       location: '苏州',
     }
 
@@ -169,7 +169,41 @@ export default class HomeScreen extends React.Component {
     )
   }
 
+  /**
+   * {
+    "status": "success",
+    "code": 200,
+    "data": {
+        "unread_msg": 0,
+        "expire_borrow_sn": 0,
+        "up_high_limit": 0
+    }
+}
+   */
+  checkmsg = () => {
+    if (LoginManager.isLogin()) {
+      this.setState({
+        maxCanBorrow: LoginManager.userInfo.borrow_limit,
+      })
+      MyHttpUtils.fetchRequest('post', endpoint.message.check).then((responseJson) => {
+        if (responseJson.data.expire_borrow_sn) {
+          // TODO show dialog
+          showToast('您有已逾期订单，请及时还款')
+        }
+      })
+    } else {
+      this.setState({
+        maxCanBorrow: '20,000.00',
+      })
+    }
+  }
+
   componentDidMount() {
+    this.checkmsg()
+    let that = this
+    this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
+      that.checkmsg()
+    })
     if (isDebug()) {
       setTimeout(() => {
         if (LocalConfigManager.debugScreen) {
