@@ -33,7 +33,7 @@ export default class MeScreen extends BaseScreen {
       maxCanBorrow: '***',
       displayName: '***',
       loginOrLogout: '登录',
-      number: '10',
+      number: '*',
     }
   }
 
@@ -174,10 +174,11 @@ export default class MeScreen extends BaseScreen {
     this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
       that.setState({
         isLogin: LoginManager.isLogin(),
-        displayName: LoginManager.isLogin() ? LoginManager.userInfo.nickname : '***',
+        displayName: LoginManager.isLogin() ? LoginManager.userInfo.username : '***',
         displayTitle: LoginManager.isLogin() ? '我的额度' : '请登录个人用户',
         loginOrLogout: LoginManager.isLogin() ? '注销登录' : '登录',
         maxCanBorrow: LoginManager.isLogin() ? LoginManager.userInfo.borrow_limit : '***',
+        number: LoginManager.isLogin() ? LoginManager.userInfo.borrowed_times : '*',
       })
     })
   }

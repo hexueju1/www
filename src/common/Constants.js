@@ -50,6 +50,9 @@ export const images = {
   sucess: require('../images/png/success.png'),
   acceptance: require('../images/png/Acceptance.png'),
   header_back: require('../images/png/back.png'),
+  overtime_pic: require('../images/png/overtime_pic.png'),
+  refuse_pic: require('../images/png/refuse_pic.png'),
+  using_pic: require('../images/png/using_pic.png'),
 }
 
 if (styleType == 1) {
@@ -64,6 +67,7 @@ export const event = {
   // 登录状态发生变化
   loginStatusChange: 'loginStatusChange',
   needLogout: 'needLogout',
+  loginStatusChange_borrow: 'loginStatusChange_borrow',
 }
 
 /**
@@ -106,6 +110,7 @@ export const endpoint = {
     borrowDetail: 'user/borrow/detail',
     billMonth: 'user/bill/month',
     billYear: 'user/bill/year',
+    userinfo: 'user/userinfo',
   },
   message: {
     list: 'message/list',
@@ -124,5 +129,8 @@ export const endpoint = {
   },
   liveness: {
     check_identity: 'liveness/check_identity',
+  },
+  collect: {
+    collectgethc: 'collect/gethc',
   },
 }
