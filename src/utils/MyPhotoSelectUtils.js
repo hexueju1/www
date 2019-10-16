@@ -42,6 +42,9 @@ function handleResult(resolve, reject, response) {
 export function launchCamera() {
   return new Promise(function(resolve, reject) {
     ImagePicker.launchCamera(options, (response) => {
+      for (let [key, value] of Object.entries(response)) {
+        console.log(key + ':' + value)
+      }
       handleResult(resolve, reject, response)
     })
   })
