@@ -33,16 +33,17 @@ class TabHeader extends Component {
         <Text style={styles.HeaderText}>{text}</Text>
         <TouchableOpacity
           style={{ left: 0, position: 'absolute', top: this.state.TabHeight + TabHeaderTextPaddingTop - 4 }}
-          onPress={this.props.onPress}
+          // onPress={this.props.onPress}
+          onPress={this.props.onPress == '' ? this.gotoBack : this.props.onPress}
         >
           <Image style={styles.LeftImage} source={images.header_back}></Image>
         </TouchableOpacity>
       </View>
     )
   }
-  // gotoBack = () => {
-  //   this.props.navigation.goBack()
-  // }
+  gotoBack = () => {
+    this.props.navigation.goBack()
+  }
 }
 
 const styles = StyleSheet.create({

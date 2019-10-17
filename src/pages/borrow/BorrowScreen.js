@@ -126,7 +126,7 @@ export default class BorrowScreen extends React.Component {
 
   componentDidMount() {
     let that = this
-    this.listener = DeviceEventEmitter.addListener(event.loginStatusChange_borrow, function() {
+    this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
       if (LoginManager.isLogin()) {
         MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { limit: 500 }).then((responseJson) => {
           that.setState({
@@ -153,7 +153,7 @@ export default class BorrowScreen extends React.Component {
               break
           }
           if (responseJson.data.data[0].apply_status == '1') {
-            switch (detail.data.data.borrow_status) {
+            switch (responseJson.data.data.borrow_status) {
               case '0':
                 that.setState({ is_payoff: '放款中' })
                 break

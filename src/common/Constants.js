@@ -67,7 +67,6 @@ export const event = {
   // 登录状态发生变化
   loginStatusChange: 'loginStatusChange',
   needLogout: 'needLogout',
-  loginStatusChange_borrow: 'loginStatusChange_borrow',
 }
 
 /**

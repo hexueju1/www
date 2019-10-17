@@ -70,7 +70,6 @@ class LoginManager {
     this.userInfo = responseJson
     MyHttpUtils.token = this.userInfo.token
     DeviceEventEmitter.emit(event.loginStatusChange)
-    DeviceEventEmitter.emit(event.loginStatusChange_borrow)
     // 保存到本地
     if (updateLocal) {
       MyStoreManager.storeData(localStore.userInfo, this.userInfo)
@@ -91,7 +90,6 @@ class LoginManager {
     this.userInfo = undefined
     MyHttpUtils.token = undefined
     DeviceEventEmitter.emit(event.loginStatusChange)
-    DeviceEventEmitter.emit(event.loginStatusChange_borrow)
     MyStoreManager.delete(localStore.userInfo).then(() => {})
   }
 
