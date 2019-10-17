@@ -27,7 +27,7 @@ export default class BorrowConfirmScreen extends BaseScreen {
     this.state = {
       money: '*',
       time: '*',
-      typeName: '借款用途',
+      typeName: '日常消费',
       bank_name: LoginManager.userInfo.bank_name + LoginManager.userInfo.card_number,
       type: 0,
       showTypePop: false,
@@ -54,8 +54,9 @@ export default class BorrowConfirmScreen extends BaseScreen {
               <Text style={{ color: color.primary_bg, fontSize: px(10) }}>随借随还更灵活</Text>
             </View>
             <View style={styles.list}>
-              <SettingItem text={'借多久'} rightText={this.state.time} hideImage />
-              <SettingItem text={'借款用途'} rightText={this.state.typeName} onPress={() => this._openTypeDialog()} />
+              <SettingItem text={'借多久'} rightText={this.state.time + '天'} hideImage />
+              {/* <SettingItem text={'借款用途'} rightText={this.state.typeName} onPress={() => this._openTypeDialog()} /> */}
+              <SettingItem text={'借款用途'} rightText={this.state.typeName} hideImage />
               <SettingItem text={'选择账户'} rightText={this.state.bank_name} hideImage />
             </View>
             <Button
@@ -95,14 +96,16 @@ export default class BorrowConfirmScreen extends BaseScreen {
     super.componentDidMount()
     MyHttpUtils.fetchRequest('post', endpoint.borrow.before_borrow).then((responseJson) => {
       this.setState({
-        money: responseJson.data.info.money,
+        money: responseJson.data.product.money,
+        time: responseJson.data.product.days,
+        bank_name: responseJson.data.user.bank_name + '(' + responseJson.data.user.card_number.substr(15, 4) + ')',
       })
     })
-    MyHttpUtils.fetchRequest('post', endpoint.borrow.productInfo).then((responseJson) => {
-      this.setState({
-        time: responseJson.data.config.days + '天',
-      })
-    })
+    // MyHttpUtils.fetchRequest('post', endpoint.borrow.productInfo).then((responseJson) => {
+    //   this.setState({
+    //     time: responseJson.data.config.days + '天',
+    //   })
+    // })
   }
 
   componentWillUnmount() {

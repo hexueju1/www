@@ -13,35 +13,10 @@ import { Button, Text } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
 import TabHeader from '../../common/TabHeader'
-import { images } from '../../common/Constants'
+import { endpoint, images } from '../../common/Constants'
 import { color } from '../../common/MyStyle'
+import MyHttpUtils from '../../utils/MyHttpUtils'
 
-let Info = [
-  {
-    title: '借多久',
-    desc: '1周',
-  },
-  {
-    title: '收款账户',
-    desc: '中国银行（123）',
-  },
-  {
-    title: '借款人',
-    desc: '张*',
-  },
-  {
-    title: '证件号',
-    desc: '12*********9870',
-  },
-  {
-    title: '借款用途',
-    desc: '装修',
-  },
-  {
-    title: '贷款人',
-    desc: '闪贷',
-  },
-]
 export default class BillDetailScreen extends BaseScreen {
   constructor(props) {
     super(props)
@@ -49,6 +24,32 @@ export default class BillDetailScreen extends BaseScreen {
       money: '2,000.00',
       allow_status: false,
       button_status: true,
+      Info: [
+        {
+          title: '借多久',
+          desc: '',
+        },
+        {
+          title: '收款账户',
+          desc: '',
+        },
+        {
+          title: '借款人',
+          desc: '',
+        },
+        {
+          title: '证件号',
+          desc: '',
+        },
+        {
+          title: '借款用途',
+          desc: '',
+        },
+        {
+          title: '贷款人',
+          desc: '',
+        },
+      ],
     }
   }
 
@@ -56,13 +57,20 @@ export default class BillDetailScreen extends BaseScreen {
     this.setState({ allow_status: !this.state.allow_status })
     this.setState({ button_status: !this.state.button_status })
   }
+  change_Info = (index, value) => {
+    var items = this.state.Info
+    items[index].desc = value
+    this.setState({
+      Info: items,
+    })
+  }
   render() {
     let list = []
-    for (let i in Info) {
+    for (let i in this.state.Info) {
       var item = (
         <View key={i} style={[styles.row, styles.list_item]}>
-          <Text style={styles.list_item_title}>{Info[i].title}</Text>
-          <Text style={styles.list_item_desc}>{Info[i].desc}</Text>
+          <Text style={styles.list_item_title}>{this.state.Info[i].title}</Text>
+          <Text style={styles.list_item_desc}>{this.state.Info[i].desc}</Text>
         </View>
       )
       list.push(item)
@@ -130,6 +138,17 @@ export default class BillDetailScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
+    MyHttpUtils.fetchRequest('post', endpoint.borrow.before_borrow).then((responseJson) => {
+      this.setState({
+        money: responseJson.data.product.money,
+      })
+      this.change_Info(0, responseJson.data.product.days + '天')
+      this.change_Info(1, responseJson.data.user.bank_name + '(' + responseJson.data.user.card_number.substr(15, 4) + ')')
+      this.change_Info(2, responseJson.data.user.name.substr(0, 1) + '*')
+      this.change_Info(3, responseJson.data.user.card_number.substr(0, 3) + '************' + responseJson.data.user.card_number.substr(15, 4))
+      this.change_Info(4, '日常消费')
+      this.change_Info(5, responseJson.data.product.goods_name)
+    })
   }
 
   componentWillUnmount() {

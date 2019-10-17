@@ -5,7 +5,7 @@
  */
 
 import React from 'react'
-import { View, Image, StyleSheet, StatusBar, ScrollView, Text } from 'react-native'
+import { View, Image, StyleSheet, StatusBar, ScrollView, Text, DeviceEventEmitter } from 'react-native'
 import { color, size, layout, style } from '../../common/MyStyle'
 import { isDebug, LOG } from '../../utils/MyDebugUtils'
 import LocalConfigManager from '../../common/LocalConfigManager'
@@ -213,7 +213,9 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.listener.remove()
+  }
 }
 
 var styles = StyleSheet.create({
