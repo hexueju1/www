@@ -57,6 +57,7 @@ export default class BillDetailScreen extends BaseScreen {
     this.setState({ allow_status: !this.state.allow_status })
     this.setState({ button_status: !this.state.button_status })
   }
+
   change_Info = (index, value) => {
     var items = this.state.Info
     items[index].desc = value
@@ -64,6 +65,13 @@ export default class BillDetailScreen extends BaseScreen {
       Info: items,
     })
   }
+
+  request = () => {
+    MyHttpUtils.fetchRequest('post', endpoint.borrow.borrow, { data: '' }).then((responseJson) => {
+      this.props.navigation.navigate('BorrowSuccess')
+    })
+  }
+
   render() {
     let list = []
     for (let i in this.state.Info) {
@@ -124,9 +132,7 @@ export default class BillDetailScreen extends BaseScreen {
             <Button
               disabled={this.state.button_status}
               style={[styles.button, { backgroundColor: this.state.allow_status === false ? '#ABABAB' : color.primary_bg }]}
-              onPress={() => {
-                this.props.navigation.navigate('BorrowSuccess')
-              }}
+              onPress={() => this.request()}
             >
               <Text style={{ fontSize: px(16) }}>下一步</Text>
             </Button>
