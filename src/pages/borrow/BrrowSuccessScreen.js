@@ -14,37 +14,46 @@ import { px, sp } from '../../utils/Device'
 import TabHeader from '../../common/TabHeader'
 import { images } from '../../common/Constants'
 
-let Info = [
-  {
-    title: '借款金额',
-    desc: '2,000.00',
-  },
-  {
-    title: '预计到账时间',
-    desc: '30分钟内到账',
-  },
-  {
-    title: '收款账户',
-    desc: '中国银(123)',
-  },
-  {
-    title: '贷款人',
-    desc: '闪贷',
-  },
-]
 export default class BorrowSuccessScreen extends BaseScreen {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      Info: [
+        {
+          title: '借款金额',
+          desc: '2,000.00',
+        },
+        {
+          title: '预计到账时间',
+          desc: '30分钟内到账',
+        },
+        {
+          title: '收款账户',
+          desc: '中国银(123)',
+        },
+        {
+          title: '贷款人',
+          desc: '闪贷',
+        },
+      ],
+    }
+  }
+
+  change_Info = (index, value) => {
+    var items = this.state.Info
+    items[index].desc = value
+    this.setState({
+      Info: items,
+    })
   }
 
   render() {
     let list = []
-    for (let i in Info) {
+    for (let i in this.state.Info) {
       var item = (
         <View key={i} style={[styles.row, styles.list_item]}>
-          <Text style={styles.list_item_title}>{Info[i].title}</Text>
-          <Text style={styles.list_item_desc}>{Info[i].desc}</Text>
+          <Text style={styles.list_item_title}>{this.state.Info[i].title}</Text>
+          <Text style={styles.list_item_desc}>{this.state.Info[i].desc}</Text>
         </View>
       )
       list.push(item)
@@ -80,6 +89,11 @@ export default class BorrowSuccessScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
+    MyHttpUtils.fetchRequest('post', endpoint.borrow.before_borrow).then((responseJson) => {
+      this.change_Info(0, responseJson.data.product.money + '元')
+      this.change_Info(2, responseJson.data.user.bank_name + '(' + responseJson.data.user.card_number.substr(15, 4) + ')')
+      this.change_Info(3, responseJson.data.product.goods_name)
+    })
   }
 
   componentWillUnmount() {
