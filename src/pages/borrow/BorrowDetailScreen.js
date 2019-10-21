@@ -52,7 +52,7 @@ export default class BorrowDetailScreen extends BaseScreen {
 
   render() {
     let shoecontent =
-      this.state.apply_status == '0' || this.state.apply_status == '2' ? (
+      this.state.borrow_status == '1' ? (
         <View style={styles.content}>
           <Image style={{ width: px(68), height: px(88), alignSelf: 'center', marginTop: px(24) }} source={images.small_payoff} />
           <Text style={{ alignSelf: 'center', marginBottom: px(30) }}>{this.state.statusText}</Text>
@@ -128,8 +128,9 @@ export default class BorrowDetailScreen extends BaseScreen {
         goods_name: detail.data.data.goods_name,
         apply_borrow: detail.data.data.apply_borrow,
         createtime: detail.data.data.createtime,
-        checktime: detail.data.data.checktime,
+        checktime: detail.data.data.expirationtime,
         days: detail.data.data.days,
+        borrow_status: detail.data.data.borrow_status,
       })
       switch (detail.data.data.apply_status) {
         case '0':
@@ -143,23 +144,23 @@ export default class BorrowDetailScreen extends BaseScreen {
           break
       }
       if (detail.data.data.apply_status == '1') {
-        switch (detail.data.data.borrow_status) {
-          case '0':
+        switch (detail.data.data.status) {
+          case 0:
             this.setState({ statusText: '放款中' })
             break
-          case '1':
+          case 1:
             this.setState({ statusText: '未到还款日' })
             break
-          case '2':
+          case 2:
             this.setState({ statusText: '账单已还清' })
             break
-          case '3':
+          case 3:
             this.setState({ statusText: '账单已逾期' })
             break
-          case '4':
+          case 4:
             this.setState({ statusText: '续期中' })
             break
-          case '5':
+          case 5:
             this.setState({ statusText: '已到还款日' })
             break
         }

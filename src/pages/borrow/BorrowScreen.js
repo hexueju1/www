@@ -130,16 +130,11 @@ export default class BorrowScreen extends React.Component {
       if (LoginManager.isLogin()) {
         MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { limit: 500 }).then((responseJson) => {
           that.setState({
-            // hasBorrowed: LoginManager.isLogin() ? responseJson.data.data[0].apply_borrow : '0.00',
-            // borrowDays: LoginManager.isLogin() ? responseJson.data.data[0].borrowing_days : '0',
-            // Date_main: LoginManager.isLogin() ? responseJson.data.data[0].create_time.substr(0, 10) : '',
-            // Date_detail: LoginManager.isLogin() ? responseJson.data.data[0].create_time.substr(11, 5) : '',
-            // payoffDay: LoginManager.isLogin() ? responseJson.data.data[0].check_time.substr(5, 5) : '',
             hasBorrowed: responseJson.data.data[0].apply_borrow,
             borrowDays: responseJson.data.data[0].borrowing_days,
             Date_main: responseJson.data.data[0].create_time.substr(0, 10),
             Date_detail: responseJson.data.data[0].create_time.substr(11, 5),
-            payoffDay: responseJson.data.data[0].check_time.substr(5, 5),
+            payoffDay: responseJson.data.data[0].expiration_time.substr(5, 5),
           })
           switch (responseJson.data.data[0].apply_status) {
             case '0':
@@ -153,23 +148,23 @@ export default class BorrowScreen extends React.Component {
               break
           }
           if (responseJson.data.data[0].apply_status == '1') {
-            switch (responseJson.data.data.borrow_status) {
-              case '0':
+            switch (responseJson.data.data[0].status) {
+              case 0:
                 that.setState({ is_payoff: '放款中' })
                 break
-              case '1':
+              case 1:
                 that.setState({ is_payoff: '未到还款日' })
                 break
-              case '2':
+              case 2:
                 that.setState({ is_payoff: '账单已还清' })
                 break
-              case '3':
+              case 3:
                 that.setState({ is_payoff: '账单已逾期' })
                 break
-              case '4':
+              case 4:
                 that.setState({ is_payoff: '续期中' })
                 break
-              case '5':
+              case 5:
                 that.setState({ is_payoff: '已到还款日' })
                 break
             }

@@ -32,23 +32,23 @@ class BorrowList extends Component {
         break
     }
     if (setitem.apply_status == '1') {
-      switch (setitem.borrow_status) {
-        case '0':
+      switch (setitem.status) {
+        case 0:
           statusText = '订单放款中'
           break
-        case '1':
+        case 1:
           statusText = '未到还款日'
           break
-        case '2':
+        case 2:
           statusText = '账单已还清'
           break
-        case '3':
+        case 3:
           statusText = '账单已逾期'
           break
-        case '4':
+        case 4:
           statusText = '订单续期中'
           break
-        case '5':
+        case 5:
           statusText = '已到还款日'
           break
       }
@@ -84,7 +84,7 @@ class BorrowList extends Component {
                 <Text style={{ fontSize: sp(16), alignSelf: 'center' }}>{statusText}</Text>
                 <Text style={{ color: '#666666', fontSize: sp(10), alignSelf: 'center', marginLeft: px(50) }}>还款时间</Text>
                 <Text style={{ color: '#666666', fontSize: sp(10), alignSelf: 'center', marginLeft: px(10) }}>
-                  {setitem.check_time.substr(0, 10)}
+                  {setitem.expiration_time.substr(0, 10)}
                 </Text>
               </View>
             </View>
