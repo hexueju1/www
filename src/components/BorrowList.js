@@ -33,22 +33,22 @@ class BorrowList extends Component {
     }
     if (setitem.apply_status == '1') {
       switch (setitem.status) {
-        case 0:
+        case '0':
           statusText = '订单放款中'
           break
-        case 1:
+        case '1':
           statusText = '未到还款日'
           break
-        case 2:
+        case '2':
           statusText = '账单已还清'
           break
-        case 3:
+        case '3':
           statusText = '账单已逾期'
           break
-        case 4:
+        case '4':
           statusText = '订单续期中'
           break
-        case 5:
+        case '5':
           statusText = '已到还款日'
           break
       }

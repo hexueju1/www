@@ -145,22 +145,22 @@ export default class BorrowDetailScreen extends BaseScreen {
       }
       if (detail.data.data.apply_status == '1') {
         switch (detail.data.data.status) {
-          case 0:
+          case '0':
             this.setState({ statusText: '放款中' })
             break
-          case 1:
+          case '1':
             this.setState({ statusText: '未到还款日' })
             break
-          case 2:
+          case '2':
             this.setState({ statusText: '账单已还清' })
             break
-          case 3:
+          case '3':
             this.setState({ statusText: '账单已逾期' })
             break
-          case 4:
+          case '4':
             this.setState({ statusText: '续期中' })
             break
-          case 5:
+          case '5':
             this.setState({ statusText: '已到还款日' })
             break
         }
