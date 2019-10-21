@@ -50,7 +50,9 @@ class MyHttpUtils {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       platform: Platform.OS,
       client: '290135',
-      token: this.token,
+    }
+    if (this.token) {
+      header['token'] = this.token
     }
     MyHttpUtils.log('header:' + JSON.stringify(header))
     let body = ''
@@ -101,7 +103,7 @@ class MyHttpUtils {
           } else {
             MyHttpUtils.log('request error: ')
             MyHttpUtils.log(response)
-            if (response.status == 401) {
+            if (response.code == 401) {
               showErrorToast('请登录')
               DeviceEventEmitter.emit(event.needLogout)
               reject()
@@ -123,6 +125,12 @@ class MyHttpUtils {
             if (responseJson.code != 200) {
               showErrorToast(responseJson.message)
               reject(responseJson)
+              return
+            }
+            if (responseJson.code == 401) {
+              showErrorToast('请登录')
+              DeviceEventEmitter.emit(event.needLogout)
+              reject()
               return
             }
             resolve(responseJson)
