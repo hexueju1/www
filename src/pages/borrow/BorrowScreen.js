@@ -113,10 +113,10 @@ export default class BorrowScreen extends React.Component {
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-                showToast('全部还款')
+                this.props.navigation.navigate('BorrowHistory')
               }}
             >
-              <Text style={styles.buttonText}>{'提前还款'}</Text>
+              <Text style={styles.buttonText}>{'全部还款'}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

@@ -26,11 +26,12 @@ import {
 import { Card, CardItem, Body, Tab, Tabs, Container, Header, Content, Button, Text, Form, Item, Input, Label, Picker, Icon } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import CommonNoData from '../../components/CommonNoData'
-import { size } from '../../common/MyStyle'
+import { size, color } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { endpoint, images } from '../../common/Constants'
 import TabHeader from '../../common/TabHeader'
 import { px, sp } from '../../utils/Device'
+import { showToast } from '../../utils/MyToastUtils'
 
 export default class BorrowDetailScreen extends BaseScreen {
   sn = ''
@@ -104,6 +105,19 @@ export default class BorrowDetailScreen extends BaseScreen {
           </View>
         </View>
       )
+    let button =
+      this.state.borrow_status == '1' || this.state.borrow_status == '3' || this.state.borrow_status == '4' || this.state.borrow_status == '5' ? (
+        <View style={[styles.touchableopacity]}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.props.navigation.navigate('Repayment')
+            }}
+          >
+            <Text style={styles.buttonText}>{'立即还款'}</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null
     return (
       <View style={styles.main_container}>
         <TabHeader
@@ -113,6 +127,7 @@ export default class BorrowDetailScreen extends BaseScreen {
           }}
         />
         {shoecontent}
+        {button}
       </View>
     )
   }
@@ -197,5 +212,23 @@ var styles = StyleSheet.create({
   value: {
     marginLeft: px(19),
     fontSize: sp(12),
+  },
+  button: {
+    height: px(48),
+    width: px(268),
+    borderRadius: px(24),
+    borderColor: color.white,
+    borderWidth: 1,
+    backgroundColor: '#F58C00',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    position: 'relative',
+    left: '50%',
+    marginLeft: px(-134),
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#FDFDFD',
+    fontSize: sp(18),
   },
 })

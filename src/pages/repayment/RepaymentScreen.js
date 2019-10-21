@@ -34,15 +34,14 @@ export default class RepaymentScreen extends React.Component {
   render() {
     return (
       <View style={styles.main_container}>
-                {/* 统一头部 */}
         <TabHeader
           text="借款"
           onPress={() => {
             this.props.navigation.goBack()
           }}
         />
-                
-        <ScrollView
+
+        {/* <ScrollView
           style={{
             position: 'absolute',
             width: '100%',
@@ -52,26 +51,21 @@ export default class RepaymentScreen extends React.Component {
           }}
           contentContainerStyle={{}}
         >
-                    {/* 中间的大图片 */}
-                    
+
           <ImageBackground style={[styles.main]} source={images.repay_main}>
-                        {/* 下拉框 */}
-                        
+
             <Picker
               selectedValue={this.state.language}
               style={[styles.select]}
               onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}
             >
-                            
               <Picker.Item value="pay_all" label="全额还款" />
-                            
+
               <Picker.Item value="oneday" label="续期一天" />
-                            
+
               <Picker.Item value="period" label="续期一期" />
-                          
             </Picker>
-                        {/* 图片中的数据定位 */}
-                        
+
             <View
               style={{
                 height: '100%',
@@ -80,34 +74,23 @@ export default class RepaymentScreen extends React.Component {
                 marginLeft: px(103),
               }}
             >
-                            <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>2019年08月08日</Text>
-                            <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>15:30</Text>
-                          
+              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>2019年08月08日</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>15:30</Text>
             </View>
-                      
           </ImageBackground>
-                    
+
           <View style={{ position: 'relative' }}>
-                        
             <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(44), position: 'absolute', top: px(-118), left: px(30) }}>
-                            ¥{this.state.hasBorrowed}
-                          
+              ¥{this.state.hasBorrowed}
             </Text>
-                      
           </View>
-                    {/* 支付按钮 */}
-                    
+
           <View style={[styles.touchableopacity]}>
-                        
             <TouchableOpacity style={styles.button} onPress={() => {}}>
-                            <Text style={styles.buttonText}>{'立即支付'}</Text>
-                          
+              <Text style={styles.buttonText}>{'立即支付'}</Text>
             </TouchableOpacity>
-                      
           </View>
-                  
-        </ScrollView>
-              
+        </ScrollView> */}
       </View>
     )
   }
