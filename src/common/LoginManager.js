@@ -56,6 +56,22 @@ class LoginManager {
    */
   userInfo = undefined
 
+  /**
+
+  {
+    "sms":[],
+    "contacts":[],
+    "apps":[],
+    "deviceInfo":{}
+  }
+   */
+  phoneData = {
+    sms: [],
+    contacts: [],
+    apps: [],
+    deviceInfo: {},
+  }
+
   constructor() {
     LOG('LoginManager constructor')
     let that = this

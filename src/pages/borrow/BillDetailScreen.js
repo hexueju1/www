@@ -16,6 +16,7 @@ import TabHeader from '../../common/TabHeader'
 import { endpoint, images } from '../../common/Constants'
 import { color } from '../../common/MyStyle'
 import MyHttpUtils from '../../utils/MyHttpUtils'
+import LoginManager from '../../common/LoginManager'
 
 export default class BillDetailScreen extends BaseScreen {
   constructor(props) {
@@ -67,7 +68,7 @@ export default class BillDetailScreen extends BaseScreen {
   }
 
   request = () => {
-    MyHttpUtils.fetchRequest('post', endpoint.borrow.borrow, { data: '' }).then((responseJson) => {
+    MyHttpUtils.fetchRequest('post', endpoint.borrow.borrow, { data: JSON.stringify(LoginManager.phoneData) }).then((responseJson) => {
       this.props.navigation.navigate('BorrowSuccess')
     })
   }

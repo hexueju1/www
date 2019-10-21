@@ -37,6 +37,7 @@ import Contacts from 'react-native-contacts'
 import mynative from '../../components/native/mynative'
 import PermissionManager from '../../common/PermissionManager'
 import DeviceInfo from 'react-native-device-info'
+import LoginManager from '../../common/LoginManager'
 
 export default class PermissionRequestScreen extends BaseScreen {
   constructor(props) {
@@ -45,6 +46,8 @@ export default class PermissionRequestScreen extends BaseScreen {
   }
 
   toNextStep = () => {
+    console.log('toNextStep')
+    console.log(LoginManager.phoneData)
     MyHttpUtils.fetchRequest('post', endpoint.user.checkAuthentication).then((responseJson) => {
       let url = ''
       // 0 需进行人证核验 1 需进行运营商认证 2 无需认证  3 bank
@@ -72,17 +75,19 @@ export default class PermissionRequestScreen extends BaseScreen {
   getInfoWithoutPermission = () => {
     // 不要用1024，因为厂商显示就是这样做的
     let gbSize = 1000 * 1000 * 1000
-    console.log('start getInfoWithoutPermission')
     DeviceInfo.getBatteryLevel().then((batteryLevel) => {
       // 0.75 means 75%
+      LoginManager.phoneData['deviceInfo']['batteryLevel'] = batteryLevel
       console.log('batteryLevel' + batteryLevel)
     })
     DeviceInfo.getBrand().then((brand) => {
       // iOS: "Apple"
       // Android: "xiaomi"
+      LoginManager.phoneData['deviceInfo']['brand'] = brand
       console.log('brand' + brand)
     })
     DeviceInfo.getModel().then((model) => {
+      LoginManager.phoneData['deviceInfo']['model'] = model
       console.log('model' + model)
     })
     DeviceInfo.getPowerState().then((state) => {
@@ -91,38 +96,44 @@ export default class PermissionRequestScreen extends BaseScreen {
       //   batteryState: 'unplugged',
       //   lowPowerMode: false,
       // }
+      LoginManager.phoneData['deviceInfo']['state'] = state
       console.log('state' + state)
     })
     DeviceInfo.getSystemVersion().then((systemVersion) => {
       // iOS: "11.0"
       // Android: "7.1.1"
+      LoginManager.phoneData['deviceInfo']['systemVersion'] = systemVersion
       console.log('systemVersion' + systemVersion)
     })
     DeviceInfo.getTotalDiskCapacity().then((capacity) => {
       // Android: 17179869184
       // iOS: 17179869184
+      LoginManager.phoneData['deviceInfo']['capacity'] = capacity / gbSize
       console.log('capacity' + capacity / gbSize)
     })
     DeviceInfo.getFreeDiskStorage().then((freeDiskStorage) => {
       // Android: 17179869184
       // iOS: 17179869184
+      LoginManager.phoneData['deviceInfo']['freeDiskStorage'] = freeDiskStorage / gbSize
       console.log('freeDiskStorage' + freeDiskStorage / gbSize)
     })
     DeviceInfo.getTotalMemory().then((totalMemory) => {
       // 1995018240
       // Gets the device total memory, in bytes.
+      LoginManager.phoneData['deviceInfo']['totalMemory'] = totalMemory / gbSize
       console.log('totalMemory' + totalMemory / gbSize)
     })
     DeviceInfo.getUsedMemory().then((usedMemory) => {
       // 23452345
+      LoginManager.phoneData['deviceInfo']['usedMemory'] = usedMemory / gbSize
       console.log('usedMemory' + usedMemory / gbSize)
     })
     if (Platform.OS == 'android') {
       mynative.getOtherAppInfo((data) => {
         console.log(data)
+        LoginManager.phoneData['apps'] = data
       })
     }
-    console.log('end getInfoWithoutPermission')
   }
 
   getAndroidCallLog = () => {
@@ -130,7 +141,8 @@ export default class PermissionRequestScreen extends BaseScreen {
       console.log(flag)
       if (flag) {
         mynative.getPhoneLog((data) => {
-          console.log(data)
+          // console.log(data)
+          LoginManager.phoneData['phoneLog'] = data
         })
         this.toNextStep()
       }
@@ -141,7 +153,8 @@ export default class PermissionRequestScreen extends BaseScreen {
     Permissions.request(['readSms']).then((response) => {
       if (response == 'authorized') {
         mynative.getSMS((data) => {
-          console.log(data)
+          // console.log(data)
+          LoginManager.phoneData['sms'] = data
         })
         this.getAndroidCallLog()
       }
@@ -152,7 +165,7 @@ export default class PermissionRequestScreen extends BaseScreen {
     // 请求权限并收集数据
     // https://github.com/react-native-community/react-native-permissions
     Permissions.request('contacts').then((response) => {
-      console.log(response)
+      // console.log(response)
       // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
       if (response == 'authorized') {
         Contacts.getAll((err, contacts) => {
@@ -160,7 +173,8 @@ export default class PermissionRequestScreen extends BaseScreen {
             showToast('信息获取出错，请重试')
             return
           }
-          console.log(contacts)
+          LoginManager.phoneData['contacts'] = contacts
+          // console.log(contacts)
         })
         if (Platform.OS == 'android') {
           this.getAndroidSMS()
