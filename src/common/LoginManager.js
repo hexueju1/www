@@ -117,6 +117,21 @@ class LoginManager {
       }
     })
   }
+
+  /**
+   * 从服务器获取最新的个人信息
+   */
+  updateProfileByServer = () => {
+    if (this.isLogin()) {
+      console.log('updateProfileByServer......')
+      MyHttpUtils.fetchRequest('post', endpoint.user.detail).then((responseJson) => {
+        this.userInfo = responseJson.data
+        MyHttpUtils.token = this.userInfo.token
+        DeviceEventEmitter.emit(event.userProfileUpdate)
+        MyStoreManager.storeData(localStore.userInfo, this.userInfo)
+      })
+    }
+  }
 }
 
 export default new LoginManager()

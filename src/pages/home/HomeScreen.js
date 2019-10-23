@@ -33,22 +33,7 @@ export default class HomeScreen extends React.Component {
     }
 
     this.willFocusSubscription = this.props.navigation.addListener('didFocus', (payload) => {
-      console.log('didFocus HomeScreen 1111')
-
-      if (LoginManager.isLogin()) {
-        MyHttpUtils.fetchRequest('post', endpoint.borrow.before_borrow).then((responseJson) => {
-          this.setState({
-            maxCanBorrow: responseJson.data.user.borrow_limit,
-          })
-          console.log(responseJson.data.user.borrow_limit)
-        })
-      } else {
-        this.setState({
-          maxCanBorrow: '20,000.00',
-        })
-      }
-      console.log(LoginManager.userInfo.borrow_limit)
-      console.log('didFocus HomeScreen 2222')
+      LoginManager.updateProfileByServer()
       navigator.geolocation.getCurrentPosition((location) => {
         // longitude: location.coords.longitude,//经度
         // latitude: location.coords.latitude,//纬度
@@ -61,7 +46,6 @@ export default class HomeScreen extends React.Component {
           })
         })
       })
-      console.log('didFocus HomeScreen 3333')
     })
   }
 
@@ -195,7 +179,7 @@ export default class HomeScreen extends React.Component {
     }
 }
    */
-  checkmsg = () => {
+  checkmsg = (fromLogin = true) => {
     if (LoginManager.isLogin()) {
       this.setState({
         maxCanBorrow: LoginManager.userInfo.borrow_limit,
@@ -219,6 +203,9 @@ export default class HomeScreen extends React.Component {
     this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
       that.checkmsg()
     })
+    this.listenerForUserProfile = DeviceEventEmitter.addListener(event.userProfileUpdate, function() {
+      that.checkmsg(false)
+    })
     if (isDebug()) {
       setTimeout(() => {
         if (LocalConfigManager.debugScreen) {
@@ -231,6 +218,7 @@ export default class HomeScreen extends React.Component {
   componentWillUnmount() {
     this.listener.remove()
     this.willFocusSubscription.remove()
+    this.listenerForUserProfile.remove()
   }
 }
 

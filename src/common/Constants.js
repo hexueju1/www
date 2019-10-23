@@ -66,6 +66,8 @@ if (styleType == 1) {
 export const event = {
   // 登录状态发生变化
   loginStatusChange: 'loginStatusChange',
+  // 用户信息刷新
+  userProfileUpdate: 'userProfileUpdate',
   needLogout: 'needLogout',
 }
 
