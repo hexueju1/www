@@ -25,6 +25,8 @@ import MyHttpUtils from '../../utils/MyHttpUtils'
  * 写页面的时候，可变的数据不要写死，统一放在state里面引用
  *
  */
+let a = ''
+let b = ''
 export default class BorrowScreen extends React.Component {
   // props是在父组件中指定，而且一经指定，在被指定的组件的生命周期中则不再改变。
   constructor(props) {
@@ -34,55 +36,48 @@ export default class BorrowScreen extends React.Component {
       borrowDays: '0',
       Date_main: '',
       Date_detail: '',
-      is_payoff: '您还没有订单',
+      is_payoff: '',
       payoffDay: '',
     }
     this.willFocusSubscription = this.props.navigation.addListener('didFocus', (payload) => {
-      if (LoginManager.isLogin()) {
-        MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { limit: 500 }).then((responseJson) => {
-          that.setState({
-            hasBorrowed: responseJson.data.data[0].apply_borrow,
-            borrowDays: responseJson.data.data[0].borrowing_days,
-            Date_main: responseJson.data.data[0].create_time.substr(0, 10),
-            Date_detail: responseJson.data.data[0].create_time.substr(11, 5),
-            payoffDay: responseJson.data.data[0].expiration_time.substr(5, 5),
-          })
-          switch (responseJson.data.data[0].apply_status) {
-            case '0':
-              that.setState({ is_payoff: '订单审核中' })
-              break
-            case '1':
-              that.setState({ is_payoff: '审核通过' })
-              break
-            case '2':
-              that.setState({ is_payoff: '审核拒绝' })
-              break
-          }
-          if (responseJson.data.data[0].apply_status == '1') {
-            switch (responseJson.data.data[0].status) {
-              case '0':
-                that.setState({ is_payoff: '放款中' })
-                break
-              case '1':
-                that.setState({ is_payoff: '未到还款日' })
-                break
-              case '2':
-                that.setState({ is_payoff: '账单已还清' })
-                break
-              case '3':
-                that.setState({ is_payoff: '账单已逾期' })
-                break
-              case '4':
-                that.setState({ is_payoff: '续期中' })
-                break
-              case '5':
-                that.setState({ is_payoff: '已到还款日' })
-                break
-            }
-          }
-        })
-      }
+      LoginManager.updateBorrow()
     })
+  }
+
+  status_Text = (a, b) => {
+    switch (a) {
+      case '0':
+        this.setState({ is_payoff: '订单审核中' })
+        break
+      case '1':
+        this.setState({ is_payoff: '审核通过' })
+        break
+      case '2':
+        this.setState({ is_payoff: '审核拒绝' })
+        break
+    }
+    if (a == '1') {
+      switch (b) {
+        case '0':
+          this.setState({ is_payoff: '放款中' })
+          break
+        case '1':
+          this.setState({ is_payoff: '未到还款日' })
+          break
+        case '2':
+          this.setState({ is_payoff: '账单已还清' })
+          break
+        case '3':
+          this.setState({ is_payoff: '账单已逾期' })
+          break
+        case '4':
+          this.setState({ is_payoff: '续期中' })
+          break
+        case '5':
+          this.setState({ is_payoff: '已到还款日' })
+          break
+      }
+    }
   }
 
   render() {
@@ -182,39 +177,7 @@ export default class BorrowScreen extends React.Component {
             Date_detail: responseJson.data.data[0].create_time.substr(11, 5),
             payoffDay: responseJson.data.data[0].expiration_time.substr(5, 5),
           })
-          switch (responseJson.data.data[0].apply_status) {
-            case '0':
-              that.setState({ is_payoff: '订单审核中' })
-              break
-            case '1':
-              that.setState({ is_payoff: '审核通过' })
-              break
-            case '2':
-              that.setState({ is_payoff: '审核拒绝' })
-              break
-          }
-          if (responseJson.data.data[0].apply_status == '1') {
-            switch (responseJson.data.data[0].status) {
-              case '0':
-                that.setState({ is_payoff: '放款中' })
-                break
-              case '1':
-                that.setState({ is_payoff: '未到还款日' })
-                break
-              case '2':
-                that.setState({ is_payoff: '账单已还清' })
-                break
-              case '3':
-                that.setState({ is_payoff: '账单已逾期' })
-                break
-              case '4':
-                that.setState({ is_payoff: '续期中' })
-                break
-              case '5':
-                that.setState({ is_payoff: '已到还款日' })
-                break
-            }
-          }
+          that.status_Text(responseJson.data.data[0].apply_status, responseJson.data.data[0].status)
         })
       } else {
         that.setState({
@@ -227,10 +190,21 @@ export default class BorrowScreen extends React.Component {
         })
       }
     })
+    this.listenerForUserProfile = DeviceEventEmitter.addListener(event.userProfileUpdate, function() {
+      that.setState({
+        hasBorrowed: LoginManager.borrowInfo.apply_borrow,
+        borrowDays: LoginManager.borrowInfo.borrowing_days,
+        Date_main: LoginManager.borrowInfo.create_time.substr(0, 10),
+        Date_detail: LoginManager.borrowInfo.create_time.substr(11, 5),
+        payoffDay: LoginManager.borrowInfo.expiration_time.substr(5, 5),
+      })
+      that.status_Text(LoginManager.borrowInfo.apply_status, LoginManager.borrowInfo.status)
+    })
   }
 
   componentWillUnmount() {
     this.listener.remove()
+    this.listenerForUserProfile.remove()
   }
 }
 

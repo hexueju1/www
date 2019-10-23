@@ -37,20 +37,7 @@ export default class MeScreen extends BaseScreen {
       number: '*',
     }
     this.willFocusSubscription = this.props.navigation.addListener('didFocus', (payload) => {
-      if (LoginManager.isLogin()) {
-        MyHttpUtils.fetchRequest('post', endpoint.borrow.before_borrow).then((responseJson) => {
-          this.setState({
-            maxCanBorrow: responseJson.data.user.borrow_limit,
-            number: responseJson.data.user.borrowed_times,
-          })
-          console.log(responseJson.data.user.borrow_limit)
-        })
-      } else {
-        this.setState({
-          maxCanBorrow: '20,000.00',
-        })
-      }
-      console.log(LoginManager.userInfo.borrow_limit)
+      LoginManager.updateProfileByServer()
     })
   }
 
@@ -196,6 +183,12 @@ export default class MeScreen extends BaseScreen {
         loginOrLogout: LoginManager.isLogin() ? '注销登录' : '登录',
         maxCanBorrow: LoginManager.isLogin() ? LoginManager.userInfo.borrow_limit : '***',
         number: LoginManager.isLogin() ? LoginManager.userInfo.borrowed_times : '*',
+      })
+    })
+    this.listenerForUserProfile = DeviceEventEmitter.addListener(event.userProfileUpdate, function() {
+      that.setState({
+        maxCanBorrow: LoginManager.userInfo.borrow_limit,
+        number: LoginManager.userInfo.borrowed_times,
       })
     })
   }

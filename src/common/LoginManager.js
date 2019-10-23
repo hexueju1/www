@@ -55,6 +55,7 @@ class LoginManager {
 }
    */
   userInfo = undefined
+  borrowInfo = undefined
 
   /**
 
@@ -129,6 +130,16 @@ class LoginManager {
         MyHttpUtils.token = this.userInfo.token
         DeviceEventEmitter.emit(event.userProfileUpdate)
         MyStoreManager.storeData(localStore.userInfo, this.userInfo)
+      })
+    }
+  }
+  updateBorrow = () => {
+    if (this.isLogin()) {
+      console.log('updateBorrow......')
+      MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { limit: 500 }).then((responseJson) => {
+        this.borrowInfo = responseJson.data.data[0]
+        console.log(this.borrowInfo)
+        DeviceEventEmitter.emit(event.userProfileUpdate)
       })
     }
   }
