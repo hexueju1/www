@@ -12,7 +12,8 @@ import { Button, Text } from 'native-base'
 import BaseScreen from '../../components/BaseScreen'
 import { px, sp } from '../../utils/Device'
 import TabHeader from '../../common/TabHeader'
-import { images } from '../../common/Constants'
+import { images, endpoint } from '../../common/Constants'
+import MyHttpUtils from '../../utils/MyHttpUtils'
 
 export default class BorrowSuccessScreen extends BaseScreen {
   constructor(props) {

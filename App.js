@@ -66,6 +66,7 @@ const commonPages = {
   BorrowSchedule: BorrowScheduleScreen,
   AccountedS: AccountedScreen,
   Repayment: RepaymentScreen,
+  Home: HomeScreen,
 }
 
 // StackNavigator用于实现各个页面之间的跳转
