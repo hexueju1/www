@@ -8,8 +8,9 @@ import React, { Component } from 'react'
 import { TouchableHighlight, ScrollView, DeviceEventEmitter, Image, StyleSheet, Text, View, Alert, ImageBackground, StatusBar } from 'react-native'
 import BaseScreen from '../../components/BaseScreen'
 import { color, size, layout, style } from '../../common/MyStyle'
-import { event, localStore, images } from '../../common/Constants'
+import { event, localStore, images, endpoint } from '../../common/Constants'
 import LoginManager from '../../common/LoginManager'
+import MyHttpUtils from '../../utils/MyHttpUtils'
 import { isDebug } from '../../utils/MyDebugUtils'
 import SettingItem from '../../components/SettingItem'
 import SettingItemBigPic from '../../components/SettingItemBigPic'
@@ -35,6 +36,22 @@ export default class MeScreen extends BaseScreen {
       loginOrLogout: '登录',
       number: '*',
     }
+    this.willFocusSubscription = this.props.navigation.addListener('didFocus', (payload) => {
+      if (LoginManager.isLogin()) {
+        MyHttpUtils.fetchRequest('post', endpoint.borrow.before_borrow).then((responseJson) => {
+          this.setState({
+            maxCanBorrow: responseJson.data.user.borrow_limit,
+            number: responseJson.data.user.borrowed_times,
+          })
+          console.log(responseJson.data.user.borrow_limit)
+        })
+      } else {
+        this.setState({
+          maxCanBorrow: '20,000.00',
+        })
+      }
+      console.log(LoginManager.userInfo.borrow_limit)
+    })
   }
 
   render() {

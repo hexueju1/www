@@ -37,6 +37,52 @@ export default class BorrowScreen extends React.Component {
       is_payoff: '您还没有订单',
       payoffDay: '',
     }
+    this.willFocusSubscription = this.props.navigation.addListener('didFocus', (payload) => {
+      if (LoginManager.isLogin()) {
+        MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { limit: 500 }).then((responseJson) => {
+          that.setState({
+            hasBorrowed: responseJson.data.data[0].apply_borrow,
+            borrowDays: responseJson.data.data[0].borrowing_days,
+            Date_main: responseJson.data.data[0].create_time.substr(0, 10),
+            Date_detail: responseJson.data.data[0].create_time.substr(11, 5),
+            payoffDay: responseJson.data.data[0].expiration_time.substr(5, 5),
+          })
+          switch (responseJson.data.data[0].apply_status) {
+            case '0':
+              that.setState({ is_payoff: '订单审核中' })
+              break
+            case '1':
+              that.setState({ is_payoff: '审核通过' })
+              break
+            case '2':
+              that.setState({ is_payoff: '审核拒绝' })
+              break
+          }
+          if (responseJson.data.data[0].apply_status == '1') {
+            switch (responseJson.data.data[0].status) {
+              case '0':
+                that.setState({ is_payoff: '放款中' })
+                break
+              case '1':
+                that.setState({ is_payoff: '未到还款日' })
+                break
+              case '2':
+                that.setState({ is_payoff: '账单已还清' })
+                break
+              case '3':
+                that.setState({ is_payoff: '账单已逾期' })
+                break
+              case '4':
+                that.setState({ is_payoff: '续期中' })
+                break
+              case '5':
+                that.setState({ is_payoff: '已到还款日' })
+                break
+            }
+          }
+        })
+      }
+    })
   }
 
   render() {
