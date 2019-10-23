@@ -1,3 +1,7 @@
+#!/bin/sh
+
+Contents(){
+cat <<EOF >./LaunchImage/Contents.json
  {  
     "images" : [
        {
@@ -68,3 +72,22 @@
         "author" : "xcode"
     }
  }
+EOF
+}
+
+setImage(){
+    sips -z 960 640 default.png --out ./LaunchImage/Default640x960.png
+    sips -z 1136 640 default.png --out ./LaunchImage/Default640x1136.png
+    sips -z 1334 750 default.png --out ./LaunchImage/Default750x1334.png
+    sips -z 2436 1125 default.png --out ./LaunchImage/Default1125x2436.png
+    sips -z 2208 1242 default.png --out ./LaunchImage/Default1242x2208.png
+    sips -z 1792 828 default.png --out ./LaunchImage/Default828x1792.png
+    sips -z 2688 1242 default.png --out ./LaunchImage/Default1242x2688.png
+}
+
+#调用函数
+mkdir LaunchImage
+Contents
+setImage
+
+
