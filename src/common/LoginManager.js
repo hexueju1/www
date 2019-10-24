@@ -143,6 +143,29 @@ class LoginManager {
       })
     }
   }
+  status_Text = (apply, borrow) => {
+    switch (apply) {
+      case '0':
+        return '订单审核中'
+      case '1':
+        switch (borrow) {
+          case '0':
+            return '放款中'
+          case '1':
+            return '未到还款日'
+          case '2':
+            return '账单已还清'
+          case '3':
+            return '账单已逾期'
+          case '4':
+            return '续期中'
+          case '5':
+            return '已到还款日'
+        }
+      case '2':
+        return '审核拒绝'
+    }
+  }
 }
 
 export default new LoginManager()

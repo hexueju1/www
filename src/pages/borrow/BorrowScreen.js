@@ -44,42 +44,6 @@ export default class BorrowScreen extends React.Component {
     })
   }
 
-  status_Text = (a, b) => {
-    switch (a) {
-      case '0':
-        this.setState({ is_payoff: '订单审核中' })
-        break
-      case '1':
-        this.setState({ is_payoff: '审核通过' })
-        break
-      case '2':
-        this.setState({ is_payoff: '审核拒绝' })
-        break
-    }
-    if (a == '1') {
-      switch (b) {
-        case '0':
-          this.setState({ is_payoff: '放款中' })
-          break
-        case '1':
-          this.setState({ is_payoff: '未到还款日' })
-          break
-        case '2':
-          this.setState({ is_payoff: '账单已还清' })
-          break
-        case '3':
-          this.setState({ is_payoff: '账单已逾期' })
-          break
-        case '4':
-          this.setState({ is_payoff: '续期中' })
-          break
-        case '5':
-          this.setState({ is_payoff: '已到还款日' })
-          break
-      }
-    }
-  }
-
   render() {
     return (
       <View style={styles.main_container}>
@@ -176,8 +140,8 @@ export default class BorrowScreen extends React.Component {
             Date_main: responseJson.data.data[0].create_time.substr(0, 10),
             Date_detail: responseJson.data.data[0].create_time.substr(11, 5),
             payoffDay: responseJson.data.data[0].expiration_time.substr(5, 5),
+            is_payoff: LoginManager.status_Text(responseJson.data.data[0].apply_status, responseJson.data.data[0].status),
           })
-          that.status_Text(responseJson.data.data[0].apply_status, responseJson.data.data[0].status)
         })
       } else {
         that.setState({
@@ -197,8 +161,8 @@ export default class BorrowScreen extends React.Component {
         Date_main: LoginManager.borrowInfo.create_time.substr(0, 10),
         Date_detail: LoginManager.borrowInfo.create_time.substr(11, 5),
         payoffDay: LoginManager.borrowInfo.expiration_time.substr(5, 5),
+        is_payoff: LoginManager.status_Text(LoginManager.borrowInfo.apply_status, LoginManager.borrowInfo.status),
       })
-      that.status_Text(LoginManager.borrowInfo.apply_status, LoginManager.borrowInfo.status)
     })
   }
 

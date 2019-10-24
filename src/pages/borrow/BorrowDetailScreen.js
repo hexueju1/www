@@ -32,6 +32,7 @@ import { endpoint, images } from '../../common/Constants'
 import TabHeader from '../../common/TabHeader'
 import { px, sp } from '../../utils/Device'
 import { showToast } from '../../utils/MyToastUtils'
+import LoginManager from '../../common/LoginManager'
 
 export default class BorrowDetailScreen extends BaseScreen {
   sn = ''
@@ -146,40 +147,8 @@ export default class BorrowDetailScreen extends BaseScreen {
         checktime: detail.data.data.expirationtime,
         days: detail.data.data.days,
         borrow_status: detail.data.data.borrow_status,
+        statusText: LoginManager.status_Text(detail.data.data.apply_status, detail.data.data.status),
       })
-      switch (detail.data.data.apply_status) {
-        case '0':
-          this.setState({ statusText: '审核中' })
-          break
-        case '1':
-          this.setState({ statusText: '审核通过' })
-          break
-        case '2':
-          this.setState({ statusText: '审核拒绝' })
-          break
-      }
-      if (detail.data.data.apply_status == '1') {
-        switch (detail.data.data.status) {
-          case '0':
-            this.setState({ statusText: '放款中' })
-            break
-          case '1':
-            this.setState({ statusText: '未到还款日' })
-            break
-          case '2':
-            this.setState({ statusText: '账单已还清' })
-            break
-          case '3':
-            this.setState({ statusText: '账单已逾期' })
-            break
-          case '4':
-            this.setState({ statusText: '续期中' })
-            break
-          case '5':
-            this.setState({ statusText: '已到还款日' })
-            break
-        }
-      }
     })
   }
 
