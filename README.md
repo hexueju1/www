@@ -115,7 +115,7 @@ metaInfo:
 * 基准包已上传热更新后台
 * 覆盖安装没问题
 
-# 打包
+# 打包（需要先按照正常版或者商务版修改相关资源）
 
 iOS:
 * 进入ios目录下
@@ -127,6 +127,18 @@ iOS:
 Android:
 * 进入android目录下
 * 打包：./gradlew assembleReleaseChannels -PchannelList=release
+
+正常版配置：
+* Mystyle.js styleType = 0
+* 包名（Android和iOS统一） com.thinktank.jubaopen
+* 应用图标 ../切图文件/icons_backup/正常图标
+* 启动页 同上
+
+商务版配置：
+* Mystyle.js styleType = 1
+* 包名（Android和iOS统一） com.thinktank.jubaopen2
+* 应用图标 ../切图文件/icons_backup/商务版图标
+* 启动页（暂时和正常版一致）
 
 # 其他命令
 
