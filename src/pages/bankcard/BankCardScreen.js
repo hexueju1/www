@@ -56,7 +56,14 @@ export default class BankCardScreen extends BaseScreen {
             this.setState({
               idcardPath: urlPath,
             })
+            MyHttpUtils.fetchRequest('post', endpoint.risk.check_bankcard, { card_url: this.state.idcardPath }).then((responseJson) => {
+              this.setState({
+                bankCard: responseJson.data.card_number,
+                bankName: responseJson.data.bank_name,
+              })
+            })
           },
+          '_bank.jpg',
         )
       })
     })
@@ -147,7 +154,7 @@ export default class BankCardScreen extends BaseScreen {
               }}
               onSuccess={(responseJson) => {
                 console.log('fuck here')
-                this.serial_number = responseJson.data.serial_number
+                this.serial_number = responseJson.data.MCHNTSSN
                 console.log(this.serial_number)
               }}
             />
@@ -220,7 +227,7 @@ var styles = StyleSheet.create({
   button: {
     width: px(300),
     height: px(44),
-    backgroundColor: '#ABABAB',
+    backgroundColor: '#E7912D',
     borderRadius: px(22),
     justifyContent: 'center',
     alignSelf: 'center',

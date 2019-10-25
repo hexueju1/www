@@ -107,17 +107,18 @@ export function uploadFileToOss(responseJson, folder, targetUri, progressCallbac
       progressCallback(progress)
     },
     (xhr) => {
-      showToast('图片上传成功')
+      // showToast('图片上传成功')
       successCallback(urlPath)
     },
     (xhr) => {
-      showToast('图片上传成功')
+      // showToast('图片上传成功')
     },
   ).then(
     (res) => {
       // console.log(res)
     },
-    (err) => showToast('图片上传失败'),
+    (err) => {},
+    //showToast('图片上传失败'),
   )
 }
 

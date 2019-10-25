@@ -99,8 +99,8 @@ export const endpoint = {
     send: 'sms/send',
   },
   bank: {
-    send_sms: 'bank/send_sms',
-    bind: 'bank/bind',
+    send_sms: 'risk/bank_send_sms',
+    bind: 'risk/binding_bankcard',
   },
   user: {
     login: 'user/login',
@@ -133,5 +133,8 @@ export const endpoint = {
   },
   collect: {
     collectgethc: 'collect/gethc',
+  },
+  risk: {
+    check_bankcard: 'risk/check_bankcard',
   },
 }
