@@ -1,5 +1,7 @@
 import ImagePicker from 'react-native-image-picker'
 import { showToast } from './MyToastUtils'
+import MyHttpUtils from '../utils/MyHttpUtils'
+import MD5 from 'react-native-md5'
 
 /**
  *
@@ -74,7 +76,7 @@ export function showImagePicker() {
 
 // 图片上传
 export function uploadFileToOss(responseJson, folder, targetUri, progressCallback, successCallback, tail = '_front.jpg') {
-  let ossbase = responseJson.data.dir + folder + responseJson.data.number + tail
+  let ossbase = responseJson.data.dir + folder + MD5.hex_md5(MyHttpUtils.token) + '_' + new Date().getTime() + tail
   let urlPath = responseJson.data.host + ossbase
   console.log('target:' + urlPath)
 
