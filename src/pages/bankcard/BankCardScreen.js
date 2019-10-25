@@ -18,6 +18,8 @@ import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
 import CountDownInput from '../../components/CountDownInput'
 import { isDebug } from '../../utils/MyDebugUtils'
+import LoginManager from '../../common/LoginManager'
+import { launchCamera, uploadFileToOss } from '../../utils/MyPhotoSelectUtils'
 
 export default class BankCardScreen extends BaseScreen {
   // 发送验证码后获得
@@ -32,8 +34,34 @@ export default class BankCardScreen extends BaseScreen {
       tel: '',
       // 验证码
       code: '',
+      uploadProgress: 0,
+      idcardPath: '',
     }
   }
+
+  autoUpload = () => {
+    launchCamera().then((source) => {
+      MyHttpUtils.fetchRequest('post', endpoint.common.oss_signature).then((responseJson) => {
+        uploadFileToOss(
+          responseJson,
+          '/bank/',
+          source.uri,
+          (progress) => {
+            this.setState({
+              uploadProgress: progress,
+            })
+          },
+          (urlPath) => {
+            console.log('urlPath = ' + urlPath)
+            this.setState({
+              idcardPath: urlPath,
+            })
+          },
+        )
+      })
+    })
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.main_container}>
@@ -53,22 +81,22 @@ export default class BankCardScreen extends BaseScreen {
           {/* 银行卡 */}
           <View style={styles.text_one}>
             <Text style={styles.textstyle}>银行卡</Text>
+            <TextInput
+              style={styles.textstyle_right}
+              placeholder={'请输入正确的银行卡号'}
+              keyboardType="numeric"
+              placeholderTextColor={'#ABABAB'}
+              value={this.state.bankCard}
+              // secureTextEntry={true}
+              onChangeText={(text) => this.setState({ bankCard: text })}
+            />
             <TouchableOpacity
               style={{ flexDirection: 'row' }}
               onPress={() => {
-                showToast('绑定银行卡')
+                this.autoUpload()
               }}
             >
-              <TextInput
-                style={styles.textstyle_right}
-                placeholder={'请输入正确的银行卡号'}
-                keyboardType="numeric"
-                placeholderTextColor={'#ABABAB'}
-                value={this.state.bankCard}
-                // secureTextEntry={true}
-                onChangeText={(text) => this.setState({ bankCard: text })}
-              />
-              {/* <Image style={{ width: px(13), height: px(11), alignSelf: 'center' }} source={images.bank_camera} /> */}
+              <Image style={{ width: px(26), height: px(22), alignSelf: 'center' }} source={images.bank_camera} />
             </TouchableOpacity>
           </View>
 
@@ -148,6 +176,9 @@ export default class BankCardScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
+    this.setState({
+      name: LoginManager.userInfo.realname,
+    })
   }
 
   componentWillUnmount() {

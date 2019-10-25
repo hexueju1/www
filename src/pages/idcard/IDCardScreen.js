@@ -62,6 +62,7 @@ export default class IDCardScreen extends BaseScreen {
       this.setState({ status: false })
       uploadFileToOss(
         responseJson,
+        '/authentication/idcard/',
         this.state.centerImage.uri,
         (progress) => {
           this.setState({

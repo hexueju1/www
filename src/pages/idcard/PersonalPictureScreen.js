@@ -67,6 +67,7 @@ export default class PersonalPictureScreen extends BaseScreen {
       this.setState({ status: false })
       uploadFileToOss(
         responseJson,
+        '/authentication/selfie/',
         this.state.centerImage.uri,
         (progress) => {
           this.setState({
