@@ -79,6 +79,15 @@ export default class PersonalPictureScreen extends BaseScreen {
           this.setState({
             realPersonPath: urlPath,
           })
+          MyHttpUtils.fetchRequest('post', endpoint.risk.check_id_face, {
+            front_url: this.idcardPath,
+            autodyne_url: this.state.realPersonPath,
+          }).then((responseJson) => {
+            this.setState({
+              name: responseJson.data.name,
+              id: responseJson.data.number,
+            })
+          })
         },
         '_autodyne.jpg',
       )
@@ -93,7 +102,12 @@ export default class PersonalPictureScreen extends BaseScreen {
         </View>
       ) : (
         <View style={{ marginTop: px(45) }}>
-          <Text style={styles.textcontent}>上传成功</Text>
+          <Text style={styles.textleft}>
+            姓名：<Text>{this.state.name}</Text>
+          </Text>
+          <Text style={styles.textleft}>
+            身份证：<Text>{this.state.id}</Text>
+          </Text>
         </View>
       )
     let bottontext = this.state.status == true ? '上传本人照片' : '下一步'
@@ -263,5 +277,11 @@ var styles = StyleSheet.create({
     width: px(258),
     height: px(164),
     alignSelf: 'center',
+  },
+  textleft: {
+    marginTop: px(10),
+    left: '15%',
+    color: '#ABABAB',
+    fontSize: sp(16),
   },
 })

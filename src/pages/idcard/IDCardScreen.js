@@ -89,12 +89,7 @@ export default class IDCardScreen extends BaseScreen {
         </View>
       ) : (
         <View style={{ marginTop: px(45) }}>
-          <Text style={styles.textleft}>
-            姓名：<Text>{this.state.name}</Text>
-          </Text>
-          <Text style={styles.textleft}>
-            身份证：<Text>{this.state.id}</Text>
-          </Text>
+          <Text style={styles.textcontent}>上传成功</Text>
         </View>
       )
     let bottontext = this.state.status == true ? '上传身份证正面' : '下一步'
@@ -242,6 +237,11 @@ var styles = StyleSheet.create({
     marginTop: px(10),
     left: '15%',
     color: '#ABABAB',
+    fontSize: sp(16),
+  },
+  textcontent: {
+    alignSelf: 'center',
+    color: '#0F0F0F',
     fontSize: sp(16),
   },
 })
