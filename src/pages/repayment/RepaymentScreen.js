@@ -5,7 +5,7 @@
  */
 
 import React from 'react'
-import { View, Image, StyleSheet, StatusBar, ScrollView, Text, Picker, ImageBackground } from 'react-native'
+import { View, Image, StyleSheet, ScrollView, Text, Picker, ImageBackground } from 'react-native'
 import { color, size, layout, style } from '../../common/MyStyle'
 import { isDebug, LOG } from '../../utils/MyDebugUtils'
 import LocalConfigManager from '../../common/LocalConfigManager'
@@ -15,7 +15,10 @@ import { Container, Header, Content, Button } from 'native-base'
 import { blue, black } from 'ansi-colors'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import TabHeader from '../../common/TabHeader'
-import { images } from '../../common/Constants'
+import { endpoint, images } from '../../common/Constants'
+import MyHttpUtils from '../../utils/MyHttpUtils'
+import { showToast } from '../../utils/MyToastUtils'
+
 /**
  *
  *
@@ -23,13 +26,22 @@ import { images } from '../../common/Constants'
  *
  */
 export default class RepaymentScreen extends React.Component {
+  ordersn = ''
+  checktime = ''
+  apply_borrow = ''
   // props是在父组件中指定，而且一经指定，在被指定的组件的生命周期中则不再改变。
   constructor(props) {
     super(props)
+    this.ordersn = this.props.navigation.getParam('ordersn')
+    this.checktime = this.props.navigation.getParam('checktime')
+    this.apply_borrow = this.props.navigation.getParam('apply_borrow')
     this.state = {
-      hasBorrowed: '2,000.00',
-      language:'全额还款'
+      language: 0,
     }
+  }
+
+  pay = () => {
+    MyHttpUtils.fetchRequest('post', endpoint.payment.check, { ordersn: this.ordersn, type: this.state.language }).then((responseJson) => {})
   }
 
   render() {
@@ -46,27 +58,23 @@ export default class RepaymentScreen extends React.Component {
           contentContainerStyle={{}}
         >
           <ImageBackground style={[styles.main]} source={images.repay_main}>
-            <Picker
-              selectedValue={this.state.language}
-              style={styles.select}
-              onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}
-            >
-              <Picker.Item value="pay_all" label="全额还款" />
-              <Picker.Item value="oneday" label="续期一天" />
-              <Picker.Item value="period" label="续期一天" />
+            <Picker selectedValue={this.state.language} style={styles.select} onValueChange={(Value) => this.setState({ language: Value })}>
+              <Picker.Item value={0} label="全额还款" />
+              <Picker.Item value={1} label="续期一天" />
+              <Picker.Item value={2} label="续期一期" />
             </Picker>
             <View style={{ height: '100%', position: 'absolute', marginTop: px(38), marginLeft: px(103) }}>
-              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>2019年08月08日</Text>
-              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>15:30</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.checktime.substr(0, 10)}</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.checktime.substr(11, 5)}</Text>
             </View>
           </ImageBackground>
           <View style={{ position: 'relative' }}>
             <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(44), position: 'absolute', top: px(-118), left: px(30) }}>
-              ¥{this.state.hasBorrowed}
+              ¥{this.apply_borrow}
             </Text>
           </View>
           <View style={[styles.touchableopacity]}>
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <TouchableOpacity style={styles.button} onPress={this.pay}>
               <Text style={styles.buttonText}>{'立即支付'}</Text>
             </TouchableOpacity>
           </View>

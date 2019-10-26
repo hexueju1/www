@@ -138,4 +138,7 @@ export const endpoint = {
     check_bankcard: 'risk/check_bankcard',
     check_id_face: 'risk/check_id_face',
   },
+  payment: {
+    check: 'payment/check',
+  },
 }

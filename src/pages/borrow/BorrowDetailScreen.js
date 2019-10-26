@@ -112,7 +112,11 @@ export default class BorrowDetailScreen extends BaseScreen {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              this.props.navigation.navigate('Repayment')
+              this.props.navigation.navigate('Repayment', {
+                ordersn: this.state.ordersn,
+                checktime: this.state.checktime,
+                apply_borrow: this.state.apply_borrow,
+              })
             }}
           >
             <Text style={styles.buttonText}>{'立即还款'}</Text>
