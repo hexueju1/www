@@ -53,6 +53,8 @@ export const images = {
   overtime_pic: require('../images/png/overtime_pic.png'),
   refuse_pic: require('../images/png/refuse_pic.png'),
   using_pic: require('../images/png/using_pic.png'),
+  came: require('../images/png/came.png'),
+  change: require('../images/png/change.png'),
 }
 
 if (styleType == 1) {

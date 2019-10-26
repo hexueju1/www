@@ -11,6 +11,8 @@ import BaseScreen from '../../components/BaseScreen'
 import { color, size, layout, style } from '../../common/MyStyle'
 import { RNCamera } from 'react-native-camera'
 import TabHeader from '../../common/TabHeader'
+import { images } from '../../common/Constants'
+import { px } from '../../utils/Device'
 
 export default class MyCameraScreen extends BaseScreen {
   callback = null
@@ -69,12 +71,12 @@ export default class MyCameraScreen extends BaseScreen {
             console.log(barcodes)
           }}
         />
-        <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+        <View style={{ flexDirection: 'row', backgroundColor: '#E7912D' }}>
           <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}>
-            <Text style={{ fontSize: 14 }}> 拍照 </Text>
+            <Image style={{ width: px(40), height: px(36), alignSelf: 'center' }} source={images.came} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.switchCameraType.bind(this)} style={styles.capture}>
-            <Text style={{ fontSize: 14 }}> 切换前后摄像头 </Text>
+            <Image style={{ width: px(40), height: px(38), alignSelf: 'center' }} source={images.change} />
           </TouchableOpacity>
         </View>
       </View>
@@ -103,8 +105,8 @@ var styles = StyleSheet.create({
     alignItems: 'center',
   },
   capture: {
-    flex: 0,
-    backgroundColor: '#fff',
+    flex: 1,
+    backgroundColor: '#E7912D',
     borderRadius: 5,
     padding: 15,
     paddingHorizontal: 20,
