@@ -36,7 +36,7 @@ class TabHeader extends Component {
           // onPress={this.props.onPress}
           onPress={this.props.onPress == null ? this.gotoBack : this.props.onPress}
         >
-          <Image style={styles.LeftImage} source={images.header_back}></Image>
+          {this.props.back_image_show == null ? <Image style={styles.LeftImage} source={images.header_back}></Image> : null}
         </TouchableOpacity>
       </View>
     )

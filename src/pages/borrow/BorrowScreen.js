@@ -53,6 +53,7 @@ export default class BorrowScreen extends React.Component {
           onPress={() => {
             this.props.navigation.navigate('Home')
           }}
+          back_image_show={false}
         />
 
         <ScrollView
