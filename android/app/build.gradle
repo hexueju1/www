@@ -160,6 +160,7 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
         multiDexEnabled true
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
         abi {
@@ -210,6 +211,7 @@ dependencies {
     implementation project(':@react-native-community_netinfo')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-fs')
+    implementation project(':react-native-camera')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation project(':react-native-contacts')

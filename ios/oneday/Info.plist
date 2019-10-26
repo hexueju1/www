@@ -105,6 +105,10 @@
 	<string>App需要您的相册权限用于保存图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App需要您的相册权限用于保存图片</string>
+  <key>NSMicrophoneUsageDescription</key>
+	<string>App需要您的拍照选项</string>
+  <key>NSCameraUsageDescription</key>
+  <string>App需要您的拍照选项</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
