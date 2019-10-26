@@ -38,6 +38,10 @@ function handleResult(resolve, reject, response) {
   }
 }
 
+export function launchCustomCamera(parent, callback) {
+  parent.props.navigation.navigate('MyCamera', { callback: callback })
+}
+
 /**
  * 拍照
  */
@@ -76,6 +80,7 @@ export function showImagePicker() {
 
 // 图片上传
 export function uploadFileToOss(responseJson, folder, targetUri, progressCallback, successCallback, tail = '_front.jpg') {
+  console.log('uploadFileToOss')
   let ossbase = responseJson.data.dir + folder + MD5.hex_md5(MyHttpUtils.token) + '_' + new Date().getTime() + tail
   let urlPath = responseJson.data.host + ossbase
   console.log('target:' + urlPath)

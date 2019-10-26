@@ -32,7 +32,7 @@ import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
 import { showToast } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
-import { launchCamera, uploadFileToOss } from '../../utils/MyPhotoSelectUtils'
+import { launchCustomCamera, uploadFileToOss, launchCamera } from '../../utils/MyPhotoSelectUtils'
 import * as Progress from 'react-native-progress'
 
 export default class IDCardScreen extends BaseScreen {
@@ -49,12 +49,20 @@ export default class IDCardScreen extends BaseScreen {
   }
 
   takePhoto = () => {
-    launchCamera().then((source) => {
+    launchCustomCamera(this, (source, cameraType) => {
+      console.log('source:' + source)
+      console.log('cameraType:' + cameraType)
       this.setState({
         centerImage: source,
       })
       this.autoUpload()
     })
+    // launchCamera().then((source) => {
+    //   this.setState({
+    //     centerImage: source,
+    //   })
+    //   this.autoUpload()
+    // })
   }
 
   autoUpload = () => {
