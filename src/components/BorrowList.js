@@ -14,8 +14,8 @@ class BorrowList extends Component {
     borrow_days: '',
     setitem: ['123', '123'],
   }
-  static PropTypes = {
-    setitem: PropTypes.array.isRequired,
+  static propTypes = {
+    setitem: PropTypes.object,
   }
   render() {
     const { setitem } = this.props
