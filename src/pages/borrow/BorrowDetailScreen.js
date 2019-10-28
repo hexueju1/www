@@ -49,7 +49,16 @@ export default class BorrowDetailScreen extends BaseScreen {
       checktime: 2,
       statusText: '',
       days: '',
+      show_renewal: [],
     }
+  }
+
+  add_show_renewal = (index, value) => {
+    var items = this.state.show_renewal
+    items[index] = value
+    this.setState({
+      show_renewal: items,
+    })
   }
 
   render() {
@@ -116,6 +125,7 @@ export default class BorrowDetailScreen extends BaseScreen {
                 ordersn: this.state.ordersn,
                 checktime: this.state.checktime,
                 apply_borrow: this.state.apply_borrow,
+                show_renewal: this.state.show_renewal,
               })
             }}
           >
@@ -153,6 +163,9 @@ export default class BorrowDetailScreen extends BaseScreen {
         borrow_status: detail.data.data.borrow_status,
         statusText: LoginManager.status_Text(detail.data.data.apply_status, detail.data.data.status),
       })
+      this.add_show_renewal(0, String(detail.data.data.show_full_payment))
+      this.add_show_renewal(1, String(detail.data.data.show_renewal_oneday))
+      this.add_show_renewal(2, String(detail.data.data.show_renewal_onephase))
     })
   }
 

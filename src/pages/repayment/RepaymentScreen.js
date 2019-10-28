@@ -5,7 +5,7 @@
  */
 
 import React from 'react'
-import { View, Image, StyleSheet, ScrollView, Text, Picker, ImageBackground } from 'react-native'
+import { View, Image, StyleSheet, ScrollView, Text, Picker, ImageBackground, DeviceEventEmitter } from 'react-native'
 import { color, size, layout, style } from '../../common/MyStyle'
 import { isDebug, LOG } from '../../utils/MyDebugUtils'
 import LocalConfigManager from '../../common/LocalConfigManager'
@@ -15,9 +15,10 @@ import { Container, Header, Content, Button } from 'native-base'
 import { blue, black } from 'ansi-colors'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import TabHeader from '../../common/TabHeader'
-import { endpoint, images } from '../../common/Constants'
+import { endpoint, images, event } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { showToast } from '../../utils/MyToastUtils'
+import LoginManager from '../../common/LoginManager'
 
 /**
  *
@@ -29,14 +30,26 @@ export default class RepaymentScreen extends React.Component {
   ordersn = ''
   checktime = ''
   apply_borrow = ''
+  show_renewal = []
   // props是在父组件中指定，而且一经指定，在被指定的组件的生命周期中则不再改变。
   constructor(props) {
     super(props)
     this.ordersn = this.props.navigation.getParam('ordersn')
     this.checktime = this.props.navigation.getParam('checktime')
     this.apply_borrow = this.props.navigation.getParam('apply_borrow')
+    this.show_renewal = this.props.navigation.getParam('show_renewal')
     this.state = {
       language: 0,
+      pickerItems: [],
+    }
+    if (this.show_renewal[0] == 1) {
+      this.state.pickerItems.push({ key: 0, label: '全额还款', value: 0 })
+    }
+    if (this.show_renewal[1] == 1) {
+      this.state.pickerItems.push({ key: 1, label: '续期一天', value: 1 })
+    }
+    if (this.show_renewal[2] == 1) {
+      this.state.pickerItems.push({ key: 2, label: '续期一期', value: 2 })
     }
   }
 
@@ -59,9 +72,9 @@ export default class RepaymentScreen extends React.Component {
         >
           <ImageBackground style={[styles.main]} source={images.repay_main}>
             <Picker selectedValue={this.state.language} style={styles.select} onValueChange={(Value) => this.setState({ language: Value })}>
-              <Picker.Item value={0} label="全额还款" />
-              <Picker.Item value={1} label="续期一天" />
-              <Picker.Item value={2} label="续期一期" />
+              {this.state.pickerItems.map((acct) => (
+                <Picker.Item key={acct.key} label={acct.label} value={acct.value} />
+              ))}
             </Picker>
             <View style={{ height: '100%', position: 'absolute', marginTop: px(38), marginLeft: px(103) }}>
               <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.checktime.substr(0, 10)}</Text>
@@ -83,7 +96,9 @@ export default class RepaymentScreen extends React.Component {
     )
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.state.pickerItems)
+  }
 
   componentWillUnmount() {}
 }
