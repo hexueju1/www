@@ -71,6 +71,7 @@ export const event = {
   // 用户信息刷新
   userProfileUpdate: 'userProfileUpdate',
   needLogout: 'needLogout',
+  PayInfo: 'PayInfo',
 }
 
 /**
@@ -142,5 +143,6 @@ export const endpoint = {
   },
   payment: {
     check: 'payment/check',
+    create: 'payment/create',
   },
 }

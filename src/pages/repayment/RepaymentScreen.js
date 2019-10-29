@@ -29,19 +29,18 @@ import LoginManager from '../../common/LoginManager'
 export default class RepaymentScreen extends React.Component {
   ordersn = ''
   checktime = ''
-  apply_borrow = ''
+  checkminute = ''
+  pay_borrow = ''
   show_renewal = []
   // props是在父组件中指定，而且一经指定，在被指定的组件的生命周期中则不再改变。
   constructor(props) {
     super(props)
-    this.ordersn = this.props.navigation.getParam('ordersn')
-    this.checktime = this.props.navigation.getParam('checktime')
-    this.apply_borrow = this.props.navigation.getParam('apply_borrow')
-    this.show_renewal = this.props.navigation.getParam('show_renewal')
     this.state = {
       language: 0,
       pickerItems: [],
     }
+    this.ordersn = this.props.navigation.getParam('ordersn')
+    this.show_renewal = this.props.navigation.getParam('show_renewal')
     if (this.show_renewal[0] == 1) {
       this.state.pickerItems.push({ key: 0, label: '全额还款', value: 0 })
     }
@@ -51,17 +50,25 @@ export default class RepaymentScreen extends React.Component {
     if (this.show_renewal[2] == 1) {
       this.state.pickerItems.push({ key: 2, label: '续期一期', value: 2 })
     }
+    this.willFocusSubscription = this.props.navigation.addListener('didFocus', (payload) => {
+      LoginManager.updatePayInfo()
+      console.log('11111111111111111111111111')
+    })
   }
 
   pay = () => {
-    MyHttpUtils.fetchRequest('post', endpoint.payment.check, { ordersn: this.ordersn, type: this.state.language }).then((responseJson) => {})
+    MyHttpUtils.fetchRequest('post', endpoint.payment.check, { ordersn: this.ordersn, type: this.state.language }).then((responseJson) => {
+      this.checktime = responseJson.data.expire_time.substr(0, 10)
+      this.checkminute = responseJson.data.expire_time.substr(11, 5)
+      this.pay_borrow = responseJson.data.amount
+    })
   }
 
   render() {
     return (
       <View style={styles.main_container}>
         <TabHeader
-          text="借款"
+          text="还款"
           onPress={() => {
             this.props.navigation.goBack()
           }}
@@ -77,13 +84,13 @@ export default class RepaymentScreen extends React.Component {
               ))}
             </Picker>
             <View style={{ height: '100%', position: 'absolute', marginTop: px(38), marginLeft: px(103) }}>
-              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.checktime.substr(0, 10)}</Text>
-              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.checktime.substr(11, 5)}</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.checktime}</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.checkminute}</Text>
             </View>
           </ImageBackground>
           <View style={{ position: 'relative' }}>
             <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(44), position: 'absolute', top: px(-118), left: px(30) }}>
-              ¥{this.apply_borrow}
+              ¥{this.pay_borrow}
             </Text>
           </View>
           <View style={[styles.touchableopacity]}>
@@ -97,10 +104,16 @@ export default class RepaymentScreen extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state.pickerItems)
+    let that = this
+    this.listenerForUserProfile = DeviceEventEmitter.addListener(event.PayInfo, function() {
+      that.pay()
+    })
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.listenerForUserProfile.remove()
+    this.willFocusSubscription.remove()
+  }
 }
 
 var styles = StyleSheet.create({
