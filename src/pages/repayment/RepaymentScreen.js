@@ -28,9 +28,6 @@ import LoginManager from '../../common/LoginManager'
  */
 export default class RepaymentScreen extends React.Component {
   ordersn = ''
-  checktime = ''
-  checkminute = ''
-  pay_borrow = ''
   show_renewal = []
   // props是在父组件中指定，而且一经指定，在被指定的组件的生命周期中则不再改变。
   constructor(props) {
@@ -38,6 +35,9 @@ export default class RepaymentScreen extends React.Component {
     this.state = {
       language: 0,
       pickerItems: [],
+      checktime: '',
+      checkminute: '',
+      pay_borrow: '',
     }
     this.ordersn = this.props.navigation.getParam('ordersn')
     this.show_renewal = this.props.navigation.getParam('show_renewal')
@@ -58,9 +58,11 @@ export default class RepaymentScreen extends React.Component {
 
   pay = () => {
     MyHttpUtils.fetchRequest('post', endpoint.payment.check, { ordersn: this.ordersn, type: this.state.language }).then((responseJson) => {
-      this.checktime = responseJson.data.expire_time.substr(0, 10)
-      this.checkminute = responseJson.data.expire_time.substr(11, 5)
-      this.pay_borrow = responseJson.data.amount
+      this.setState({
+        checktime: responseJson.data.expire_time.substr(0, 10),
+        checkminute: responseJson.data.expire_time.substr(11, 5),
+        pay_borrow: responseJson.data.amount,
+      })
     })
   }
 
@@ -84,13 +86,13 @@ export default class RepaymentScreen extends React.Component {
               ))}
             </Picker>
             <View style={{ height: '100%', position: 'absolute', marginTop: px(38), marginLeft: px(103) }}>
-              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.checktime}</Text>
-              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.checkminute}</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.state.checktime}</Text>
+              <Text style={{ color: '#0F0F0F', fontSize: sp(14) }}>{this.state.checkminute}</Text>
             </View>
           </ImageBackground>
           <View style={{ position: 'relative' }}>
             <Text style={{ color: '#F0A00B', fontWeight: 'bold', fontSize: sp(44), position: 'absolute', top: px(-118), left: px(30) }}>
-              ¥{this.pay_borrow}
+              ¥{this.state.pay_borrow}
             </Text>
           </View>
           <View style={[styles.touchableopacity]}>
