@@ -71,7 +71,6 @@ export const event = {
   // 用户信息刷新
   userProfileUpdate: 'userProfileUpdate',
   needLogout: 'needLogout',
-  PayInfo: 'PayInfo',
 }
 
 /**

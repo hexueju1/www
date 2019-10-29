@@ -124,7 +124,6 @@ export default class BorrowDetailScreen extends BaseScreen {
               this.props.navigation.navigate('Repayment', {
                 ordersn: this.state.ordersn,
                 checktime: this.state.checktime,
-                apply_borrow: this.state.apply_borrow,
                 show_renewal: this.state.show_renewal,
               })
             }}

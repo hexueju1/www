@@ -143,12 +143,7 @@ class LoginManager {
       })
     }
   }
-  updatePayInfo = () => {
-    if (this.isLogin()) {
-      console.log('updatePayInfo......')
-      DeviceEventEmitter.emit(event.PayInfo)
-    }
-  }
+
   status_Text = (apply, borrow) => {
     switch (apply) {
       case '0':

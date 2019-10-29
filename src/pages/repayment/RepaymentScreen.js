@@ -50,20 +50,30 @@ export default class RepaymentScreen extends React.Component {
     if (this.show_renewal[2] == 1) {
       this.state.pickerItems.push({ key: 2, label: '续期一期', value: 2 })
     }
-    this.willFocusSubscription = this.props.navigation.addListener('didFocus', (payload) => {
-      LoginManager.updatePayInfo()
-      console.log('11111111111111111111111111')
-    })
   }
 
-  pay = () => {
-    MyHttpUtils.fetchRequest('post', endpoint.payment.check, { ordersn: this.ordersn, type: this.state.language }).then((responseJson) => {
-      this.setState({
-        checktime: responseJson.data.expire_time.substr(0, 10),
-        checkminute: responseJson.data.expire_time.substr(11, 5),
-        pay_borrow: responseJson.data.amount,
+  pay = (Value) => {
+    if (Value == 0) {
+      MyHttpUtils.fetchRequest('post', endpoint.payment.check, { ordersn: this.ordersn, type: Value }).then((responseJson) => {
+        this.setState({
+          checktime: this.props.navigation.getParam('checktime').substr(0, 10),
+          checkminute: this.props.navigation.getParam('checktime').substr(11, 5),
+          pay_borrow: responseJson.data.amount,
+        })
       })
-    })
+    } else {
+      MyHttpUtils.fetchRequest('post', endpoint.payment.check, { ordersn: this.ordersn, type: Value }).then((responseJson) => {
+        this.setState({
+          checktime: responseJson.data.expire_time.substr(0, 10),
+          checkminute: responseJson.data.expire_time.substr(11, 5),
+          pay_borrow: responseJson.data.amount,
+        })
+      })
+    }
+  }
+
+  repay = () => {
+    showToast(this.state.language)
   }
 
   render() {
@@ -80,7 +90,14 @@ export default class RepaymentScreen extends React.Component {
           contentContainerStyle={{}}
         >
           <ImageBackground style={[styles.main]} source={images.repay_main}>
-            <Picker selectedValue={this.state.language} style={styles.select} onValueChange={(Value) => this.setState({ language: Value })}>
+            <Picker
+              selectedValue={this.state.language}
+              style={styles.select}
+              onValueChange={(value) => {
+                this.setState({ language: value })
+                this.pay(value)
+              }}
+            >
               {this.state.pickerItems.map((acct) => (
                 <Picker.Item key={acct.key} label={acct.label} value={acct.value} />
               ))}
@@ -96,7 +113,7 @@ export default class RepaymentScreen extends React.Component {
             </Text>
           </View>
           <View style={[styles.touchableopacity]}>
-            <TouchableOpacity style={styles.button} onPress={this.pay}>
+            <TouchableOpacity style={styles.button} onPress={this.repay}>
               <Text style={styles.buttonText}>{'立即支付'}</Text>
             </TouchableOpacity>
           </View>
@@ -106,16 +123,10 @@ export default class RepaymentScreen extends React.Component {
   }
 
   componentDidMount() {
-    let that = this
-    this.listenerForUserProfile = DeviceEventEmitter.addListener(event.PayInfo, function() {
-      that.pay()
-    })
+    this.pay()
   }
 
-  componentWillUnmount() {
-    this.listenerForUserProfile.remove()
-    this.willFocusSubscription.remove()
-  }
+  componentWillUnmount() {}
 }
 
 var styles = StyleSheet.create({
