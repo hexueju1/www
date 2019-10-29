@@ -5,8 +5,22 @@
  */
 
 import React, { Component } from 'react'
-import { Platform, TouchableWithoutFeedback, Clipboard, Alert, Button, TextInput, FlatList, Image, StyleSheet, Text, View } from 'react-native'
+import {
+  Platform,
+  TouchableWithoutFeedback,
+  Clipboard,
+  Alert,
+  Button,
+  TextInput,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+} from 'react-native'
 import { WebView } from 'react-native-webview'
+import { px, getStatusBarHeight, sp } from '../utils/Device'
 const isAndroid = Platform.OS === 'android'
 
 export default class MyWebView extends React.Component {
@@ -18,7 +32,9 @@ export default class MyWebView extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      TabHeight: getStatusBarHeight(),
+    }
   }
 
   render() {
@@ -35,17 +51,16 @@ export default class MyWebView extends React.Component {
     }
     // 主界面
     return (
-      <View style={styles.main_container}>
+      <SafeAreaView style={[styles.main_container, { paddingTop: this.state.TabHeight }]}>
         <WebView
           originWhitelist={['*']}
           source={{ uri: url }}
           // scalesPageToFit
         />
-      </View>
+      </SafeAreaView>
     )
   }
 }
-
 var styles = StyleSheet.create({
   main_container: {
     flex: 1,

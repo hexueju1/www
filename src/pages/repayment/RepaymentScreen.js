@@ -19,6 +19,7 @@ import { endpoint, images, event } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { showToast } from '../../utils/MyToastUtils'
 import LoginManager from '../../common/LoginManager'
+import I18n from 'react-native-i18n'
 
 /**
  *
@@ -53,7 +54,7 @@ export default class RepaymentScreen extends React.Component {
   }
 
   pay = (Value) => {
-    if (Value == 0) {
+    if (Value == 0 || Value == undefined) {
       MyHttpUtils.fetchRequest('post', endpoint.payment.check, { ordersn: this.ordersn, type: Value }).then((responseJson) => {
         this.setState({
           checktime: this.props.navigation.getParam('checktime').substr(0, 10),
@@ -73,7 +74,9 @@ export default class RepaymentScreen extends React.Component {
   }
 
   repay = () => {
-    showToast(this.state.language)
+    MyHttpUtils.fetchRequest('post', endpoint.payment.create, { ordersn: this.ordersn, type: this.state.language }).then((responseJson) => {
+      this.props.navigation.navigate('Web', { title: I18n.t('TERMS_OF_SERVICE'), url: responseJson.data.url })
+    })
   }
 
   render() {
