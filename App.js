@@ -170,16 +170,6 @@ const AppContainer = createAppContainer(
         style: {
           backgroundColor: color.white,
         },
-        is_show_renewal: () => {
-          MyHttpUtils.fetchRequest('post', endpoint.message.check).then((responseJson) => {
-            if (responseJson.data.expire_borrow_sn) {
-              // TODO show dialog
-              return true
-            } else {
-              return false
-            }
-          })
-        },
       },
     },
   ),
@@ -187,17 +177,27 @@ const AppContainer = createAppContainer(
 
 export default class App extends React.Component {
   render() {
-    return <AppContainer />
+    return <AppContainer screenProps={{ refresh: this.state.needRefreshApp }} />
   }
 
   constructor(props) {
     super(props)
+    this.state = {
+      needRefreshApp: false,
+    }
     setTimeout(SplashScreen.hide, 1000)
     this.onBackAndroid = this.onBackAndroid.bind(this)
   }
 
   componentWillMount() {
     NetworkManager.init()
+    let that = this
+    this.languageListener = DeviceEventEmitter.addListener(event.refreshAppState, function(data) {
+      that.setState({
+        needRefreshApp: true,
+      })
+    })
+
     BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
     LoginManager.checkCookieAndUpdateProfile()
     // 正式包去除一些log

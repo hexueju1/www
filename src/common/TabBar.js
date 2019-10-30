@@ -1,8 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, DeviceEventEmitter, Dimensions } from 'react-native'
 import posed from 'react-native-pose' // react-native 动画库
 import { color } from './MyStyle'
 import { px, isIphoneX, sp } from '../utils/Device'
+import { event } from './Constants'
+import LoginManager from './LoginManager'
 
 const Scaler = posed.View({
   // 定义点击缩放
@@ -11,17 +13,7 @@ const Scaler = posed.View({
 })
 
 const TabBar = (props) => {
-  const {
-    renderIcon,
-    getLabelText,
-    activeTintColor,
-    is_show_renewal,
-    inactiveTintColor,
-    onTabPress,
-    onTabLongPress,
-    getAccessibilityLabel,
-    navigation,
-  } = props
+  const { renderIcon, getLabelText, activeTintColor, inactiveTintColor, onTabPress, onTabLongPress, getAccessibilityLabel, navigation } = props
 
   const { routes, index: activeRouteIndex } = navigation.state
   return (
@@ -29,7 +21,6 @@ const TabBar = (props) => {
       {routes.map((route, routeIndex) => {
         const isRouteActive = routeIndex === activeRouteIndex
         const tintColor = isRouteActive ? activeTintColor : inactiveTintColor
-        const show_renewal = is_show_renewal
         return (
           <TouchableOpacity
             key={routeIndex}
@@ -52,11 +43,11 @@ const TabBar = (props) => {
               <Scaler style={Styles.scalerBig} pose={isRouteActive ? 'active' : 'inactive'}>
                 {renderIcon({ route, focused: isRouteActive, tintColor })}
                 {/* <Text style={Styles.iconText}>{getLabelText({ route })}</Text> */}
-                {show_renewal == false ? null : (
+                {LoginManager.expire_borrow_sn != undefined ? (
                   <View style={Styles.info}>
                     <Text style={Styles.infotext}>您已逾期</Text>
                   </View>
-                )}
+                ) : null}
               </Scaler>
             ) : (
               // 普通图标普通处理

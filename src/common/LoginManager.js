@@ -56,6 +56,7 @@ class LoginManager {
    */
   userInfo = undefined
   borrowInfo = undefined
+  expire_borrow_sn = undefined
 
   /**
 
@@ -106,7 +107,9 @@ class LoginManager {
     console.log('cleanLoginData')
     this.userInfo = undefined
     MyHttpUtils.token = undefined
+    this.expire_borrow_sn = undefined
     DeviceEventEmitter.emit(event.loginStatusChange)
+    DeviceEventEmitter.emit(event.refreshAppState)
     MyStoreManager.delete(localStore.userInfo).then(() => {})
   }
 

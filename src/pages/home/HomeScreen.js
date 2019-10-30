@@ -184,12 +184,15 @@ export default class HomeScreen extends React.Component {
       this.setState({
         maxCanBorrow: LoginManager.userInfo.borrow_limit,
       })
-      // MyHttpUtils.fetchRequest('post', endpoint.message.check).then((responseJson) => {
-      //   if (responseJson.data.expire_borrow_sn) {
-      //     // TODO show dialog
-      //     showToast('您有已逾期订单，请及时还款')
-      //   }
-      // })
+      MyHttpUtils.fetchRequest('post', endpoint.message.check).then((responseJson) => {
+        if (responseJson.data.expire_borrow_sn) {
+          // showToast('您有已逾期订单，请及时还款')
+          LoginManager.expire_borrow_sn = responseJson.data.expire_borrow_sn
+        } else {
+          LoginManager.expire_borrow_sn = undefined
+        }
+        DeviceEventEmitter.emit(event.refreshAppState)
+      })
     } else {
       this.setState({
         maxCanBorrow: '20,000.00',

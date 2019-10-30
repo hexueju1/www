@@ -72,6 +72,7 @@ export const event = {
   userProfileUpdate: 'userProfileUpdate',
   needLogout: 'needLogout',
   borrow: 'borrow',
+  refreshAppState: 'refreshAppState',
 }
 
 /**
