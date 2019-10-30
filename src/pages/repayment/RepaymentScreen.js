@@ -7,19 +7,11 @@
 import React from 'react'
 import { View, Image, StyleSheet, ScrollView, Text, Picker, ImageBackground, DeviceEventEmitter } from 'react-native'
 import { color, size, layout, style } from '../../common/MyStyle'
-import { isDebug, LOG } from '../../utils/MyDebugUtils'
-import LocalConfigManager from '../../common/LocalConfigManager'
-import MyStatusBar from '../../components/MyStatusBar'
 import { px, sp } from '../../utils/Device'
-import { Container, Header, Content, Button } from 'native-base'
-import { blue, black } from 'ansi-colors'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import TabHeader from '../../common/TabHeader'
 import { endpoint, images, event } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
-import { showToast } from '../../utils/MyToastUtils'
-import LoginManager from '../../common/LoginManager'
-import I18n from 'react-native-i18n'
 
 /**
  *
@@ -75,7 +67,7 @@ export default class RepaymentScreen extends React.Component {
 
   repay = () => {
     MyHttpUtils.fetchRequest('post', endpoint.payment.create, { ordersn: this.ordersn, type: this.state.language }).then((responseJson) => {
-      this.props.navigation.navigate('Web', { title: I18n.t('TERMS_OF_SERVICE'), url: responseJson.data.url })
+      this.props.navigation.navigate('Web', { title: '', url: responseJson.data.url })
     })
   }
 
