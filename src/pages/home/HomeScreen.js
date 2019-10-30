@@ -184,12 +184,12 @@ export default class HomeScreen extends React.Component {
       this.setState({
         maxCanBorrow: LoginManager.userInfo.borrow_limit,
       })
-      MyHttpUtils.fetchRequest('post', endpoint.message.check).then((responseJson) => {
-        if (responseJson.data.expire_borrow_sn) {
-          // TODO show dialog
-          showToast('您有已逾期订单，请及时还款')
-        }
-      })
+      // MyHttpUtils.fetchRequest('post', endpoint.message.check).then((responseJson) => {
+      //   if (responseJson.data.expire_borrow_sn) {
+      //     // TODO show dialog
+      //     showToast('您有已逾期订单，请及时还款')
+      //   }
+      // })
     } else {
       this.setState({
         maxCanBorrow: '20,000.00',
@@ -198,14 +198,14 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    // this.checkmsg()
-    // let that = this
-    // this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
-    //   that.checkmsg()
-    // })
-    // this.listenerForUserProfile = DeviceEventEmitter.addListener(event.userProfileUpdate, function() {
-    //   that.checkmsg(false)
-    // })
+    this.checkmsg()
+    let that = this
+    this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
+      that.checkmsg()
+    })
+    this.listenerForUserProfile = DeviceEventEmitter.addListener(event.userProfileUpdate, function() {
+      that.checkmsg(false)
+    })
     if (isDebug()) {
       setTimeout(() => {
         if (LocalConfigManager.debugScreen) {
