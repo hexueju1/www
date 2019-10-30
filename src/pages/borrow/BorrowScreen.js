@@ -155,7 +155,7 @@ export default class BorrowScreen extends React.Component {
         })
       }
     })
-    this.listenerForUserProfile = DeviceEventEmitter.addListener(event.userProfileUpdate, function() {
+    this.listenerForUserProfile = DeviceEventEmitter.addListener(event.borrow, function() {
       that.setState({
         hasBorrowed: LoginManager.borrowInfo.apply_borrow,
         borrowDays: LoginManager.borrowInfo.borrowing_days,

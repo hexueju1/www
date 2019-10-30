@@ -139,7 +139,7 @@ class LoginManager {
       MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { limit: 500 }).then((responseJson) => {
         this.borrowInfo = responseJson.data.data[0]
         console.log(this.borrowInfo)
-        DeviceEventEmitter.emit(event.userProfileUpdate)
+        DeviceEventEmitter.emit(event.borrow)
       })
     }
   }
