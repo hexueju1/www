@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Dimensions } from 'react-native'
 import posed from 'react-native-pose' // react-native 动画库
 import { color } from './MyStyle'
-import { px, isIphoneX } from '../utils/Device'
+import { px, isIphoneX, sp } from '../utils/Device'
 
 const Scaler = posed.View({
   // 定义点击缩放
@@ -11,7 +11,17 @@ const Scaler = posed.View({
 })
 
 const TabBar = (props) => {
-  const { renderIcon, getLabelText, activeTintColor, inactiveTintColor, onTabPress, onTabLongPress, getAccessibilityLabel, navigation } = props
+  const {
+    renderIcon,
+    getLabelText,
+    activeTintColor,
+    is_show_renewal,
+    inactiveTintColor,
+    onTabPress,
+    onTabLongPress,
+    getAccessibilityLabel,
+    navigation,
+  } = props
 
   const { routes, index: activeRouteIndex } = navigation.state
   return (
@@ -19,6 +29,7 @@ const TabBar = (props) => {
       {routes.map((route, routeIndex) => {
         const isRouteActive = routeIndex === activeRouteIndex
         const tintColor = isRouteActive ? activeTintColor : inactiveTintColor
+        const show_renewal = is_show_renewal
         return (
           <TouchableOpacity
             key={routeIndex}
@@ -41,6 +52,11 @@ const TabBar = (props) => {
               <Scaler style={Styles.scalerBig} pose={isRouteActive ? 'active' : 'inactive'}>
                 {renderIcon({ route, focused: isRouteActive, tintColor })}
                 {/* <Text style={Styles.iconText}>{getLabelText({ route })}</Text> */}
+                {show_renewal == false ? null : (
+                  <View style={Styles.info}>
+                    <Text style={Styles.infotext}>您已逾期</Text>
+                  </View>
+                )}
               </Scaler>
             ) : (
               // 普通图标普通处理
@@ -94,6 +110,21 @@ const Styles = StyleSheet.create({
   iconText: {
     fontSize: 12,
     lineHeight: 20,
+  },
+  info: {
+    width: px(68),
+    height: px(28),
+    backgroundColor: '#ED0909',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: px(14),
+    position: 'absolute',
+    left: px(45),
+    top: px(-10),
+  },
+  infotext: {
+    color: '#FDFDFD',
+    fontSize: sp(12),
   },
 })
 

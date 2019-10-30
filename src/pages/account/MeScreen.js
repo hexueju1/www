@@ -195,6 +195,8 @@ export default class MeScreen extends BaseScreen {
 
   componentWillUnmount() {
     this.listener.remove()
+    this.listenerForUserProfile.remove()
+    this.willFocusSubscription.remove()
   }
 }
 

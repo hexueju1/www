@@ -198,14 +198,14 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.checkmsg()
-    let that = this
-    this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
-      that.checkmsg()
-    })
-    this.listenerForUserProfile = DeviceEventEmitter.addListener(event.userProfileUpdate, function() {
-      that.checkmsg(false)
-    })
+    // this.checkmsg()
+    // let that = this
+    // this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
+    //   that.checkmsg()
+    // })
+    // this.listenerForUserProfile = DeviceEventEmitter.addListener(event.userProfileUpdate, function() {
+    //   that.checkmsg(false)
+    // })
     if (isDebug()) {
       setTimeout(() => {
         if (LocalConfigManager.debugScreen) {

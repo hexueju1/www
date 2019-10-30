@@ -170,6 +170,16 @@ const AppContainer = createAppContainer(
         style: {
           backgroundColor: color.white,
         },
+        is_show_renewal: () => {
+          MyHttpUtils.fetchRequest('post', endpoint.message.check).then((responseJson) => {
+            if (responseJson.data.expire_borrow_sn) {
+              // TODO show dialog
+              return true
+            } else {
+              return false
+            }
+          })
+        },
       },
     },
   ),
