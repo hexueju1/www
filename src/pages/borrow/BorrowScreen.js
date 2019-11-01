@@ -22,7 +22,7 @@ import MyHttpUtils from '../../utils/MyHttpUtils'
 /**
  *
  *
- * 写页面的时候，可变的数据不要写死，统一放在state里面引用
+ * 首页中间的还款页面
  *
  */
 let a = ''
@@ -88,7 +88,11 @@ export default class BorrowScreen extends React.Component {
             <View
               style={styles.clickButton}
               onTouchStart={() => {
-                this.props.navigation.navigate('BorrowHistory')
+                if (LoginManager.isLogin()) {
+                  this.props.navigation.navigate('BorrowHistory')
+                } else {
+                  this.props.navigation.navigate('Login')
+                }
               }}
             >
               <Text style={{ color: '#FDFDFD', marginRight: px(7) }}>全部借款</Text>
@@ -119,7 +123,11 @@ export default class BorrowScreen extends React.Component {
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-                this.props.navigation.navigate('BorrowHistory')
+                if (LoginManager.isLogin()) {
+                  this.props.navigation.navigate('BorrowHistory')
+                } else {
+                  this.props.navigation.navigate('Login')
+                }
               }}
             >
               <Text style={styles.buttonText}>{'全部还款'}</Text>
