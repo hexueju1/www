@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { View, Image, StyleSheet, StatusBar, ScrollView, Text, DeviceEventEmitter } from 'react-native'
-import { color, size, layout, style } from '../../common/MyStyle'
+import { color, size, layout, style, styleType } from '../../common/MyStyle'
 import { isDebug, LOG } from '../../utils/MyDebugUtils'
 import LocalConfigManager from '../../common/LocalConfigManager'
 import MyStatusBar from '../../components/MyStatusBar'
@@ -96,41 +96,75 @@ export default class HomeScreen extends React.Component {
         >
           {/* 可滚动的申请额度面板 */}
           <View style={{ display: 'flex', alignItems: 'center' }}>
-            <Image style={{ width: '100%', height: px(194) }} source={images.home_top_input_bg} />
-            <View
-              style={{
-                height: '100%',
-                position: 'absolute',
-                alignItems: 'center',
-                width: '100%',
-                bottom: '20%',
-              }}
-            >
-              <Text style={{ color: '#525252', fontSize: sp(14), marginTop: px(60), fontWeight: 'bold' }}>最高可借额度(元)</Text>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ color: '#6DC9F7', fontWeight: 'bold', fontSize: sp(40) }}>¥</Text>
-                <Text style={{ color: '#6DC9F7', fontWeight: 'bold', fontSize: sp(40) }}>{this.state.maxCanBorrow}</Text>
-              </View>
-              <Button
-                full
+            {/* 最高可借额度、申请额度 */}
+            <Image style={styleType == 0 ? styles.home_top_bg_image : styles.home_top_bg_image1} source={images.home_top_input_bg} />
+            {styleType == 0 ? (
+              // 第一版  最高可借额度、申请额度
+              <View
                 style={{
+                  height: '100%',
                   position: 'absolute',
-                  backgroundColor: '#F58C00',
-                  left: '25%',
-                  width: px(157),
-                  height: px(35),
-                  borderRadius: px(4),
-                  bottom: 0,
-                }}
-                onPress={() => {
-                  this.applyNow()
+                  alignItems: 'center',
+                  width: '100%',
+                  bottom: '20%',
                 }}
               >
-                <Text style={{ color: color.white, fontWeight: 'bold' }}>申请额度</Text>
-              </Button>
-            </View>
+                <Text style={{ color: '#525252', fontSize: sp(14), marginTop: px(60), fontWeight: 'bold' }}>最高可借额度(元)</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={{ color: '#6DC9F7', fontWeight: 'bold', fontSize: sp(40) }}>¥</Text>
+                  <Text style={{ color: '#6DC9F7', fontWeight: 'bold', fontSize: sp(40) }}>{this.state.maxCanBorrow}</Text>
+                </View>
+                <Button
+                  full
+                  style={{
+                    position: 'absolute',
+                    backgroundColor: '#F58C00',
+                    left: '25%',
+                    width: px(157),
+                    height: px(35),
+                    borderRadius: px(4),
+                    bottom: 0,
+                  }}
+                  onPress={() => {
+                    this.applyNow()
+                  }}
+                >
+                  <Text style={{ color: color.white, fontWeight: 'bold' }}>申请额度</Text>
+                </Button>
+              </View>
+            ) : (
+              // 商务版  最高可借额度、申请额度
+              <View
+                style={{
+                  position: 'absolute',
+                  left: '5%',
+                  top: '10%',
+                }}
+              >
+                <Text style={{ color: '#FDFDFD', fontSize: sp(14), fontWeight: 'bold' }}>最高可借额度(元)</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={{ color: '#FDFDFD', fontWeight: 'bold', fontSize: sp(40) }}>¥</Text>
+                  <Text style={{ color: '#FDFDFD', fontWeight: 'bold', fontSize: sp(40) }}>{this.state.maxCanBorrow}</Text>
+                </View>
+                <Button
+                  full
+                  style={{
+                    backgroundColor: '#E7CA7F',
+                    width: px(157),
+                    height: px(35),
+                    borderRadius: px(4),
+                  }}
+                  onPress={() => {
+                    this.applyNow()
+                  }}
+                >
+                  <Text style={{ color: color.white, fontWeight: 'bold' }}>申请额度</Text>
+                </Button>
+              </View>
+            )}
           </View>
 
+          {/* 提交申请、在线审核、马上体现文案显示 */}
           <Text style={styles.text}>秒出额度</Text>
           <Image style={{ width: '100%', height: px(61) }} source={images.home_second} />
           <Text style={styles.text}>产品服务</Text>
@@ -262,5 +296,14 @@ var styles = StyleSheet.create({
     fontSize: sp(12),
     paddingTop: px(5),
     paddingLeft: px(4),
+  },
+  home_top_bg_image: {
+    width: '100%',
+    height: px(194),
+  },
+  home_top_bg_image1: {
+    width: '100%',
+    height: px(146),
+    borderRadius: px(8),
   },
 })

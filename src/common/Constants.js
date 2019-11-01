@@ -60,6 +60,9 @@ export const images = {
 if (styleType == 1) {
   images.header_back = require('../images1/png/back.png')
   images.login_button = require('../images1/png/login_pic.png')
+  images.home_top_bg = require('../images1/home/home_top_bg.png')
+  images.logo = require('../images1/png/logo.png')
+  images.home_top_input_bg = require('../images1/home/home_top_input_bg.png')
 }
 
 /**

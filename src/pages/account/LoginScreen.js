@@ -50,6 +50,12 @@ export default class LoginScreen extends BaseScreen {
   render() {
     let showContent =
       styleType == 0 ? <Image style={{ width: size.login_pic_width, height: size.login_pic_height }} source={images.login_pic} /> : null
+    let Bottom_pic =
+      styleType == 0 ? (
+        <View style={{ marginTop: px(50), alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={images.login_bottom} style={{ width: px(145), height: px(145) }}></Image>
+        </View>
+      ) : null
     return (
       <DismissKeyboardView style={styles.main_container}>
         {/* <ImageBackground style={{ height: 230, justifyContent: 'center', alignItems: 'center' }} source={require('../../images/img/loginbg1.jpg')}> */}
@@ -123,9 +129,7 @@ export default class LoginScreen extends BaseScreen {
             </ImageBackground>
           </Button>
         </View>
-        <View style={{ marginTop: px(50), alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={images.login_bottom} style={{ width: px(145), height: px(145) }}></Image>
-        </View>
+        {Bottom_pic}
       </DismissKeyboardView>
     )
   }
@@ -150,7 +154,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
   },
   login_button: {
-    width: px(330),
-    height: px(49.5),
+    width: px(328),
+    height: px(48.5),
   },
 })
