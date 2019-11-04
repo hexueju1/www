@@ -49,6 +49,9 @@ export default class MyWebView extends React.Component {
         url = './assets/' + url
       }
     }
+    msg_from_webview = (event) => {
+      console.log(event)
+    }
     // 主界面
     return (
       <SafeAreaView style={[styles.main_container, { paddingTop: this.state.TabHeight }]}>
@@ -56,6 +59,7 @@ export default class MyWebView extends React.Component {
           originWhitelist={['*']}
           source={{ uri: url }}
           // scalesPageToFit
+          onMessage={this.msg_from_webview(evevt)}
         />
       </SafeAreaView>
     )

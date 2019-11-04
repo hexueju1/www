@@ -118,7 +118,6 @@ export const endpoint = {
     borrowDetail: 'user/borrow/detail',
     billMonth: 'user/bill/month',
     billYear: 'user/bill/year',
-    userinfo: 'user/userinfo',
   },
   message: {
     list: 'message/list',

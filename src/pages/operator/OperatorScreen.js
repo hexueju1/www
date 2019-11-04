@@ -54,8 +54,7 @@ export default class OperatorScreen extends BaseScreen {
 
   getCode = () => {
     showLoading('11111')
-    setTimeout(()=>hideLoading(),1000)
-    
+    setTimeout(() => hideLoading(), 1000)
   }
 
   upda = () => {
@@ -147,9 +146,9 @@ export default class OperatorScreen extends BaseScreen {
 
   componentDidMount() {
     super.componentDidMount()
-    MyHttpUtils.fetchRequest('post', endpoint.user.userinfo).then((responseJson) => {
+    MyHttpUtils.fetchRequest('post', endpoint.user.detail).then((responseJson) => {
       this.setState({
-        tel: responseJson.data.userinfo.mobile,
+        tel: responseJson.data.mobile,
       })
     })
   }
