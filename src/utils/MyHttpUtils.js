@@ -146,7 +146,9 @@ class MyHttpUtils {
         })
         .finally(() => {
           MyHttpUtils.log('finally:' + endpoint)
-          hideLoading()
+          if (showLoadingEndpoint.indexOf(endpoint) >= 0) {
+            hideLoading()
+          }
         })
     })
   }

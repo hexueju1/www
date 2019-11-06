@@ -17,7 +17,6 @@ import { endpoint } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import LoginManager from '../../common/LoginManager'
 import { event, localStore, images } from '../../common/Constants'
-import { showLoading, showToast } from '../../utils/MyToastUtils'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {

@@ -43,6 +43,7 @@ export function showLoading(hideAfterSeconds = 10, force = false) {
 }
 
 export function hideLoading() {
+  console.log('hideLoading')
   RRCLoading.hide()
   this.timeout && clearTimeout(this.timeout)
   this.forceTimeout && clearTimeout(this.forceTimeout)
