@@ -54,25 +54,29 @@ class CountDownInput extends Component {
           if (this.props.onSuccess) {
             this.props.onSuccess(responseJson)
           }
-          showToast('验证码已发送，请注意查收')
-          // 开始倒计时
-          this.setState({ counting: true })
-          let that = this
-          this.interval = setInterval(() => {
-            // 60秒已结束
-            if (this.state.seconds <= 0) {
+          if (responseJson.data == true) {
+            showToast('验证码已发送，请注意查收')
+            // 开始倒计时
+            this.setState({ counting: true })
+            let that = this
+            this.interval = setInterval(() => {
+              // 60秒已结束
+              if (this.state.seconds <= 0) {
+                this.setState({
+                  counting: false,
+                  enable: true,
+                  seconds: that.MAX_SECONDS,
+                })
+                that.interval && clearInterval(that.interval)
+                return
+              }
               this.setState({
-                counting: false,
-                enable: true,
-                seconds: that.MAX_SECONDS,
+                seconds: this.state.seconds - 1,
               })
-              that.interval && clearInterval(that.interval)
-              return
-            }
-            this.setState({
-              seconds: this.state.seconds - 1,
-            })
-          }, 1000)
+            }, 1000)
+          } else {
+            showToast(responseJson.data)
+          }
         })
         .catch((error) => {
           // showToast('验证码发送失败')

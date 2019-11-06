@@ -54,12 +54,12 @@ export default class OperatorScreen extends BaseScreen {
   }
 
   upda = () => {
+    showLoading(60, true)
     // 点击确定
     //已填写好服务密码与动态密码
     MyHttpUtils.fetchRequest('post', endpoint.risk.huanchen, { captcha: this.state.move, step: 'append' }).then((responseJson) => {
       console.log(1)
       if (responseJson.data == true) {
-        showLoading(60, true)
         //获取爬虫状态，五秒轮询一次
         this.interval = setInterval(() => {
           MyHttpUtils.fetchRequest('post', endpoint.risk.huanchen, { step: 'status' }).then((responseJson) => {
@@ -92,6 +92,7 @@ export default class OperatorScreen extends BaseScreen {
                     }
                   })
                 } else {
+                  hideLoading()
                   this.interval && clearInterval(this.interval)
                   showToast(responseJson.data)
                 }
@@ -100,6 +101,8 @@ export default class OperatorScreen extends BaseScreen {
           })
         }, 5000)
       } else {
+        hideLoading()
+        this.interval && clearInterval(this.interval)
         showToast(responseJson.data)
       }
     })
@@ -155,6 +158,7 @@ export default class OperatorScreen extends BaseScreen {
                 return true
               }
             }}
+            on
           />
         </View>
         {/* 协议阅读选择 */}
