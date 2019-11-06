@@ -21,6 +21,7 @@ import {
 } from 'react-native'
 import { WebView } from 'react-native-webview'
 import { px, getStatusBarHeight, sp } from '../utils/Device'
+import TabHeader from '../common/TabHeader'
 const isAndroid = Platform.OS === 'android'
 
 export default class MyWebView extends React.Component {
@@ -54,12 +55,13 @@ export default class MyWebView extends React.Component {
     }
     // 主界面
     return (
-      <SafeAreaView style={[styles.main_container, { paddingTop: this.state.TabHeight }]}>
+      <SafeAreaView style={styles.main_container}>
+        <TabHeader text="还款二维码" />
         <WebView
           originWhitelist={['*']}
           source={{ uri: url }}
           // scalesPageToFit
-          onMessage={this.msg_from_webview(evevt)}
+          // onMessage={this.msg_from_webview(event)}
         />
       </SafeAreaView>
     )

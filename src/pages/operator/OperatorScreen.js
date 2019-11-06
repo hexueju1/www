@@ -45,6 +45,7 @@ export default class OperatorScreen extends BaseScreen {
       allow_status: false,
       button_status: true,
       move: '',
+      phoneCode: '',
     }
   }
   allow_pic = () => {
@@ -52,13 +53,56 @@ export default class OperatorScreen extends BaseScreen {
     this.setState({ button_status: !this.state.button_status })
   }
 
-  getCode = () => {
-    showLoading('11111')
-    setTimeout(() => hideLoading(), 1000)
-  }
-
   upda = () => {
-    MyHttpUtils.fetchRequest('post', endpoint.collect.collectgethc, {})
+    // 点击确定
+    //已填写好服务密码与动态密码
+    MyHttpUtils.fetchRequest('post', endpoint.risk.huanchen, { captcha: this.state.move, step: 'append' }).then((responseJson) => {
+      console.log(1)
+      if (responseJson.data == true) {
+        showLoading(60, true)
+        //获取爬虫状态，五秒轮询一次
+        this.interval = setInterval(() => {
+          MyHttpUtils.fetchRequest('post', endpoint.risk.huanchen, { step: 'status' }).then((responseJson) => {
+            console.log(2)
+            if (responseJson.data == true) {
+              //返回成功后，清除轮询，并页面跳转
+              this.interval && clearInterval(this.interval)
+              MyHttpUtils.fetchRequest('post', endpoint.risk.huanchen, { step: 'result' }).then((responseJson) => {
+                console.log(3)
+                if (responseJson.data == true) {
+                  hideLoading()
+                  MyHttpUtils.fetchRequest('post', endpoint.user.checkAuthentication).then((responseJson) => {
+                    console.log(4)
+                    let url = ''
+                    // 0 需进行人证核验 1 需进行运营商认证 2 无需认证  3 bank
+                    if (responseJson.data.state == 0) {
+                      url = 'IDCard'
+                    } else if (responseJson.data.state == 1) {
+                      url = 'Operator'
+                    } else if (responseJson.data.state == 2) {
+                      url = 'BorrowConfirm'
+                    } else if (responseJson.data.state == 3) {
+                      url = 'BankCard'
+                    }
+                    if (url != '') {
+                      this.props.navigation.navigate(url)
+                      // this.props.navigation.replace(url)
+                    } else {
+                      showToast('非法状态')
+                    }
+                  })
+                } else {
+                  this.interval && clearInterval(this.interval)
+                  showToast(responseJson.data)
+                }
+              })
+            }
+          })
+        }, 5000)
+      } else {
+        showToast(responseJson.data)
+      }
+    })
   }
   render() {
     return (
@@ -91,7 +135,7 @@ export default class OperatorScreen extends BaseScreen {
         {/* 动态密码 */}
         <View style={styles.countdowninput}>
           <CountDownInput
-            // endpoint={endpoint.sms.send}
+            endpoint={endpoint.risk.huanchen}
             style={{ borderBottomColor: '#000000' }}
             placeholder={'请输入动态密码'}
             placeholderTextColor={'#ABABAB'}
@@ -100,11 +144,17 @@ export default class OperatorScreen extends BaseScreen {
             value={this.state.move}
             keyboardType="numeric"
             httpParams={{
-              event: 'mobilelogin',
-              mobile: this.state.phone,
+              password: this.state.phoneCode,
+              step: 'create',
             }}
             onChangeText={(text) => this.setState({ move: text })}
-            onPress={() => this.getCode()}
+            onPress={() => {
+              if (this.state.phoneCode == '') {
+                showToast('服务密码不能为空')
+              } else {
+                return true
+              }
+            }}
           />
         </View>
         {/* 协议阅读选择 */}
@@ -127,15 +177,13 @@ export default class OperatorScreen extends BaseScreen {
         <Button
           disabled={this.state.button_status}
           style={[styles.button, { backgroundColor: this.state.allow_status === false ? '#ABABAB' : '#E7912D' }]}
-          onPress={
-            () => this.upda()
-            // this.props.navigation.navigate('BankCard')
-          }
+          onPress={() => this.upda()}
         >
           <Text style={{ fontSize: px(16) }}>确认</Text>
         </Button>
         <View style={{ marginLeft: px(41), marginTop: px(27) }}>
-          <Text style={{ color: '#ABABAB', fontSize: sp(10) }}>如果忘记您的服务密码</Text>
+          <Text style={{ color: '#E7912D', fontSize: sp(13) }}>动态密码获取时间较长，请谨慎填写</Text>
+          <Text style={{ color: '#ABABAB', fontSize: sp(10), marginTop: px(11) }}>如果忘记您的服务密码</Text>
           <Text style={{ color: '#ABABAB', fontSize: sp(10), marginTop: px(11) }}>移动用户：请联系10086进行咨询</Text>
           <Text style={{ color: '#ABABAB', fontSize: sp(10), marginTop: px(11) }}>联通用户：请联系10010进行咨询</Text>
           <Text style={{ color: '#ABABAB', fontSize: sp(10), marginTop: px(11) }}>电信用户：请联系10000进行咨询</Text>
@@ -155,6 +203,8 @@ export default class OperatorScreen extends BaseScreen {
 
   componentWillUnmount() {
     super.componentWillUnmount()
+    hideLoading()
+    this.interval && clearInterval(this.interval)
   }
 }
 
