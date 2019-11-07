@@ -54,10 +54,10 @@ export default class CertificationStatusScreen extends BaseScreen {
             <Image style={styles.pic_suc} source={images.certification_suc} />
             <Text style={styles.textstyle}>恭喜您认证成功，即将跳转借款页面</Text>
           </View>
-          <View style={styles.content}>
+          {/* <View style={styles.content}>
             <Image style={styles.pic_fail} source={images.certification_fail} />
             <Text style={styles.textstyle}>未知状态</Text>
-          </View>
+          </View> */}
         </ScrollView>
       </SafeAreaView>
     )

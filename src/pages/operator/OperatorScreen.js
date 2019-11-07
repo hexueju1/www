@@ -172,10 +172,10 @@ export default class OperatorScreen extends BaseScreen {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              showToast('协议')
+              this.props.navigation.navigate('PermissionOperator')
             }}
           >
-            <Text style={{ color: '#666666', fontSize: sp(12) }}>《用户信息手机授权协议》</Text>
+            <Text style={{ color: '#666666', fontSize: sp(12) }}>《用户信息收集授权协议》</Text>
           </TouchableOpacity>
         </View>
         <Button

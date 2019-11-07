@@ -121,10 +121,10 @@ export default class BillDetailScreen extends BaseScreen {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    showToast('协议')
+                    this.props.navigation.navigate('PermissionBorrow')
                   }}
                 >
-                  <Text style={{ color: '#666666', fontSize: sp(12) }}>《用户信息手机授权协议》</Text>
+                  <Text style={{ color: '#666666', fontSize: sp(12) }}>《借款服务协议及相关协议》</Text>
                 </TouchableOpacity>
               </View>
             </View>

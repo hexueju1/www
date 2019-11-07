@@ -36,6 +36,8 @@ import BorrowScheduleScreen from './src/pages/borrow/BorrowScheduleScreen'
 import AccountedScreen from './src/pages/borrow/AccountedScreen'
 import RepaymentScreen from './src/pages/repayment/RepaymentScreen'
 import MyCameraScreen from './src/pages/common/MyCameraScreen'
+import PermissionOperatorScreen from './src/pages/permission/PermissionOperatorScreen'
+import PermissionBorrowScreen from './src/pages/permission/PermissionBorrowScreen'
 
 YellowBox.ignoreWarnings(['Warning: ListView is deprecated', 'Module RCTImageLoader'])
 
@@ -69,6 +71,8 @@ const commonPages = {
   Repayment: RepaymentScreen,
   Home: HomeScreen,
   MyCamera: MyCameraScreen,
+  PermissionOperator: PermissionOperatorScreen,
+  PermissionBorrow: PermissionBorrowScreen,
 }
 
 // StackNavigator用于实现各个页面之间的跳转
