@@ -52,6 +52,7 @@ export default class MyWebView extends React.Component {
     }
     msg_from_webview = (event) => {
       console.log(event)
+      this.props.navigation.navigate('Home')
     }
     // 主界面
     return (
@@ -61,7 +62,9 @@ export default class MyWebView extends React.Component {
           originWhitelist={['*']}
           source={{ uri: url }}
           // scalesPageToFit
-          // onMessage={this.msg_from_webview(event)}
+          onMessage={(event) => {
+            this.msg_from_webview(event)
+          }}
         />
       </SafeAreaView>
     )

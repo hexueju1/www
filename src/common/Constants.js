@@ -125,7 +125,7 @@ export const endpoint = {
     detail: 'message/detail',
   },
   borrow: {
-    before_borrow: 'borrow/detail',
+    before_borrow: 'chart/detail',
     productInfo: 'borrow/product',
     borrow: 'borrow/apply',
   },
