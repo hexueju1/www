@@ -30,7 +30,7 @@ import { px, sp } from '../../utils/Device'
 import { endpoint, images } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import { color } from '../../common/MyStyle'
-import { showToast } from '../../utils/MyToastUtils'
+import { showToast, showLoading, hideLoading } from '../../utils/MyToastUtils'
 import TabHeader from '../../common/TabHeader'
 import { StackViewTransitionConfigs } from 'react-navigation'
 import { hidden } from 'ansi-colors'
@@ -51,6 +51,7 @@ export default class PersonalPictureScreen extends BaseScreen {
       realPersonPath: '',
       status: true,
       cameraType: '',
+      buttonstatus: true,
     }
   }
 
@@ -74,6 +75,7 @@ export default class PersonalPictureScreen extends BaseScreen {
 
   autoUpload = () => {
     MyHttpUtils.fetchRequest('post', endpoint.common.oss_signature).then((responseJson) => {
+      this.setState({ status: false })
       uploadFileToOss(
         responseJson,
         '/authentication/selfie/',
@@ -88,6 +90,7 @@ export default class PersonalPictureScreen extends BaseScreen {
           this.setState({
             realPersonPath: urlPath,
           })
+          showLoading(60, true)
           MyHttpUtils.fetchRequest('post', endpoint.risk.check_id_face, {
             front_url: this.idcardPath,
             autodyne_url: this.state.realPersonPath,
@@ -96,8 +99,9 @@ export default class PersonalPictureScreen extends BaseScreen {
             this.setState({
               name: responseJson.data.name,
               id: responseJson.data.number,
-              status: false,
+              buttonstatus: false,
             })
+            hideLoading()
           })
         },
         '_autodyne.jpg',
@@ -112,7 +116,8 @@ export default class PersonalPictureScreen extends BaseScreen {
           <Text style={styles.textcontent}>请正对手机，确保光线充足</Text>
         </View>
       ) : (
-        <View style={{ marginTop: px(45) }}>
+        <View style={{ marginTop: px(15) }}>
+          <Text style={styles.textleft}>人证对比较慢，请耐心等待</Text>
           <Text style={styles.textleft}>
             姓名：<Text>{this.state.name}</Text>
           </Text>
@@ -148,9 +153,9 @@ export default class PersonalPictureScreen extends BaseScreen {
           <Image style={styles.cameraStyle} source={this.state.centerImage} />
         </TouchableOpacity>
         <Button
-          disabled={this.state.status}
+          disabled={this.state.buttonstatus}
           full
-          style={[styles.buttonstyle, { backgroundColor: this.state.status == false ? '#E7912D' : '#ABABAB' }]}
+          style={[styles.buttonstyle, { backgroundColor: this.state.buttonstatus == false ? '#E7912D' : '#ABABAB' }]}
           onPress={() => {
             if (this.state.centerImage == images.camera) {
               showToast('请先上传照片')
@@ -198,6 +203,7 @@ export default class PersonalPictureScreen extends BaseScreen {
 
   componentWillUnmount() {
     super.componentWillUnmount()
+    hideLoading()
   }
 }
 
