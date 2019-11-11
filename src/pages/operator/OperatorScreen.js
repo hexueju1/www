@@ -71,26 +71,27 @@ export default class OperatorScreen extends BaseScreen {
                 console.log(3)
                 if (responseJson.data == true) {
                   hideLoading()
-                  MyHttpUtils.fetchRequest('post', endpoint.user.checkAuthentication).then((responseJson) => {
-                    console.log(4)
-                    let url = ''
-                    // 0 需进行人证核验 1 需进行运营商认证 2 无需认证  3 bank
-                    if (responseJson.data.state == 0) {
-                      url = 'IDCard'
-                    } else if (responseJson.data.state == 1) {
-                      url = 'Operator'
-                    } else if (responseJson.data.state == 2) {
-                      url = 'BorrowConfirm'
-                    } else if (responseJson.data.state == 3) {
-                      url = 'BankCard'
-                    }
-                    if (url != '') {
-                      this.props.navigation.navigate(url)
-                      // this.props.navigation.replace(url)
-                    } else {
-                      showToast('非法状态')
-                    }
-                  })
+                  // MyHttpUtils.fetchRequest('post', endpoint.user.checkAuthentication).then((responseJson) => {
+                  //   console.log(4)
+                  //   let url = ''
+                  //   // 0 需进行人证核验 1 需进行运营商认证 2 无需认证  3 bank
+                  //   if (responseJson.data.state == 0) {
+                  //     url = 'IDCard'
+                  //   } else if (responseJson.data.state == 1) {
+                  //     url = 'Operator'
+                  //   } else if (responseJson.data.state == 2) {
+                  //     url = 'BorrowConfirm'
+                  //   } else if (responseJson.data.state == 3) {
+                  //     url = 'BankCard'
+                  //   }
+                  //   if (url != '') {
+                  //     this.props.navigation.navigate(url)
+                  //     // this.props.navigation.replace(url)
+                  //   } else {
+                  //     showToast('非法状态')
+                  //   }
+                  // })
+                  this.props.navigation.navigate('BankCard')
                 } else {
                   hideLoading()
                   this.interval && clearInterval(this.interval)
