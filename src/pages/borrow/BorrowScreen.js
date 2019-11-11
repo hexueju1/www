@@ -143,14 +143,25 @@ export default class BorrowScreen extends React.Component {
     this.listener = DeviceEventEmitter.addListener(event.loginStatusChange, function() {
       if (LoginManager.isLogin()) {
         MyHttpUtils.fetchRequest('post', endpoint.user.borrowList, { limit: 500 }).then((responseJson) => {
-          that.setState({
-            hasBorrowed: responseJson.data.data[0].apply_borrow,
-            borrowDays: responseJson.data.data[0].borrowing_days,
-            Date_main: responseJson.data.data[0].create_time.substr(0, 10),
-            Date_detail: responseJson.data.data[0].create_time.substr(11, 5),
-            payoffDay: responseJson.data.data[0].expiration_time.substr(5, 5),
-            is_payoff: LoginManager.status_Text(responseJson.data.data[0].apply_status, responseJson.data.data[0].status),
-          })
+          if (responseJson.data.data[0] != null) {
+            that.setState({
+              hasBorrowed: responseJson.data.data[0].apply_borrow,
+              borrowDays: responseJson.data.data[0].borrowing_days,
+              Date_main: responseJson.data.data[0].create_time.substr(0, 10),
+              Date_detail: responseJson.data.data[0].create_time.substr(11, 5),
+              payoffDay: responseJson.data.data[0].expiration_time.substr(5, 5),
+              is_payoff: LoginManager.status_Text(responseJson.data.data[0].apply_status, responseJson.data.data[0].status),
+            })
+          } else {
+            that.setState({
+              hasBorrowed: '0.00',
+              borrowDays: '0',
+              Date_main: '',
+              Date_detail: '',
+              is_payoff: '您还没有订单',
+              payoffDay: '',
+            })
+          }
         })
       } else {
         that.setState({
@@ -164,14 +175,16 @@ export default class BorrowScreen extends React.Component {
       }
     })
     this.listenerForUserProfile = DeviceEventEmitter.addListener(event.borrow, function() {
-      that.setState({
-        hasBorrowed: LoginManager.borrowInfo.apply_borrow,
-        borrowDays: LoginManager.borrowInfo.borrowing_days,
-        Date_main: LoginManager.borrowInfo.create_time.substr(0, 10),
-        Date_detail: LoginManager.borrowInfo.create_time.substr(11, 5),
-        payoffDay: LoginManager.borrowInfo.expiration_time.substr(5, 5),
-        is_payoff: LoginManager.status_Text(LoginManager.borrowInfo.apply_status, LoginManager.borrowInfo.status),
-      })
+      if (LoginManager.borrowInfo != null) {
+        that.setState({
+          hasBorrowed: LoginManager.borrowInfo.apply_borrow,
+          borrowDays: LoginManager.borrowInfo.borrowing_days,
+          Date_main: LoginManager.borrowInfo.create_time.substr(0, 10),
+          Date_detail: LoginManager.borrowInfo.create_time.substr(11, 5),
+          payoffDay: LoginManager.borrowInfo.expiration_time.substr(5, 5),
+          is_payoff: LoginManager.status_Text(LoginManager.borrowInfo.apply_status, LoginManager.borrowInfo.status),
+        })
+      }
     })
   }
 

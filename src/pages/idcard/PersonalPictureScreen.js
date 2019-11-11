@@ -50,6 +50,7 @@ export default class PersonalPictureScreen extends BaseScreen {
       uploadProgress: 0,
       realPersonPath: '',
       status: true,
+      cameraType: '',
     }
   }
 
@@ -59,6 +60,7 @@ export default class PersonalPictureScreen extends BaseScreen {
       console.log('cameraType:' + cameraType)
       this.setState({
         centerImage: source,
+        cameraType: cameraType,
       })
       this.autoUpload()
     })
@@ -72,7 +74,6 @@ export default class PersonalPictureScreen extends BaseScreen {
 
   autoUpload = () => {
     MyHttpUtils.fetchRequest('post', endpoint.common.oss_signature).then((responseJson) => {
-      this.setState({ status: false })
       uploadFileToOss(
         responseJson,
         '/authentication/selfie/',
@@ -90,10 +91,12 @@ export default class PersonalPictureScreen extends BaseScreen {
           MyHttpUtils.fetchRequest('post', endpoint.risk.check_id_face, {
             front_url: this.idcardPath,
             autodyne_url: this.state.realPersonPath,
+            face_camera_pos: this.state.cameraType,
           }).then((responseJson) => {
             this.setState({
               name: responseJson.data.name,
               id: responseJson.data.number,
+              status: false,
             })
           })
         },
