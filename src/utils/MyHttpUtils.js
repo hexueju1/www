@@ -103,13 +103,15 @@ class MyHttpUtils {
           } else {
             MyHttpUtils.log('request error: ')
             MyHttpUtils.log(response)
+            hideLoading()
             if (response.code == 401) {
               showErrorToast('请登录')
               DeviceEventEmitter.emit(event.needLogout)
               reject()
               return
             }
-            showToast(response.status)
+            // showToast(response.status)
+            showToast('网络请求失败')
           }
         })
         .then((responseJson) => {
@@ -124,6 +126,7 @@ class MyHttpUtils {
 } */
             if (responseJson.code != 200) {
               showErrorToast(responseJson.message)
+              hideLoading()
               reject(responseJson)
               return
             }
@@ -141,6 +144,7 @@ class MyHttpUtils {
             // showToast(error)
             console.log('request error: ' + error)
           }
+          hideLoading()
           showToast('与服务器通讯失败... 请稍后重试')
           reject(error)
         })

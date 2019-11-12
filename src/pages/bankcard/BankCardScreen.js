@@ -91,7 +91,7 @@ export default class BankCardScreen extends BaseScreen {
             <TextInput
               editable={false}
               style={styles.textstyle_right}
-              placeholder={'请输入正确的银行卡号'}
+              placeholder={'点击拍摄银行卡获取卡号'}
               keyboardType="numeric"
               placeholderTextColor={'#ABABAB'}
               value={this.state.bankCard}
@@ -148,7 +148,7 @@ export default class BankCardScreen extends BaseScreen {
               onChangeText={(text) => this.setState({ code: text })}
               onPress={() => {
                 if (this.state.tel === '') {
-                  showToast('请输入手机号')
+                  showToast('请输入预留号码')
                   return
                 }
                 return true
