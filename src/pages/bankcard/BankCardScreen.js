@@ -89,6 +89,7 @@ export default class BankCardScreen extends BaseScreen {
           <View style={styles.text_one}>
             <Text style={styles.textstyle}>银行卡</Text>
             <TextInput
+              editable={false}
               style={styles.textstyle_right}
               placeholder={'请输入正确的银行卡号'}
               keyboardType="numeric"

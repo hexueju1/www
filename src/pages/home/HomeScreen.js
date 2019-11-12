@@ -5,7 +5,7 @@
  */
 
 import React from 'react'
-import { View, Image, StyleSheet, StatusBar, ScrollView, Text, DeviceEventEmitter } from 'react-native'
+import { View, Image, StyleSheet, StatusBar, ScrollView, Text, DeviceEventEmitter, TouchableOpacity } from 'react-native'
 import { color, size, layout, style, styleType } from '../../common/MyStyle'
 import { isDebug, LOG } from '../../utils/MyDebugUtils'
 import LocalConfigManager from '../../common/LocalConfigManager'
@@ -17,6 +17,7 @@ import { endpoint } from '../../common/Constants'
 import MyHttpUtils from '../../utils/MyHttpUtils'
 import LoginManager from '../../common/LoginManager'
 import { event, localStore, images } from '../../common/Constants'
+import { showToast } from '../../utils/MyToastUtils'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -168,33 +169,60 @@ export default class HomeScreen extends React.Component {
           <Image style={{ width: '100%', height: px(61) }} source={images.home_second} />
           <Text style={styles.text}>产品服务</Text>
           <View style={styles.product_service}>
-            <View>
+            <TouchableOpacity
+              onPress={() => {
+                this.applyNow()
+              }}
+            >
               <Image style={styles.product_service_pic} source={images.up_money} />
               <Text style={{ color: '#0F0F0F', marginTop: 5, textAlign: 'center' }}>提升额度</Text>
-            </View>
-            <View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                showToast('新功能敬请期待！')
+              }}
+            >
               <Image style={styles.product_service_pic} source={images.new_road} />
               <Text style={{ color: '#0F0F0F', marginTop: 5, textAlign: 'center' }}>新口子</Text>
-            </View>
-            <View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                showToast('新功能敬请期待！')
+              }}
+            >
               <Image style={styles.product_service_pic} source={images.all} />
               <Text style={{ color: '#0F0F0F', marginTop: 5, textAlign: 'center' }}>全部</Text>
-            </View>
+            </TouchableOpacity>
           </View>
           <Text style={styles.text}>更多服务</Text>
           <View style={styles.more_service}>
-            <View style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}>
+            <TouchableOpacity
+              style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}
+              onPress={() => {
+                this.props.navigation.navigate('BorrowQA')
+              }}
+            >
               <Image style={{ width: px(24), height: px(24) }} source={images.borrow_question} />
               <Text style={styles.more_service_text}>借款问题</Text>
-            </View>
-            <View style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}
+              onPress={() => {
+                this.props.navigation.navigate('PayQA')
+              }}
+            >
               <Image style={{ width: px(30), height: px(24) }} source={images.pay_question} />
               <Text style={styles.more_service_text}>还款问题</Text>
-            </View>
-            <View style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ flex: 1, flexDirection: 'row', paddingLeft: px(16) }}
+              onPress={() => {
+                this.props.navigation.navigate('AmountQA')
+              }}
+            >
               <Image style={{ width: px(18), height: px(26) }} source={images.limit} />
               <Text style={styles.more_service_text}>额度问题</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
