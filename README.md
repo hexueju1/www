@@ -122,7 +122,8 @@ iOS:
 * （第一次需要）安装fastlane（随便搜个教程即可，不要再次初始化，目前已经有相关配置文件）
 * （第一次需要）安装firim的插件 fastlane add_plugin firim
 * 打包： fastlane fir
-* 打包完成会在ios/firim生成ipa，并主动上传到https://fir.im/l69d（注意查看更新时间）
+* 打包完成会在ios/firim生成ipa，fastlane运行正常的情况下会自动上传到 https://fir.im/apps/5dcb832b23389f15bfbf0645（注意在脚本运行完毕后检查更新时间确保上传ok）
+* 对外链接 https://fir.im/cbmd
 
 Android:
 * 进入android目录下

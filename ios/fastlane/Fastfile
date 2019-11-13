@@ -39,6 +39,7 @@ platform :ios do
     # fastlane add_plugin pgyer  蒲公英
     # 上传ipa到fir.im服务器，在fir.im获取firim_api_token
     # 我的 038dd919a79e96aac09a775f60903a1f
-    firim(firim_api_token: "038dd919a79e96aac09a775f60903a1f")
+    # 公用 adf8a054d3a3c6bea484054d2cbd87ff
+    firim(firim_api_token: "adf8a054d3a3c6bea484054d2cbd87ff")
   end
 end
