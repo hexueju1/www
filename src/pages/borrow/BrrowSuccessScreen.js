@@ -64,7 +64,7 @@ export default class BorrowSuccessScreen extends BaseScreen {
         <TabHeader
           text="借款"
           onPress={() => {
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('HomeMain')
           }}
         />
         <ScrollView>

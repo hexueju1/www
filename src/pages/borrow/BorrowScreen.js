@@ -51,7 +51,7 @@ export default class BorrowScreen extends React.Component {
         <TabHeader
           text="借款"
           onPress={() => {
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('HomeMain')
           }}
           back_image_show={false}
         />

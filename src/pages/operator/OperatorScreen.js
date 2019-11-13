@@ -114,7 +114,7 @@ export default class OperatorScreen extends BaseScreen {
         <TabHeader
           text="运行商认证"
           onPress={() => {
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('HomeMain')
           }}
         />
         {/* 顶部文字 */}

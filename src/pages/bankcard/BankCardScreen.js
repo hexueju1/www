@@ -75,7 +75,7 @@ export default class BankCardScreen extends BaseScreen {
         <TabHeader
           text="绑定银行卡"
           onPress={() => {
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('HomeMain')
           }}
         />
         <View style={[styles.toptext, { marginTop: px(32) }]}>

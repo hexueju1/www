@@ -52,7 +52,7 @@ export default class MyWebView extends React.Component {
     }
     msg_from_webview = (event) => {
       console.log(event)
-      this.props.navigation.navigate('Home')
+      this.props.navigation.navigate('HomeMain')
     }
     // 主界面
     return (

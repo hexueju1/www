@@ -107,7 +107,7 @@ export default class IDCardScreen extends BaseScreen {
         <TabHeader
           text="身份认证"
           onPress={() => {
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('HomeMain')
           }}
         />
         {/* 身份认证文字内容 */}

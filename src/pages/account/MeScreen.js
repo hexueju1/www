@@ -103,7 +103,7 @@ export default class MeScreen extends BaseScreen {
               text={'我要借钱'}
               onPress={() => {
                 if (LoginManager.isLogin()) {
-                  this.props.navigation.navigate('Home')
+                  this.props.navigation.navigate('HomeMain')
                 } else {
                   this.props.navigation.navigate('Login')
                 }
@@ -168,7 +168,10 @@ export default class MeScreen extends BaseScreen {
     Alert.alert(
       '',
       '确认退出吗',
-      [{ text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel' }, { text: '确定', onPress: () => LoginManager.logout() }],
+      [
+        { text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: '确定', onPress: () => LoginManager.logout() },
+      ],
       { cancelable: false },
     )
   }

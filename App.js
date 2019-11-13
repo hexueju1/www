@@ -84,11 +84,11 @@ const commonPages = {
 // StackNavigator用于实现各个页面之间的跳转
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    HomeMain: HomeScreen,
     ...commonPages,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'HomeMain',
     defaultNavigationOptions: style.defaultNavigation,
     headerLayoutPreset: 'center',
   },

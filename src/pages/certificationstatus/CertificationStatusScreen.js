@@ -46,7 +46,7 @@ export default class CertificationStatusScreen extends BaseScreen {
         <TabHeader
           text="身份验证"
           onPress={() => {
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('HomeMain')
           }}
         />
         <ScrollView>
