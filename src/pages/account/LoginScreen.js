@@ -30,7 +30,7 @@ export default class LoginScreen extends BaseScreen {
   constructor(props) {
     super(props)
     this.state = {
-      phone: isDebug() ? '18816236937' : '',
+      phone: isDebug() ? '15151531962' : '',
       phoneCode: isDebug() ? '123456' : '',
     }
   }
